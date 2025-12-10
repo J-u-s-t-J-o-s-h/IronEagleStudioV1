@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Small Safe Badge (Thicker lines, less detail) -->
+  
+  <!-- Background for contrast in preview (optional, usually transparent, but keeps shape clear) -->
+  <circle cx="256" cy="256" r="256" fill="#0B1120"/>
+
+  <!-- Outer Ring (Thicker) -->
+  <circle cx="256" cy="256" r="230" stroke="#D4AF37" stroke-width="24"/>
+  
+  <!-- Simplified Eagle (Main mass only) -->
+  <path d="M256 120 L400 240 L320 360 L256 310 L192 360 L112 240 L256 120 Z" fill="#D4AF37"/>
+  
+  <!-- Center Dot (Enlarged) -->
+  <circle cx="256" cy="240" r="32" fill="#0B1120"/>
+  <circle cx="256" cy="240" r="16" fill="#D4AF37"/>
+</svg>

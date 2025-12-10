@@ -1,0 +1,34 @@
+{
+    "services": [
+        {
+            "id": "web-systems",
+            "title": "Web Systems & Applications",
+            "description": "Full-stack web applications built for scale, security, and speed. From complex dashboards to customer portals.",
+            "icon": "Globe"
+        },
+        {
+            "id": "product-ui",
+            "title": "Product UI/UX Design",
+            "description": "Interface design that prioritizes clarity and conversion. Every pixel serves a purpose.",
+            "icon": "Layers"
+        },
+        {
+            "id": "brand-to-build",
+            "title": "Brand-to-Build Execution",
+            "description": "From brand strategy to deployed product. Complete digital presence execution under one roof.",
+            "icon": "Rocket"
+        },
+        {
+            "id": "performance",
+            "title": "Performance & SEO",
+            "description": "Lightning-fast load times and search visibility. Technical optimization that drives measurable results.",
+            "icon": "Zap"
+        },
+        {
+            "id": "secure-architecture",
+            "title": "Secure Architecture",
+            "description": "Enterprise-grade security patterns built into every layer. Compliance-ready from day one.",
+            "icon": "Shield"
+        }
+    ]
+}

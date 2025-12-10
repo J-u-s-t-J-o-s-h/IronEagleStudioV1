@@ -1,0 +1,25 @@
+{
+    "testimonials": [
+        {
+            "id": 1,
+            "quote": "They delivered exactly what we needed—no bloat, no delays. The attention to detail was exceptional.",
+            "name": "Sarah Chen",
+            "role": "Founder",
+            "company": "Meridian Labs"
+        },
+        {
+            "id": 2,
+            "quote": "Working with IronEagle felt like having a senior engineering team embedded in our company. Professional, efficient, results-driven.",
+            "name": "Michael Torres",
+            "role": "CTO",
+            "company": "Apex Logistics"
+        },
+        {
+            "id": 3,
+            "quote": "Our platform performance improved dramatically. They identified issues our previous team missed entirely.",
+            "name": "David Park",
+            "role": "VP Engineering",
+            "company": "Summit Financial"
+        }
+    ]
+}

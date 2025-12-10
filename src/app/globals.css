@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base */
+  --matte-black: #0a0a0b;
+  --deep-navy: #0B1120;
+  --navy-light: #161b22;
+
+  /* Structure */
+  --gunmetal: #374151;
+  --iron-gray: #4B5563;
+  --border-subtle: #374151;
+
+  /* Accents */
+  --brass: #D4AF37;
+  --brass-light: #E5C358;
+  --brass-muted: #A38520;
+  --brass-glow: rgba(212, 175, 55, 0.15);
+
+  /* Text */
+  --off-white: #e6edf3;
+  --slate: #8b949e;
+  --muted: #6e7681;
+
+  /* System */
+  --background: var(--matte-black);
+  --foreground: var(--off-white);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--deep-navy);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Background layer */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Subtle overlay for text readability */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(13, 17, 23, 0.3) 0%,
+      rgba(13, 17, 23, 0.1) 50%,
+      rgba(13, 17, 23, 0.4) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gunmetal);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--iron-gray);
+}
+
+/* Circuit line accent utility */
+.circuit-line {
+  position: relative;
+}
+
+.circuit-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      transparent,
+      var(--brass) 20%,
+      var(--brass) 80%,
+      transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.circuit-line:hover::before {
+  opacity: 1;
+}
+
+/* Section divider with circuit trace */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right,
+      transparent,
+      var(--gunmetal) 20%,
+      var(--brass) 50%,
+      var(--gunmetal) 80%,
+      transparent);
+  opacity: 0.5;
+}
+
+/* Brass glow effect */
+.brass-glow {
+  box-shadow: 0 0 20px var(--brass-glow),
+    0 0 40px rgba(201, 162, 39, 0.08);
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--brass);
+  color: var(--matte-black);
+}

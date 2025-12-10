@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mono White Version of Badge -->
+  
+  <!-- Outer Ring -->
+  <circle cx="256" cy="256" r="248" stroke="#FFFFFF" stroke-width="2"/>
+  
+  <!-- Circuit Ring -->
+  <path d="M256 16 A240 240 0 0 1 496 256" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square"/>
+  <path d="M256 496 A240 240 0 0 1 16 256" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square"/>
+  
+  <!-- Nodes -->
+  <circle cx="256" cy="16" r="4" fill="#FFFFFF"/>
+  <circle cx="496" cy="256" r="4" fill="#FFFFFF"/>
+  <circle cx="256" cy="496" r="4" fill="#FFFFFF"/>
+  <circle cx="16" cy="256" r="4" fill="#FFFFFF"/>
+
+  <!-- Inner Structure -->
+  <path d="M256 64 L448 256 L256 448 L64 256 Z" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Angular Eagle -->
+  <path d="M256 128 L384 224 L320 320 L256 288 L192 320 L128 224 L256 128 Z" fill="#FFFFFF"/>
+  
+  <!-- Eagle Negative Space (Transparent) -->
+  <path d="M256 128 L288 160 L224 160 L256 128 Z" fill="#000000" fill-opacity="0"/> 
+  <!-- Note: To make it truly transparent hole, we use mask or just path difference. 
+       For simplicity in mono, a filled white shape on dark bg works. 
+       If we want "cut out", we should use composite or just color match background. 
+       Assuming this is overlay -> White ink only. -->
+       
+  <!-- Circuit Stems -->
+  <path d="M128 224 L80 224" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M384 224 L432 224" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="80" cy="224" r="3" fill="#FFFFFF"/>
+  <circle cx="432" cy="224" r="3" fill="#FFFFFF"/>
+
+  <!-- Central Core -->
+  <circle cx="256" cy="240" r="16" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+  <circle cx="256" cy="240" r="6" fill="#FFFFFF"/>
+</svg>
