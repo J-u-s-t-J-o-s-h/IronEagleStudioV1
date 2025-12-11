@@ -39,9 +39,9 @@ const ownershipOptions = [
 ];
 
 const timelineOptions = [
-    'Immediately',
-    '1-2 Months',
-    '3+ Months',
+    'ASAP',
+    '2-4 weeks',
+    '1-2 months',
     'Flexible',
 ];
 
