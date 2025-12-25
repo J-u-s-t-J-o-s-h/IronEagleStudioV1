@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
+import { useCalendly } from '@/hooks/useCalendly';
 
 const navLinks = [
     { href: '#services', label: 'Services' },
     { href: '#work', label: 'Work' },
     { href: '#process', label: 'Process' },
+    { href: '#pricing', label: 'Pricing' },
     { href: '#about', label: 'About' },
     { href: '#contact', label: 'Contact' },
 ];
@@ -17,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
+    const { openPopup } = useCalendly();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -85,7 +88,7 @@ export default function Navbar() {
                                 {link.label}
                             </a>
                         ))}
-                        <Button variant="primary" size="sm" href="#contact">
+                        <Button variant="primary" size="sm" onClick={openPopup}>
                             Book a Discovery Call
                         </Button>
                     </div>
@@ -137,7 +140,7 @@ export default function Navbar() {
                                     ))}
                                 </div>
                                 <div className="mt-8">
-                                    <Button variant="primary" className="w-full" href="#contact" onClick={() => setIsOpen(false)}>
+                                    <Button variant="primary" className="w-full" onClick={() => { setIsOpen(false); openPopup(); }}>
                                         Book a Discovery Call
                                     </Button>
                                 </div>

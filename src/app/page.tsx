@@ -6,6 +6,7 @@ import FeaturedWork from '@/components/sections/FeaturedWork';
 import Process from '@/components/sections/Process';
 import About from '@/components/sections/About';
 import Testimonials from '@/components/sections/Testimonials';
+import Pricing from '@/components/sections/Pricing';
 import Contact from '@/components/sections/Contact';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <Services />
         <FeaturedWork />
         <Process />
+        <Pricing />
         <About />
         <Testimonials />
         <Contact />

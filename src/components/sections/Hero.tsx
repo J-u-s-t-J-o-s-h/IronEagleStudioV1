@@ -2,8 +2,11 @@
 
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
+import { useCalendly } from '@/hooks/useCalendly';
 
 export default function Hero() {
+    const { openPopup } = useCalendly();
+
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             {/* Background with angular ring motif */}
@@ -69,8 +72,8 @@ export default function Hero() {
 
                 <Reveal delay={0.2}>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Button variant="primary" size="lg" href="#contact">
-                            Book a Discovery Call
+                        <Button variant="primary" size="lg" onClick={openPopup}>
+                            Book a Discovery Consultation
                         </Button>
                         <Button variant="secondary" size="lg" href="#services">
                             View Capabilities

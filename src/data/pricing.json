@@ -1,0 +1,49 @@
+{
+    "packages": [
+        {
+            "id": "mvp",
+            "name": "MVP / Launch Pad",
+            "price": "$2,499",
+            "tagline": "Perfect for validation.",
+            "features": [
+                "Single-Page Landing Site",
+                "Mobile Responsive Design",
+                "Basic Technical SEO",
+                "Performance Optimization",
+                "1-Week Delivery"
+            ],
+            "cta": "Start Building",
+            "popular": false
+        },
+        {
+            "id": "professional",
+            "name": "Professional",
+            "price": "$4,999",
+            "tagline": "Full-scale digital presence.",
+            "features": [
+                "Multi-Page Web Application",
+                "Custom UX/UI Design",
+                "CMS Integration",
+                "Advanced SEO Strategy",
+                "3-4 Week Delivery"
+            ],
+            "cta": "Get Started",
+            "popular": true
+        },
+        {
+            "id": "enterprise",
+            "name": "Enterprise",
+            "price": "Custom",
+            "tagline": "Complex digital systems.",
+            "features": [
+                "Custom SaaS/E-commerce",
+                "Enterprise Security Protocols",
+                "Third-Party Integrations",
+                "Cloud Infrastructure Setup",
+                "Priority Dedicated Support"
+            ],
+            "cta": "Contact Sales",
+            "popular": false
+        }
+    ]
+}
