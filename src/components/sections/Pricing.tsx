@@ -5,9 +5,25 @@ import SectionWrapper from '@/components/ui/SectionWrapper';
 import Card from '@/components/ui/Card';
 import Reveal, { StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import Button from '@/components/ui/Button';
+import { useCalendly } from '@/hooks/useCalendly';
 import pricingData from '@/data/pricing.json';
 
+// Define the interface for the pricing package
+interface PricingPackage {
+    id: string;
+    name: string;
+    price: string;
+    tagline: string;
+    features: string[];
+    cta: string;
+    popular: boolean;
+    disclaimer?: string;
+}
+
 export default function Pricing() {
+    const { openPopup } = useCalendly();
+    const packages: PricingPackage[] = pricingData.packages;
+
     return (
         <SectionWrapper id="pricing">
             <div className="text-center mb-16">
@@ -33,7 +49,7 @@ export default function Pricing() {
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 staggerDelay={0.1}
             >
-                {pricingData.packages.map((pkg) => (
+                {packages.map((pkg) => (
                     <StaggerItem key={pkg.id} className="h-full">
                         <Card
                             className={`h-full flex flex-col ${pkg.popular ? 'border-brass/50 brass-glow scale-105 z-10 !overflow-visible' : ''}`}
@@ -72,10 +88,17 @@ export default function Pricing() {
                             <Button
                                 variant={pkg.popular ? 'primary' : 'secondary'}
                                 className="w-full"
-                                href="#contact"
+                                href={pkg.id === 'foundation' ? undefined : '#contact'}
+                                onClick={pkg.id === 'foundation' ? openPopup : undefined}
                             >
                                 {pkg.cta}
                             </Button>
+
+                            {pkg.disclaimer && (
+                                <p className="text-slate/60 text-xs mt-4 text-center">
+                                    {pkg.disclaimer}
+                                </p>
+                            )}
                         </Card>
                     </StaggerItem>
                 ))}
