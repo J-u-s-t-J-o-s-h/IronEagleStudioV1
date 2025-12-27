@@ -1,39 +1,31 @@
 {
     "projects": [
         {
-            "id": "enterprise-dashboard",
-            "title": "Enterprise Operations Dashboard",
-            "category": "Web Application",
-            "problem": "A growing logistics company struggled with fragmented data across multiple legacy systems, causing delays in decision-making.",
-            "solution": "Built a unified real-time dashboard consolidating data from 6 systems with role-based access and automated reporting.",
-            "outcome": "40% faster operational decisions. 12-hour weekly time savings for leadership team.",
+            "id": "tc-staining",
+            "title": "TC Staining",
+            "category": "Website",
+            "url": "https://tcstaining.com/",
+            "image": "/work/tc-staining.png",
+            "problem": "TC Staining needed a professional online presence to showcase their staining services and attract new customers.",
+            "solution": "Built a modern, responsive website with clean design, service showcases, and easy contact methods to help grow their business.",
+            "outcome": "Professional digital presence that effectively communicates services and makes it easy for customers to get in touch.",
             "metrics": {
-                "primary": "40%",
-                "label": "Faster Decisions"
+                "primary": "100%",
+                "label": "Custom Built"
             }
         },
         {
-            "id": "saas-platform",
-            "title": "B2B SaaS Platform Redesign",
-            "category": "Product UI/UX",
-            "problem": "User churn was increasing due to a complex interface that required extensive training for new team members.",
-            "solution": "Complete interface overhaul with user research-driven design, reducing time-to-value from days to hours.",
-            "outcome": "68% reduction in support tickets. 3x improvement in user activation rate.",
+            "id": "higgs-hauling",
+            "title": "Higgs Hauling",
+            "category": "Website",
+            "url": "https://www.higgshauling.com/",
+            "image": "/work/higgs-hauling.png",
+            "problem": "A veteran-owned dumpster rental company needed a comprehensive website to showcase services, pricing, and service areas to compete in the Lawton, Oklahoma market.",
+            "solution": "Developed a complete website featuring service listings, transparent pricing, customer reviews, service area information, and an easy-to-use quote request form.",
+            "outcome": "Professional website that highlights their veteran-owned status, clearly presents dumpster rental options, and streamlines customer inquiries.",
             "metrics": {
-                "primary": "68%",
-                "label": "Fewer Support Tickets"
-            }
-        },
-        {
-            "id": "brand-launch",
-            "title": "Fintech Brand Launch",
-            "category": "Brand-to-Build",
-            "problem": "A stealth-mode fintech startup needed to launch their complete digital presence in 8 weeks.",
-            "solution": "End-to-end brand identity, marketing site, and MVP web app delivered with coordinated launch strategy.",
-            "outcome": "Successful product launch. 2,400 waitlist signups in first month.",
-            "metrics": {
-                "primary": "8 wks",
-                "label": "Time to Launch"
+                "primary": "100%",
+                "label": "Custom Built"
             }
         }
     ]
