@@ -3,8 +3,6 @@
 import { Quote } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import Reveal from '@/components/ui/Reveal';
-import { StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
-import testimonialsData from '@/data/testimonials.json';
 
 export default function Testimonials() {
     return (
@@ -22,50 +20,35 @@ export default function Testimonials() {
                 </Reveal>
             </div>
 
-            <StaggerContainer
-                className="grid grid-cols-1 md:grid-cols-3 gap-6"
-                staggerDelay={0.1}
-            >
-                {testimonialsData.testimonials.map((testimonial) => (
-                    <StaggerItem key={testimonial.id}>
-                        <div className="relative bg-deep-navy border border-gunmetal p-8 h-full">
-                            {/* Quote icon */}
-                            <Quote
-                                size={32}
-                                className="text-brass/20 mb-4"
-                                fill="currentColor"
+            <Reveal delay={0.2}>
+                <div className="relative bg-deep-navy border border-gunmetal p-16 md:p-20 rounded-lg text-center">
+                    {/* Quote icon */}
+                    <Quote
+                        size={48}
+                        className="text-brass/30 mb-6 mx-auto"
+                        fill="currentColor"
+                    />
+
+                    <h3 className="text-2xl md:text-3xl font-bold text-off-white mb-4">
+                        Coming Soon
+                    </h3>
+                    <p className="text-slate text-lg max-w-2xl mx-auto">
+                        Client testimonials will be featured here soon. Check back to see what our clients have to say about working with IronEagle Studio.
+                    </p>
+
+                    {/* Decorative corner */}
+                    <div className="absolute bottom-0 right-0 w-16 h-16 pointer-events-none">
+                        <svg viewBox="0 0 64 64" className="w-full h-full">
+                            <path
+                                d="M64 64 L64 48 L48 48 L48 32"
+                                fill="none"
+                                stroke="rgba(201, 162, 39, 0.2)"
+                                strokeWidth="1"
                             />
-
-                            <blockquote className="text-off-white leading-relaxed mb-6">
-                                &ldquo;{testimonial.quote}&rdquo;
-                            </blockquote>
-
-                            <div className="mt-auto">
-                                <cite className="not-italic">
-                                    <span className="block text-off-white font-semibold">
-                                        {testimonial.name}
-                                    </span>
-                                    <span className="text-slate text-sm">
-                                        {testimonial.role}, {testimonial.company}
-                                    </span>
-                                </cite>
-                            </div>
-
-                            {/* Decorative corner */}
-                            <div className="absolute bottom-0 right-0 w-16 h-16 pointer-events-none">
-                                <svg viewBox="0 0 64 64" className="w-full h-full">
-                                    <path
-                                        d="M64 64 L64 48 L48 48 L48 32"
-                                        fill="none"
-                                        stroke="rgba(201, 162, 39, 0.2)"
-                                        strokeWidth="1"
-                                    />
-                                </svg>
-                            </div>
-                        </div>
-                    </StaggerItem>
-                ))}
-            </StaggerContainer>
+                        </svg>
+                    </div>
+                </div>
+            </Reveal>
         </SectionWrapper>
     );
 }
