@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
@@ -53,32 +53,70 @@ export default function Navbar() {
         };
     }, [isOpen]);
 
+    // Control header backdrop-blur when menu is open
+    const headerRef = useRef<HTMLElement>(null);
+    useEffect(() => {
+        const header = headerRef.current;
+        if (!header) return;
+
+        if (isOpen && hasScrolled) {
+            // Remove backdrop-blur when menu is open - disable transition for instant effect
+            header.style.transition = 'background-color 300ms, border-color 300ms';
+            header.style.backdropFilter = 'none';
+        } else if (hasScrolled && !isOpen) {
+            // Restore backdrop-blur when menu is closed and scrolled
+            header.style.transition = '';
+            header.style.backdropFilter = '';
+        }
+    }, [isOpen, hasScrolled]);
+
     return (
         <header
+            ref={(el) => {
+                headerRef.current = el;
+                // Apply backdrop-filter change immediately when menu opens (synchronous)
+                if (el && isOpen && hasScrolled) {
+                    el.style.transition = 'background-color 300ms, border-color 300ms';
+                    el.style.backdropFilter = 'none';
+                } else if (el && !isOpen && hasScrolled) {
+                    el.style.transition = '';
+                    el.style.backdropFilter = '';
+                }
+            }}
             className={`
         fixed top-0 left-0 right-0 z-50 transition-all duration-300
         ${hasScrolled
-                    ? 'bg-matte-black/90 backdrop-blur-md border-b border-gunmetal'
+                    ? isOpen 
+                        ? 'bg-matte-black/90 border-b border-gunmetal'
+                        : 'bg-matte-black/90 backdrop-blur-md border-b border-gunmetal'
                     : 'bg-transparent'
                 }
       `}
         >
             <nav className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-                <div className="flex items-center justify-between h-20">
-                    {/* Logo */}
-                    <a href="#" className="flex items-center hover:opacity-80 transition-opacity">
-                        <Image
-                            src="/logos/logo.svg"
-                            alt="IronEagle Studio"
-                            width={240}
-                            height={96}
-                            className="h-16 w-auto"
-                            priority
-                        />
-                    </a>
+                <div className="relative flex items-center justify-between h-20">
+                    {/* Logo (Left) */}
+                    <div className="flex-shrink-0">
+                        <a
+                            href="#"
+                            className={`
+                                flex items-center transition-all duration-300
+                                ${hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}
+                            `}
+                        >
+                            <Image
+                                src="/logos/logo.svg"
+                                alt="IronEagle Studio"
+                                width={240}
+                                height={96}
+                                className="h-16 w-auto"
+                                priority
+                            />
+                        </a>
+                    </div>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8">
+                    {/* Desktop Navigation (Center) */}
+                    <div className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
                         {navLinks.map((link) => (
                             <a
                                 key={link.href}
@@ -88,20 +126,26 @@ export default function Navbar() {
                                 {link.label}
                             </a>
                         ))}
-                        <Button variant="primary" size="sm" onClick={openPopup}>
-                            Book a Discovery Call
-                        </Button>
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden p-2 text-slate hover:text-off-white transition-colors"
-                        onClick={() => setIsOpen(!isOpen)}
-                        aria-label={isOpen ? 'Close menu' : 'Open menu'}
-                        aria-expanded={isOpen}
-                    >
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                    {/* CTA & Mobile Menu (Right) */}
+                    <div className="flex items-center gap-4">
+                        <div className="hidden md:block">
+                            <Button variant="primary" size="sm" onClick={openPopup}>
+                                Book a Discovery Call
+                            </Button>
+                        </div>
+
+                        {/* Mobile Menu Button */}
+                        <button
+                            className="md:hidden p-2 text-slate hover:text-off-white transition-colors"
+                            onClick={() => setIsOpen(!isOpen)}
+                            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                            aria-expanded={isOpen}
+                        >
+                            {isOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
                 </div>
             </nav>
 
@@ -114,7 +158,7 @@ export default function Navbar() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-matte-black/80 backdrop-blur-sm md:hidden"
+                            className="fixed inset-0 bg-matte-black/80 backdrop-blur-sm z-[60] md:hidden"
                             onClick={() => setIsOpen(false)}
                         />
 
@@ -124,15 +168,25 @@ export default function Navbar() {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'tween', duration: 0.3 }}
-                            className="fixed top-0 right-0 bottom-0 w-80 bg-deep-navy border-l border-gunmetal md:hidden"
+                            className="fixed top-0 right-0 bottom-0 w-80 bg-deep-navy backdrop-blur-xl border-l border-gunmetal z-[70] md:hidden shadow-2xl"
+                            style={{ backgroundColor: 'rgba(13, 17, 23, 0.98)' }}
                         >
-                            <div className="flex flex-col h-full pt-24 px-6">
-                                <div className="flex flex-col gap-6">
+                            <div className="flex flex-col h-full pt-20 px-6">
+                                {/* Close Button */}
+                                <button
+                                    className="absolute top-6 right-6 p-2 text-off-white hover:text-brass transition-colors rounded-lg hover:bg-gunmetal/50"
+                                    onClick={() => setIsOpen(false)}
+                                    aria-label="Close menu"
+                                >
+                                    <X size={24} />
+                                </button>
+
+                                <div className="flex flex-col gap-3 mt-4">
                                     {navLinks.map((link) => (
                                         <a
                                             key={link.href}
                                             href={link.href}
-                                            className="text-off-white text-lg font-medium hover:text-brass transition-colors"
+                                            className="text-off-white text-xl font-semibold hover:text-brass transition-all py-4 px-5 rounded-lg bg-gunmetal/30 border border-gunmetal/50 hover:bg-gunmetal/60 hover:border-brass/50 shadow-lg"
                                             onClick={() => setIsOpen(false)}
                                         >
                                             {link.label}

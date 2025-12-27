@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
 import { useCalendly } from '@/hooks/useCalendly';
@@ -57,6 +58,18 @@ export default function Hero() {
             {/* Content */}
             <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 lg:px-12 text-center">
                 <Reveal>
+                    <div className="flex justify-center mb-8">
+                        <Image
+                            src="/logos/logo.svg"
+                            alt="Iron Eagle Studio Logo"
+                            width={160}
+                            height={160}
+                            className="w-32 md:w-40 h-auto opacity-90"
+                            priority
+                        />
+                    </div>
+                </Reveal>
+                <Reveal delay={0.1}>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-off-white mb-6">
                         Precision-Built
                         <span className="block text-brass">Digital Systems</span>
