@@ -3,6 +3,7 @@
 import { Globe, Layers, Rocket, Zap, Shield } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
 import { StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import servicesData from '@/data/services.json';
@@ -63,6 +64,40 @@ export default function Services() {
                     );
                 })}
             </StaggerContainer>
+
+            <Reveal delay={0.4}>
+                <div className="mt-12">
+                    <Card className="border-brass/30 hover:border-brass/50">
+                        <div className="grid md:grid-cols-12 gap-6 items-center">
+                            <div className="md:col-span-8">
+                                <h3 className="text-xl md:text-2xl font-semibold text-off-white mb-3">
+                                    Contract-Readiness Site Inspection
+                                </h3>
+                                <p className="text-slate leading-relaxed mb-4">
+                                    A professional evaluation of how your website and digital presence are interpreted by evaluators, partners, and external reviewers. Designed for regulated service providers and contractors.
+                                </p>
+                                <a 
+                                    href="/contract-readiness-inspection" 
+                                    className="inline-flex items-center text-brass hover:text-brass-light transition-colors font-medium group/link"
+                                >
+                                    Learn more
+                                    <span className="ml-2 group-hover/link:translate-x-1 transition-transform">→</span>
+                                </a>
+                            </div>
+                            <div className="md:col-span-4 text-right">
+                                <a 
+                                    href="/contract-readiness-inspection"
+                                    className="inline-block"
+                                >
+                                    <Button variant="secondary" size="md">
+                                        View Service
+                                    </Button>
+                                </a>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+            </Reveal>
         </SectionWrapper>
     );
 }

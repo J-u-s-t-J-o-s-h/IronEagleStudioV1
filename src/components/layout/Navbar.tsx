@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
@@ -17,6 +19,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+    const pathname = usePathname();
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
     const { openPopup } = useCalendly();
@@ -97,8 +101,8 @@ export default function Navbar() {
                 <div className="relative flex items-center justify-between h-20">
                     {/* Logo (Left) */}
                     <div className="flex-shrink-0">
-                        <a
-                            href="#"
+                        <Link
+                            href="/"
                             className={`
                                 flex items-center transition-all duration-300
                                 ${hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}
@@ -112,20 +116,29 @@ export default function Navbar() {
                                 className="h-16 w-auto"
                                 priority
                             />
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation (Center) */}
                     <div className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                className="text-slate hover:text-off-white transition-colors duration-200 text-sm font-medium"
-                            >
-                                {link.label}
-                            </a>
-                        ))}
+                        {navLinks.map((link) => {
+                            const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                                if (pathname !== '/') {
+                                    e.preventDefault();
+                                    router.push(`/${link.href}`);
+                                }
+                            };
+                            return (
+                                <a
+                                    key={link.href}
+                                    href={pathname === '/' ? link.href : `/${link.href}`}
+                                    onClick={handleClick}
+                                    className="text-slate hover:text-off-white transition-colors duration-200 text-sm font-medium"
+                                >
+                                    {link.label}
+                                </a>
+                            );
+                        })}
                     </div>
 
                     {/* CTA & Mobile Menu (Right) */}
@@ -182,16 +195,25 @@ export default function Navbar() {
                                 </button>
 
                                 <div className="flex flex-col gap-3 mt-4">
-                                    {navLinks.map((link) => (
-                                        <a
-                                            key={link.href}
-                                            href={link.href}
-                                            className="text-off-white text-xl font-semibold hover:text-brass transition-all py-4 px-5 rounded-lg bg-gunmetal/30 border border-gunmetal/50 hover:bg-gunmetal/60 hover:border-brass/50 shadow-lg"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {link.label}
-                                        </a>
-                                    ))}
+                                    {navLinks.map((link) => {
+                                        const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                                            if (pathname !== '/') {
+                                                e.preventDefault();
+                                                router.push(`/${link.href}`);
+                                            }
+                                            setIsOpen(false);
+                                        };
+                                        return (
+                                            <a
+                                                key={link.href}
+                                                href={pathname === '/' ? link.href : `/${link.href}`}
+                                                onClick={handleClick}
+                                                className="text-off-white text-xl font-semibold hover:text-brass transition-all py-4 px-5 rounded-lg bg-gunmetal/30 border border-gunmetal/50 hover:bg-gunmetal/60 hover:border-brass/50 shadow-lg"
+                                            >
+                                                {link.label}
+                                            </a>
+                                        );
+                                    })}
                                 </div>
                                 <div className="mt-8">
                                     <Button variant="primary" className="w-full" onClick={() => { setIsOpen(false); openPopup(); }}>
