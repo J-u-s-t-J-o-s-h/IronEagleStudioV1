@@ -1,32 +1,37 @@
 {
-    "projects": [
-        {
-            "id": "tc-staining",
-            "title": "TC Staining",
-            "category": "Website",
-            "url": "https://tcstaining.com/",
-            "image": "/work/tc-staining.png",
-            "problem": "TC Staining needed a professional online presence to showcase their staining services and attract new customers.",
-            "solution": "Built a modern, responsive website with clean design, service showcases, and easy contact methods to help grow their business.",
-            "outcome": "Professional digital presence that effectively communicates services and makes it easy for customers to get in touch.",
-            "metrics": {
-                "primary": "100%",
-                "label": "Custom Built"
-            }
-        },
-        {
-            "id": "higgs-hauling",
-            "title": "Higgs Hauling",
-            "category": "Website",
-            "url": "https://www.higgshauling.com/",
-            "image": "/work/higgs-hauling.png",
-            "problem": "A veteran-owned dumpster rental company needed a comprehensive website to showcase services, pricing, and service areas to compete in the Lawton, Oklahoma market.",
-            "solution": "Developed a complete website featuring service listings, transparent pricing, customer reviews, service area information, and an easy-to-use quote request form.",
-            "outcome": "Professional website that highlights their veteran-owned status, clearly presents dumpster rental options, and streamlines customer inquiries.",
-            "metrics": {
-                "primary": "100%",
-                "label": "Custom Built"
-            }
-        }
-    ]
+  "projects": [
+    {
+      "id": "tc-staining",
+      "title": "TC Staining",
+      "category": "Website",
+      "url": "https://tcstaining.com/",
+      "image": "/work/tc-staining.png",
+      "problem": "TC Staining needed a professional online presence to showcase their staining services and attract new customers.",
+      "solution": "Built a modern, responsive website with clean design, service showcases, and easy contact methods to help grow their business.",
+      "outcome": "Professional digital presence that effectively communicates services and makes it easy for customers to get in touch.",
+      "metrics": { "primary": "100%", "label": "Custom Built" }
+    },
+    {
+      "id": "higgs-hauling",
+      "title": "Higgs Hauling",
+      "category": "Website",
+      "url": "https://www.higgshauling.com/",
+      "image": "/work/higgs-hauling.png",
+      "problem": "A veteran-owned dumpster rental company needed a comprehensive website to showcase services, pricing, and service areas to compete in the Lawton, Oklahoma market.",
+      "solution": "Developed a complete website featuring service listings, transparent pricing, customer reviews, service area information, and an easy-to-use quote request form.",
+      "outcome": "Professional website that highlights their veteran-owned status, clearly presents dumpster rental options, and streamlines customer inquiries.",
+      "metrics": { "primary": "100%", "label": "Custom Built" }
+    },
+    {
+      "id": "eazy-trailer-rentals",
+      "title": "Eazy Trailer Rentals",
+      "category": "Website",
+      "url": "https://www.eazytrailerrental.com/",
+      "image": "/work/eazy-trailer-rentals.png",
+      "problem": "A local CSRA trailer rental business needed a clear, professional website to showcase inventory, rental requirements, and contact options.",
+      "solution": "Built a responsive site showcasing trailer options (utility, car haulers, equipment trailers), rental requirements, FAQ, and prominent call/text CTAs.",
+      "outcome": "Professional local presence that drives calls and texts, serving Augusta, Evans, Martinez, Grovetown, and the surrounding CSRA.",
+      "metrics": { "primary": "100%", "label": "Custom Built" }
+    }
+  ]
 }
