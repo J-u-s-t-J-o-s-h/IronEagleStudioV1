@@ -81,6 +81,9 @@ export default function Footer() {
                         © {currentYear} IronEagle Studio. All rights reserved.
                     </p>
                     <div className="flex items-center gap-6">
+                        <Link href="/terms-of-service" className="text-slate text-sm hover:text-brass transition-colors">
+                            Terms of Service
+                        </Link>
                         <Link href="/privacy-policy" className="text-slate text-sm hover:text-brass transition-colors">
                             Privacy Policy
                         </Link>
