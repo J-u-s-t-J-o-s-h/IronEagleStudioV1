@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const footerLinks = {
     company: [
@@ -79,9 +80,14 @@ export default function Footer() {
                     <p className="text-slate text-sm">
                         © {currentYear} IronEagle Studio. All rights reserved.
                     </p>
-                    <p className="text-muted text-sm">
-                        Built in the USA 🇺🇸
-                    </p>
+                    <div className="flex items-center gap-6">
+                        <Link href="/privacy-policy" className="text-slate text-sm hover:text-brass transition-colors">
+                            Privacy Policy
+                        </Link>
+                        <p className="text-muted text-sm">
+                            Built in the USA 🇺🇸
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
