@@ -1,0 +1,59 @@
+{
+  "name": "HJH Outdoor Operations LLC",
+  "short_name": "HJH Outdoor",
+  "start_url": "/",
+  "theme_color": "#3a628a",
+  "background_color": "#e7ddcf",
+  "icons": [
+    {
+      "src": "/brand/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/web-app-manifest-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/brand/web-app-manifest-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "description": "Storm shelter installation, excavation, land clearing, and site work across Oklahoma.",
+  "display": "minimal-ui",
+  "categories": ["business", "construction"],
+  "screenshots": [
+    {
+      "src": "/brand/screenshot-desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Get a quote",
+      "url": "/contact",
+      "description": "Request a free estimate"
+    },
+    {
+      "name": "Services",
+      "url": "/services",
+      "description": "View all services"
+    }
+  ]
+}
