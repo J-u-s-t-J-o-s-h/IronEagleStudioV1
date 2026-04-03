@@ -429,12 +429,12 @@ export default function HomePage() {
                       borderRadius={360}
                       className="rounded-full"
                     >
-                      <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-2 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-2.5 md:p-3 lg:p-3.5">
+                      <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
                         <div
                           className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
                           aria-hidden="true"
                         />
-                        <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-1 sm:p-1.5 md:p-2">
+                        <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
                           <div className="relative w-full max-w-[84vw] aspect-square overflow-hidden rounded-full">
                             <Image
                               src="/brand/logo-transparent.png"
