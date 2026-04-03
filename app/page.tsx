@@ -114,7 +114,7 @@ const projects = [
 // Services section with organized tabs
 function ServicesSectionComponent() {
   const [activeCategory, setActiveCategory] = useState('primary')
-  
+
   const serviceCategories = {
     primary: {
       label: 'Core Services',
@@ -162,11 +162,10 @@ function ServicesSectionComponent() {
               key={key}
               type="button"
               onClick={() => setActiveCategory(key)}
-              className={`min-h-11 touch-manipulation px-5 py-3 font-bold text-sm tracking-wide uppercase rounded-sm transition-all duration-300 sm:px-6 ${
-                activeCategory === key
+              className={`min-h-11 touch-manipulation px-5 py-3 font-bold text-sm tracking-wide uppercase rounded-sm transition-all duration-300 sm:px-6 ${activeCategory === key
                   ? 'bg-gunmetal text-bone-linen shadow-md'
                   : 'bg-section-light border-2 border-gunmetal/40 text-gunmetal hover:border-storm-blue hover:text-storm-blue'
-              }`}
+                }`}
             >
               {label}
             </button>
@@ -178,11 +177,10 @@ function ServicesSectionComponent() {
           {Object.entries(serviceCategories).map(([key, { services: catServices }]) => (
             <div
               key={key}
-              className={`transition-all duration-500 ease-out ${
-                activeCategory === key 
-                  ? 'opacity-100 max-h-[2000px]' 
+              className={`transition-all duration-500 ease-out ${activeCategory === key
+                  ? 'opacity-100 max-h-[2000px]'
                   : 'opacity-0 max-h-0 pointer-events-none'
-              }`}
+                }`}
             >
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {catServices.map(({ icon: Icon, title, desc, href }, i) => (
@@ -335,7 +333,7 @@ export default function HomePage() {
   return (
     <>
       <SiteNav />
-      
+
       {/* Fixed Hero Background - spans entire page */}
       <div className="fixed inset-0 z-0">
         <Image
@@ -344,9 +342,8 @@ export default function HomePage() {
           fill
           priority
           onLoad={() => setHeroLoaded(true)}
-          className={`object-cover object-center transition-[transform,filter,opacity] duration-[950ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            heroLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-[1.06] blur-[1px] opacity-65'
-          }`}
+          className={`object-cover object-center transition-[transform,filter,opacity] duration-[950ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${heroLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-[1.06] blur-[1px] opacity-65'
+            }`}
           aria-hidden="true"
         />
         {/* Dark cinematic overlays for contrast and readability */}
@@ -356,46 +353,41 @@ export default function HomePage() {
 
       <main id="main-content" className="relative z-10">
         {/* ====== HERO SECTION ====== */}
-        <section id="home-hero" className="flex flex-col justify-start pb-4 pt-[calc(5.6rem+env(safe-area-inset-top,0px))] sm:pb-6 sm:pt-[calc(6rem+env(safe-area-inset-top,0px))] md:min-h-[100dvh] md:justify-end md:pb-12 md:pt-[calc(7.2rem+env(safe-area-inset-top,0px))] lg:pb-16 lg:pt-[calc(7.75rem+env(safe-area-inset-top,0px))]">
+        <section id="home-hero" className="flex min-h-[100dvh] flex-col justify-end pb-6 pt-[calc(5.6rem+env(safe-area-inset-top,0px))] sm:pb-6 sm:pt-[calc(6rem+env(safe-area-inset-top,0px))] md:pb-12 md:pt-[calc(7.2rem+env(safe-area-inset-top,0px))] lg:pb-16 lg:pt-[calc(7.75rem+env(safe-area-inset-top,0px))]">
           <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection immediate>
               <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_minmax(290px,0.88fr)] md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.96fr)] lg:gap-14">
                 <div
-                  className={`hero-reveal transition-all duration-[620ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-16 translate-y-4'
-                  }`}
+                  className={`hero-reveal transition-all duration-[620ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-16 translate-y-4'
+                    }`}
                 >
                   <p
-                    className={`hero-reveal mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold transition-all duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-4 sm:text-xs ${
-                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-12 translate-y-2'
-                    }`}
+                    className={`hero-reveal mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold transition-all duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-4 sm:text-xs ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-12 translate-y-2'
+                      }`}
                     style={{ transitionDelay: '40ms' }}
                   >
                     HJH Outdoor Operations
                   </p>
 
                   <h1
-                    className={`hero-reveal mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${
-                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 rotate-0' : 'opacity-0 -translate-x-24 translate-y-3 -rotate-2'
-                    }`}
+                    className={`hero-reveal mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 rotate-0' : 'opacity-0 -translate-x-24 translate-y-3 -rotate-2'
+                      }`}
                     style={{ transitionDelay: '120ms' }}
                   >
                     Storm Shelters &amp; Site Work Done Right.
                   </h1>
 
                   <p
-                    className={`hero-reveal mb-6 max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:text-[1.06rem] md:text-lg lg:mb-10 lg:text-xl ${
-                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-12 translate-y-6'
-                    }`}
+                    className={`hero-reveal mb-6 max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:text-[1.06rem] md:text-lg lg:mb-10 lg:text-xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-12 translate-y-6'
+                      }`}
                     style={{ transitionDelay: '190ms' }}
                   >
                     HJH Outdoor Operations provides storm shelter installation, excavation, land clearing, grading, and septic services for Oklahoma homeowners and landowners.
                   </p>
 
                   <div
-                    className={`hero-reveal mb-5 flex w-full max-w-xl flex-col gap-3 transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9 ${
-                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 scale-100' : 'opacity-0 -translate-x-14 translate-y-8 scale-[0.95]'
-                    }`}
+                    className={`hero-reveal mb-5 flex w-full max-w-xl flex-col gap-3 transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9 ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 scale-100' : 'opacity-0 -translate-x-14 translate-y-8 scale-[0.95]'
+                      }`}
                     style={{ transitionDelay: '280ms' }}
                   >
                     <Link
@@ -417,9 +409,8 @@ export default function HomePage() {
                 </div>
 
                 <div
-                  className={`hero-reveal order-first relative mx-auto mb-5 w-full max-w-[23.5rem] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${
-                    heroLoaded ? 'opacity-100 translate-y-0 scale-100 rotate-0 hero-logo-drop' : 'opacity-0 -translate-y-28 scale-[0.86] rotate-[8deg]'
-                  }`}
+                  className={`hero-reveal order-first relative mx-auto mb-3 w-full max-w-[11rem] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:max-w-[14rem] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${heroLoaded ? 'opacity-100 translate-y-0 scale-100 rotate-0 hero-logo-drop' : 'opacity-0 -translate-y-28 scale-[0.86] rotate-[8deg]'
+                    }`}
                   style={{ transitionDelay: '130ms' }}
                 >
                   <ElectricBorder
@@ -438,12 +429,12 @@ export default function HomePage() {
                       borderRadius={360}
                       className="rounded-full"
                     >
-                      <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
+                      <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-2 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-2.5 md:p-3 lg:p-3.5">
                         <div
                           className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
                           aria-hidden="true"
                         />
-                        <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
+                        <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-1 sm:p-1.5 md:p-2">
                           <div className="relative w-full max-w-[84vw] aspect-square overflow-hidden rounded-full">
                             <Image
                               src="/brand/logo-transparent.png"
@@ -464,11 +455,9 @@ export default function HomePage() {
                 {serviceChips.map((tag, index) => (
                   <span
                     key={tag}
-                    className={`hero-reveal shrink-0 rounded-sm border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase backdrop-blur-sm transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-8 translate-y-4'
-                    } ${
-                      index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'
-                    }`}
+                    className={`hero-reveal shrink-0 rounded-sm border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase backdrop-blur-sm transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-8 translate-y-4'
+                      } ${index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'
+                      }`}
                     style={{ transitionDelay: `${360 + index * 70}ms` }}
                   >
                     {tag}
@@ -485,7 +474,7 @@ export default function HomePage() {
         </section>
 
         {/* Spacer to reveal hero background */}
-        <div className="h-32 lg:h-56" aria-hidden="true" />
+        <div className="h-10 sm:h-20 lg:h-56" aria-hidden="true" />
 
         {/* ====== FLOATING CONTENT CONTAINER ====== */}
         <div className="relative">
@@ -512,13 +501,13 @@ export default function HomePage() {
           </section>
 
           {/* Spacer — backdrop reveal */}
-          <div className="h-28 lg:h-44 bg-transparent" aria-hidden="true" />
+          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== STORM SHELTER CALLOUT ====== */}
           <section className="bg-section-light relative overflow-hidden texture-linen">
             {/* Decorative diagonal line */}
             <div className="absolute top-0 right-0 w-1/2 h-1 bg-gradient-to-r from-transparent via-equipment-gold/40 to-equipment-gold" />
-            
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <AnimatedSection>
@@ -586,13 +575,13 @@ export default function HomePage() {
           </section>
 
           {/* Spacer — backdrop reveal */}
-          <div className="h-28 lg:h-44 bg-transparent" aria-hidden="true" />
+          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== SERVICES ====== */}
           <ServicesSectionComponent />
 
           {/* Spacer — backdrop reveal */}
-          <div className="h-28 lg:h-44 bg-transparent" aria-hidden="true" />
+          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== WHY CHOOSE US ====== */}
           <section className="bg-soft-coal relative texture-concrete">
@@ -637,7 +626,7 @@ export default function HomePage() {
           </section>
 
           {/* Spacer — backdrop reveal */}
-          <div className="h-28 lg:h-44 bg-transparent" aria-hidden="true" />
+          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== PROJECTS PREVIEW ====== */}
           <section className="bg-section-light relative texture-linen">
@@ -688,7 +677,7 @@ export default function HomePage() {
           </section>
 
           {/* Spacer — backdrop reveal */}
-          <div className="h-28 lg:h-44 bg-transparent" aria-hidden="true" />
+          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== SERVICE AREA ====== */}
           <section className="bg-sandstone border-t border-soft-khaki/30">
@@ -718,7 +707,7 @@ export default function HomePage() {
           </section>
 
           {/* Spacer — backdrop reveal */}
-          <div className="h-28 lg:h-44 bg-transparent" aria-hidden="true" />
+          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== TESTIMONIALS ====== */}
           <section className="bg-section-light texture-linen relative">
@@ -765,7 +754,7 @@ export default function HomePage() {
           </section>
 
           {/* Spacer — backdrop reveal */}
-          <div className="h-28 lg:h-44 bg-transparent" aria-hidden="true" />
+          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== FINAL CTA ====== */}
           <section className="bg-deep-slate relative texture-concrete">

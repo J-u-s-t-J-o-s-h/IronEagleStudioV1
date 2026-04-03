@@ -7,7 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   /** Allow dev HMR / resources when opening the site from another device on your LAN */
-  allowedDevOrigins: ['192.168.3.138'],
+  allowedDevOrigins: ['192.168.3.141'],
 }
 
 export default nextConfig
