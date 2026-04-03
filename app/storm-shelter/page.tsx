@@ -105,7 +105,7 @@ export default function StormShelterPage() {
         <section className="relative flex min-h-[min(100dvh,56rem)] items-end overflow-hidden pb-16 sm:min-h-[60vh]">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/placeholder.svg"
+              src="/images/storm-shelter-install.jpg"
               alt="Storm shelter installation in Oklahoma residential property"
               fill
               priority
@@ -217,7 +217,7 @@ export default function StormShelterPage() {
               <div className="flex flex-col gap-5">
                 <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-xl">
                   <Image
-                    src="/placeholder.svg"
+                    src="/images/storm-shelter-interior.jpg"
                     alt="Interior of a completed storm shelter installation"
                     fill
                     className="object-cover"

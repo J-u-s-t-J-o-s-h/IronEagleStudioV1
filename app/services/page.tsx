@@ -10,7 +10,7 @@ const services = [
     icon: Shield,
     title: 'Storm Shelter Installation',
     tagline: 'Safe rooms built for Oklahoma tornado country.',
-    image: '/placeholder.svg',
+    image: '/images/storm-shelter-install.jpg',
     imageAlt: 'Underground storm shelter being installed',
     forWho: 'Homeowners, rural property owners, and anyone in tornado-prone areas of Oklahoma.',
     description:
@@ -30,7 +30,7 @@ const services = [
     icon: Shovel,
     title: 'Excavation',
     tagline: 'Precision earthmoving for foundations, ponds, and more.',
-    image: '/placeholder.svg',
+    image: '/images/hero-excavation.jpg',
     imageAlt: 'Large excavator working on Oklahoma jobsite',
     forWho: 'Homeowners, builders, and landowners needing earth moved for foundations, ponds, utilities, or drainage.',
     description:
@@ -50,7 +50,7 @@ const services = [
     icon: Shovel,
     title: 'Dirt Work',
     tagline: 'Ground prep done right — for driveways, pads, and properties.',
-    image: '/placeholder.svg',
+    image: '/images/dirt-work.jpg',
     imageAlt: 'Skid steer performing precision dirt work and grading',
     forWho: 'Property owners needing site prep, driveway work, lot leveling, or general earth shaping.',
     description:
@@ -70,7 +70,7 @@ const services = [
     icon: Trees,
     title: 'Land Clearing',
     tagline: 'Clear brush, trees, and overgrowth to reclaim your property.',
-    image: '/placeholder.svg',
+    image: '/images/land-clearing.jpg',
     imageAlt: 'Heavy equipment clearing brush and trees from Oklahoma land',
     forWho: 'Landowners, developers, and homeowners with overgrown or timbered land that needs to be cleared for building, farming, or personal use.',
     description:
@@ -90,7 +90,7 @@ const services = [
     icon: Layers,
     title: 'Site Grading',
     tagline: 'Level pads, proper drainage, and finished ground surfaces.',
-    image: '/placeholder.svg',
+    image: '/images/project-completed.jpg',
     imageAlt: 'Completed site grading work on residential property',
     forWho: 'Anyone building a new home, shop, outbuilding, or commercial facility who needs proper grade, drainage, and surface prep.',
     description:
@@ -110,7 +110,7 @@ const services = [
     icon: Droplets,
     title: 'Septic System Installation',
     tagline: 'Full septic systems installed to code on residential and rural properties.',
-    image: '/placeholder.svg',
+    image: '/images/septic-install.jpg',
     imageAlt: 'Septic system installation in progress on rural property',
     forWho: 'Rural homeowners, new construction projects, and properties requiring on-site wastewater systems.',
     description:
@@ -130,7 +130,7 @@ const services = [
     icon: Wrench,
     title: 'Additional Site Services',
     tagline: 'Demolition, culverts, haul-off, and more.',
-    image: '/placeholder.svg',
+    image: '/images/hero-excavation.jpg',
     imageAlt: 'HJH equipment on jobsite performing additional services',
     forWho: 'Customers with project-specific needs that fall outside the standard service categories above.',
     description:

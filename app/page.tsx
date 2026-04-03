@@ -86,25 +86,25 @@ const trustPillars = [
 
 const projects = [
   {
-    src: '/placeholder.svg',
+    src: '/images/storm-shelter-install.jpg',
     alt: 'Underground storm shelter installation in progress',
     label: 'Storm Shelter — Edmond, OK',
     tag: 'Storm Shelter',
   },
   {
-    src: '/placeholder.svg',
+    src: '/images/land-clearing.jpg',
     alt: 'Heavy equipment clearing brush and trees from rural Oklahoma land',
     label: 'Land Clearing — 12 Acres',
     tag: 'Land Clearing',
   },
   {
-    src: '/placeholder.svg',
+    src: '/images/dirt-work.jpg',
     alt: 'Precision dirt work and site grading on residential property',
     label: 'Site Grading — New Build Pad',
     tag: 'Grading',
   },
   {
-    src: '/placeholder.svg',
+    src: '/images/project-completed.jpg',
     alt: 'Completed residential site work with fresh grading',
     label: 'Residential Site Prep',
     tag: 'Completed',
@@ -361,22 +361,22 @@ export default function HomePage() {
             <AnimatedSection immediate>
               <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_minmax(290px,0.88fr)] md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.96fr)] lg:gap-14">
                 <div
-                  className={`transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+                  className={`hero-reveal transition-all duration-[620ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-16 translate-y-4'
                   }`}
                 >
                   <p
-                    className={`mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-4 sm:text-xs ${
-                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                    className={`hero-reveal mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold transition-all duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-4 sm:text-xs ${
+                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-12 translate-y-2'
                     }`}
-                    style={{ transitionDelay: '50ms' }}
+                    style={{ transitionDelay: '40ms' }}
                   >
                     HJH Outdoor Operations
                   </p>
 
                   <h1
-                    className={`mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${
-                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    className={`hero-reveal mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${
+                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 rotate-0' : 'opacity-0 -translate-x-24 translate-y-3 -rotate-2'
                     }`}
                     style={{ transitionDelay: '120ms' }}
                   >
@@ -384,8 +384,8 @@ export default function HomePage() {
                   </h1>
 
                   <p
-                    className={`mb-6 max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-7 sm:text-[1.06rem] md:text-lg lg:mb-10 lg:text-xl ${
-                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    className={`hero-reveal mb-6 max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:text-[1.06rem] md:text-lg lg:mb-10 lg:text-xl ${
+                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-12 translate-y-6'
                     }`}
                     style={{ transitionDelay: '190ms' }}
                   >
@@ -393,10 +393,10 @@ export default function HomePage() {
                   </p>
 
                   <div
-                    className={`mb-5 flex w-full max-w-xl flex-col gap-3 transition-all duration-[680ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9 ${
-                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+                    className={`hero-reveal mb-5 flex w-full max-w-xl flex-col gap-3 transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9 ${
+                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 scale-100' : 'opacity-0 -translate-x-14 translate-y-8 scale-[0.95]'
                     }`}
-                    style={{ transitionDelay: '250ms' }}
+                    style={{ transitionDelay: '280ms' }}
                   >
                     <Link
                       href="/contact"
@@ -417,22 +417,23 @@ export default function HomePage() {
                 </div>
 
                 <div
-                  className={`order-first relative mx-auto mb-5 w-full max-w-[23.5rem] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${
-                    heroLoaded ? 'opacity-100 translate-y-5 scale-100 hero-logo-pop' : 'opacity-0 translate-y-8 scale-[0.9]'
+                  className={`hero-reveal order-first relative mx-auto mb-5 w-full max-w-[23.5rem] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${
+                    heroLoaded ? 'opacity-100 translate-y-0 scale-100 rotate-0 hero-logo-drop' : 'opacity-0 -translate-y-28 scale-[0.86] rotate-[8deg]'
                   }`}
+                  style={{ transitionDelay: '130ms' }}
                 >
                   <ElectricBorder
                     color="#3c648c"
-                    speed={0.4}
-                    chaos={0.11}
+                    speed={0.55}
+                    chaos={0.1}
                     thickness={1.8}
                     borderRadius={360}
                     className="rounded-full"
                   >
                     <ElectricBorder
                       color="#b48c3c"
-                      speed={0.65}
-                      chaos={0.09}
+                      speed={0.8}
+                      chaos={0.08}
                       thickness={1.2}
                       borderRadius={360}
                       className="rounded-full"
@@ -463,10 +464,12 @@ export default function HomePage() {
                 {serviceChips.map((tag, index) => (
                   <span
                     key={tag}
-                    className={`shrink-0 rounded-sm border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase backdrop-blur-sm transition-all duration-[640ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                    } ${index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'}`}
-                    style={{ transitionDelay: `${320 + index * 70}ms` }}
+                    className={`hero-reveal shrink-0 rounded-sm border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase backdrop-blur-sm transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-8 translate-y-4'
+                    } ${
+                      index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'
+                    }`}
+                    style={{ transitionDelay: `${360 + index * 70}ms` }}
                   >
                     {tag}
                   </span>
@@ -807,23 +810,38 @@ export default function HomePage() {
           transform: translateY(0) !important;
         }
 
-        @keyframes hero-logo-pop {
+        @keyframes hero-logo-drop {
           0% {
-            transform: scale(0.9) translateY(20px);
-            filter: blur(1px);
+            transform: translateY(-180px) scale(0.78) rotate(9deg);
+            filter: blur(1.3px);
           }
-          68% {
-            transform: scale(1.06) translateY(-2px);
+          62% {
+            transform: translateY(16px) scale(1.05) rotate(-3deg);
+            filter: blur(0);
+          }
+          82% {
+            transform: translateY(-6px) scale(0.99) rotate(1deg);
             filter: blur(0);
           }
           100% {
-            transform: scale(1) translateY(0);
+            transform: translateY(0) scale(1) rotate(0deg);
             filter: blur(0);
           }
         }
 
-        .hero-logo-pop {
-          animation: hero-logo-pop 760ms cubic-bezier(0.16, 1, 0.3, 1);
+        .hero-logo-drop {
+          animation: hero-logo-drop 980ms cubic-bezier(0.12, 1, 0.22, 1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-reveal,
+          .hero-logo-drop {
+            transition-duration: 1ms !important;
+            animation: none !important;
+            transform: none !important;
+            filter: none !important;
+            opacity: 1 !important;
+          }
         }
       `}</style>
     </>
