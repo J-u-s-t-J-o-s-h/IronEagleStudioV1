@@ -52,9 +52,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/brand/favicon.svg', type: 'image/svg+xml' },
-      { url: '/brand/favicon.ico', sizes: '48x48' },
     ],
-    apple: '/brand/apple-touch-icon.png',
+    apple: '/brand/favicon.svg',
   },
   openGraph: {
     title: 'HJH Outdoor Operations LLC',
@@ -62,7 +61,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/brand/og-image.png',
+        url: '/brand/LogoV-B.svg',
         width: 1200,
         height: 630,
         alt: 'HJH Outdoor Operations LLC',
@@ -73,7 +72,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'HJH Outdoor Operations LLC',
     description: 'Storm shelter installation, excavation, and outdoor site services in Oklahoma.',
-    images: ['/brand/og-image.png'],
+    images: ['/brand/LogoV-B.svg'],
   },
 }
 

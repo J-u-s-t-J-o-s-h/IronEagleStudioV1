@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type MouseEvent } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Phone, ChevronDown, Shovel, Home, Shield, Wrench, Images, MessageSquare } from 'lucide-react'
@@ -68,6 +68,21 @@ export function SiteNav() {
   const showHeaderLogo = !isHome || scrolledPastHeroThreshold
   const useSolidHeader = !isHome || scrolledPastHeroThreshold
 
+  const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    setMobileOpen(false)
+    setDropdownOpen(false)
+
+    if (pathname === '/') {
+      e.preventDefault()
+      const hero = document.getElementById('home-hero')
+      if (hero) {
+        hero.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
+  }
+
   return (
     <header
       className={cn(
@@ -81,7 +96,8 @@ export function SiteNav() {
         <div className="flex h-[5.75rem] items-center justify-between lg:h-[6.75rem]">
           {/* Logo */}
           <Link
-            href="/"
+            href="/#home-hero"
+            onClick={handleLogoClick}
             className={cn(
               'flex min-w-0 items-center py-1 pr-4 transition-all duration-500 ease-out lg:pr-6',
               showHeaderLogo ? 'opacity-100 translate-y-0 scale-100' : 'pointer-events-none -translate-y-1 scale-95 opacity-0'

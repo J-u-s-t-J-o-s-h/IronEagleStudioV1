@@ -20,6 +20,7 @@ import {
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { Logo } from '@/components/logo'
+import ElectricBorder from '@/components/ElectricBorder'
 
 const services = [
   {
@@ -85,25 +86,25 @@ const trustPillars = [
 
 const projects = [
   {
-    src: '/images/storm-shelter-install.jpg',
+    src: '/placeholder.svg',
     alt: 'Underground storm shelter installation in progress',
     label: 'Storm Shelter — Edmond, OK',
     tag: 'Storm Shelter',
   },
   {
-    src: '/images/land-clearing.jpg',
+    src: '/placeholder.svg',
     alt: 'Heavy equipment clearing brush and trees from rural Oklahoma land',
     label: 'Land Clearing — 12 Acres',
     tag: 'Land Clearing',
   },
   {
-    src: '/images/dirt-work.jpg',
+    src: '/placeholder.svg',
     alt: 'Precision dirt work and site grading on residential property',
     label: 'Site Grading — New Build Pad',
     tag: 'Grading',
   },
   {
-    src: '/images/project-completed.jpg',
+    src: '/placeholder.svg',
     alt: 'Completed residential site work with fresh grading',
     label: 'Residential Site Prep',
     tag: 'Completed',
@@ -188,17 +189,52 @@ function ServicesSectionComponent() {
                   <AnimatedSection key={title} delay={i * 100}>
                     <Link
                       href={href}
-                      className="group bg-section-light border border-soft-khaki/40 hover:border-storm-blue/60 rounded-sm p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 block h-full"
+                      className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-soft-khaki/25 bg-gunmetal p-8 transition-all duration-300 [transform:perspective(900px)_translateZ(0)] hover:-translate-y-1.5 hover:border-storm-blue/55 hover:[transform:perspective(900px)_translateZ(8px)] hover:shadow-2xl hover:shadow-black/30"
                     >
-                      <div className="flex items-center justify-center w-14 h-14 bg-gunmetal rounded-sm mb-6 group-hover:bg-storm-blue transition-colors duration-300">
+                      <div
+                        className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-white/6"
+                        aria-hidden="true"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-[1px] rounded-[2px] border border-black/25"
+                        aria-hidden="true"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-storm-blue/22 via-gunmetal/95 to-matte-black/96"
+                        aria-hidden="true"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-0 opacity-50 [background:radial-gradient(circle_at_12%_8%,rgba(181,138,58,0.2),transparent_35%),radial-gradient(circle_at_88%_92%,rgba(58,98,138,0.22),transparent_40%)]"
+                        aria-hidden="true"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-equipment-gold/75 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                        aria-hidden="true"
+                      />
+                      <div
+                        className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-storm-blue/25 blur-2xl transition-opacity duration-300 group-hover:bg-storm-blue/35"
+                        aria-hidden="true"
+                      />
+                      <div
+                        className="pointer-events-none absolute -left-12 -bottom-12 h-40 w-40 rounded-full bg-equipment-gold/12 blur-3xl transition-opacity duration-300 group-hover:bg-equipment-gold/18"
+                        aria-hidden="true"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/25 to-transparent"
+                        aria-hidden="true"
+                      />
+
+                      <div className="relative z-10 mb-6 flex h-14 w-14 items-center justify-center rounded-sm border border-soft-khaki/30 bg-soft-coal/85 shadow-md shadow-black/35 transition-colors duration-300 group-hover:border-storm-blue/40 group-hover:bg-storm-blue">
                         <Icon size={26} className="text-bone-linen" />
                       </div>
-                      <h3 className="font-bold text-gunmetal text-xl mb-3 group-hover:text-storm-blue transition-colors">
+
+                      <h3 className="relative z-10 mb-3 text-xl font-bold text-bone-linen transition-colors group-hover:text-blue-200">
                         {title}
                       </h3>
-                      <p className="text-clay-taupe leading-relaxed mb-5">{desc}</p>
-                      <span className="inline-flex items-center gap-2 text-storm-blue font-bold tracking-wide uppercase group-hover:gap-3 transition-all">
-                        Learn More <ArrowRight size={14} />
+                      <p className="relative z-10 mb-6 leading-relaxed text-soft-khaki/90">{desc}</p>
+
+                      <span className="relative z-10 mt-4 inline-flex items-center gap-2 text-sm font-bold tracking-widest text-equipment-gold uppercase transition-all group-hover:gap-3 group-hover:text-burnished-amber md:mt-auto">
+                        Learn More <ArrowRight size={14} className="translate-y-[0.5px]" />
                       </span>
                     </Link>
                   </AnimatedSection>
@@ -287,6 +323,14 @@ function AnimatedSection({
 
 export default function HomePage() {
   const serviceChips = ['Storm Shelters', 'Excavation', 'Land Clearing', 'Dirt Work', 'Septic Systems']
+  const trustItems = [
+    'Licensed & Insured',
+    'Free Estimates',
+    'Serving All of Oklahoma',
+    'Over 10 Years Experience',
+    'Quality You Can See',
+  ]
+  const [heroLoaded, setHeroLoaded] = useState(false)
 
   return (
     <>
@@ -299,7 +343,10 @@ export default function HomePage() {
           alt=""
           fill
           priority
-          className="object-cover object-center"
+          onLoad={() => setHeroLoaded(true)}
+          className={`object-cover object-center transition-[transform,filter,opacity] duration-[950ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            heroLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-[1.06] blur-[1px] opacity-65'
+          }`}
           aria-hidden="true"
         />
         {/* Dark cinematic overlays for contrast and readability */}
@@ -309,24 +356,48 @@ export default function HomePage() {
 
       <main id="main-content" className="relative z-10">
         {/* ====== HERO SECTION ====== */}
-        <section className="flex flex-col justify-start pb-4 pt-[calc(5.6rem+env(safe-area-inset-top,0px))] sm:pb-6 sm:pt-[calc(6rem+env(safe-area-inset-top,0px))] md:min-h-[100dvh] md:justify-end md:pb-12 md:pt-[calc(7.2rem+env(safe-area-inset-top,0px))] lg:pb-16 lg:pt-[calc(7.75rem+env(safe-area-inset-top,0px))]">
+        <section id="home-hero" className="flex flex-col justify-start pb-4 pt-[calc(5.6rem+env(safe-area-inset-top,0px))] sm:pb-6 sm:pt-[calc(6rem+env(safe-area-inset-top,0px))] md:min-h-[100dvh] md:justify-end md:pb-12 md:pt-[calc(7.2rem+env(safe-area-inset-top,0px))] lg:pb-16 lg:pt-[calc(7.75rem+env(safe-area-inset-top,0px))]">
           <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection immediate>
               <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_minmax(290px,0.88fr)] md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.96fr)] lg:gap-14">
-                <div>
-                  <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold sm:mb-4 sm:text-xs">
+                <div
+                  className={`transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+                  }`}
+                >
+                  <p
+                    className={`mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-4 sm:text-xs ${
+                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                    }`}
+                    style={{ transitionDelay: '50ms' }}
+                  >
                     HJH Outdoor Operations
                   </p>
 
-                  <h1 className="mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl">
+                  <h1
+                    className={`mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${
+                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                    style={{ transitionDelay: '120ms' }}
+                  >
                     Storm Shelters &amp; Site Work Done Right.
                   </h1>
 
-                  <p className="mb-6 max-w-2xl text-[1rem] leading-relaxed text-warm-concrete sm:mb-7 sm:text-[1.06rem] md:text-lg lg:mb-10 lg:text-xl">
+                  <p
+                    className={`mb-6 max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-7 sm:text-[1.06rem] md:text-lg lg:mb-10 lg:text-xl ${
+                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                    style={{ transitionDelay: '190ms' }}
+                  >
                     HJH Outdoor Operations provides storm shelter installation, excavation, land clearing, grading, and septic services for Oklahoma homeowners and landowners.
                   </p>
 
-                  <div className="mb-5 flex w-full max-w-xl flex-col gap-3 sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9">
+                  <div
+                    className={`mb-5 flex w-full max-w-xl flex-col gap-3 transition-all duration-[680ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9 ${
+                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+                    }`}
+                    style={{ transitionDelay: '250ms' }}
+                  >
                     <Link
                       href="/contact"
                       className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-sm bg-storm-blue px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen shadow-lg uppercase transition-colors hover:bg-steel-blue sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
@@ -345,20 +416,46 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="order-first mx-auto mb-5 w-full max-w-[25rem] md:order-none md:mb-0 md:mt-0 md:max-w-[28rem] lg:-mt-6 lg:max-w-[38rem]">
-                  <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-matte-black/72 p-2 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-3 md:p-5 lg:p-8">
-                    <div
-                      className="pointer-events-none absolute inset-0 rounded-2xl border border-equipment-gold/16"
-                      aria-hidden="true"
-                    />
-                    <div
-                      className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
-                      aria-hidden="true"
-                    />
-                    <div className="flex items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] px-1.5 py-1.5 sm:px-2.5 sm:py-2.5 md:p-3 lg:p-5">
-                      <Logo size="xl" showText priority className="w-[86%] justify-center sm:w-[82%] md:w-[86%]" />
-                    </div>
-                  </div>
+                <div
+                  className={`order-first relative mx-auto mb-5 w-full max-w-[23.5rem] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${
+                    heroLoaded ? 'opacity-100 translate-y-5 scale-100 hero-logo-pop' : 'opacity-0 translate-y-8 scale-[0.9]'
+                  }`}
+                >
+                  <ElectricBorder
+                    color="#3c648c"
+                    speed={0.4}
+                    chaos={0.11}
+                    thickness={1.8}
+                    borderRadius={360}
+                    className="rounded-full"
+                  >
+                    <ElectricBorder
+                      color="#b48c3c"
+                      speed={0.65}
+                      chaos={0.09}
+                      thickness={1.2}
+                      borderRadius={360}
+                      className="rounded-full"
+                    >
+                      <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
+                        <div
+                          className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
+                          aria-hidden="true"
+                        />
+                        <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
+                          <div className="relative w-full max-w-[84vw] aspect-square overflow-hidden rounded-full">
+                            <Image
+                              src="/brand/logo-transparent.png"
+                              alt="HJH Outdoor Operations LLC — storm shelter installation, dirt work, land clearing, Oklahoma"
+                              fill
+                              priority
+                              className="object-contain object-center scale-[.86]"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </ElectricBorder>
+                  </ElectricBorder>
                 </div>
               </div>
 
@@ -366,7 +463,10 @@ export default function HomePage() {
                 {serviceChips.map((tag, index) => (
                   <span
                     key={tag}
-                    className={`shrink-0 rounded-sm border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase backdrop-blur-sm ${index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'}`}
+                    className={`shrink-0 rounded-sm border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase backdrop-blur-sm transition-all duration-[640ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    } ${index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'}`}
+                    style={{ transitionDelay: `${320 + index * 70}ms` }}
                   >
                     {tag}
                   </span>
@@ -391,19 +491,18 @@ export default function HomePage() {
           <section className="bg-gunmetal relative texture-concrete">
             <div className="py-8">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
-                  {[
-                    'Licensed & Insured',
-                    'Free Estimates',
-                    'Serving All of Oklahoma',
-                    'Over 10 Years Experience',
-                    'Quality You Can See',
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <CheckCircle2 size={16} className="text-equipment-gold shrink-0" aria-hidden="true" />
-                      <span className="text-soft-khaki text-sm font-semibold tracking-wide">{item}</span>
-                    </div>
-                  ))}
+                <div className="trust-marquee overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                  <div className="trust-marquee-track flex w-max items-center gap-3">
+                    {[...trustItems, ...trustItems].map((item, index) => (
+                      <div
+                        key={`${item}-${index}`}
+                        className="flex min-h-12 items-center justify-center gap-2 rounded-sm border border-white/8 bg-soft-coal/35 px-4 py-3 text-center"
+                      >
+                        <CheckCircle2 size={16} className="text-equipment-gold shrink-0" aria-hidden="true" />
+                        <span className="text-soft-khaki text-sm font-semibold tracking-wide whitespace-nowrap">{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -706,6 +805,25 @@ export default function HomePage() {
         .animate-in {
           opacity: 1 !important;
           transform: translateY(0) !important;
+        }
+
+        @keyframes hero-logo-pop {
+          0% {
+            transform: scale(0.9) translateY(20px);
+            filter: blur(1px);
+          }
+          68% {
+            transform: scale(1.06) translateY(-2px);
+            filter: blur(0);
+          }
+          100% {
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+          }
+        }
+
+        .hero-logo-pop {
+          animation: hero-logo-pop 760ms cubic-bezier(0.16, 1, 0.3, 1);
         }
       `}</style>
     </>

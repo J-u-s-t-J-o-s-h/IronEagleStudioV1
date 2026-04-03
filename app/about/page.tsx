@@ -95,7 +95,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-xl">
                   <Image
-                    src="/images/about-team.jpg"
+                    src="/placeholder.svg"
                     alt="HJH Outdoor Operations crew with equipment on Oklahoma jobsite"
                     fill
                     className="object-cover"
@@ -147,7 +147,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-xl">
                   <Image
-                    src="/images/dirt-work.jpg"
+                    src="/placeholder.svg"
                     alt="HJH crew performing precision grading work"
                     fill
                     className="object-cover"

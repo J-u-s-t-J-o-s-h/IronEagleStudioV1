@@ -86,7 +86,7 @@ function logoImageClass(size: LogoProps['size'], showText: boolean): string {
     case 'lg':
       return 'h-20 w-auto max-h-20 max-w-[340px] sm:h-[5.5rem] sm:max-h-[5.5rem] sm:max-w-[400px] md:max-w-[440px]'
     case 'xl':
-      return 'h-[9rem] w-auto max-h-[9rem] max-w-[min(100%,30rem)] sm:h-[10.5rem] sm:max-h-[10.5rem] sm:max-w-[min(100%,34rem)] md:h-[11rem] md:max-h-[11rem] md:max-w-[min(100%,36rem)] lg:h-[12.5rem] lg:max-h-[12.5rem] lg:max-w-[min(100%,40rem)]'
+      return 'h-[12rem] w-auto max-h-[12rem] max-w-[min(100%,40rem)] sm:h-[14rem] sm:max-h-[14rem] sm:max-w-[min(100%,45rem)] md:h-[14.75rem] md:max-h-[14.75rem] md:max-w-[min(100%,48rem)] lg:h-[16.5rem] lg:max-h-[16.5rem] lg:max-w-[min(100%,53rem)]'
     default:
       return 'h-16 w-auto max-w-[240px]'
   }
