@@ -142,6 +142,7 @@ export function Logo({
         height={NATURAL.height}
         className={imgClass}
         priority={priority}
+        loading={priority ? 'eager' : 'lazy'}
         sizes={
           isHero
             ? '(max-width: 640px) 300px, (max-width: 1024px) 360px, 400px'

@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Phone, ChevronDown, ChevronUp, Shield, AlertTriangle, Wrench, Home } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
+import { PremiumSectionBackdrop } from '@/components/premium-section-backdrop'
+import { siteMedia } from '@/lib/site-media'
 
 const faqs = [
   {
@@ -105,7 +107,7 @@ export default function StormShelterPage() {
         <section className="relative flex min-h-[min(100dvh,56rem)] items-end overflow-hidden pb-16 sm:min-h-[60vh]">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/storm-shelter-install.jpg"
+              src={siteMedia.stormPage.hero}
               alt="Storm shelter installation in Oklahoma residential property"
               fill
               priority
@@ -127,14 +129,14 @@ export default function StormShelterPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
               >
                 Get a Shelter Quote
                 <ArrowRight size={14} />
               </Link>
               <a
                 href="tel:+14058675309"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
                 (405) 867-5309
@@ -144,8 +146,9 @@ export default function StormShelterPage() {
         </section>
 
         {/* Why It Matters */}
-        <section className="bg-deep-slate">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-deep-slate" texture="concrete" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               {[
                 {
@@ -175,8 +178,9 @@ export default function StormShelterPage() {
         </section>
 
         {/* About our shelter service */}
-        <section className="bg-section-light">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-section-light" texture="linen" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
             <div className="grid lg:grid-cols-2 gap-14 items-center">
               <div>
                 <span className="brand-divider mb-4 block" />
@@ -207,7 +211,7 @@ export default function StormShelterPage() {
                 </ul>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
                 >
                   Schedule a Free Assessment
                   <ArrowRight size={14} />
@@ -215,15 +219,15 @@ export default function StormShelterPage() {
               </div>
 
               <div className="flex flex-col gap-5">
-                <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-xl">
+                <div className="card-media aspect-[4/3]">
                   <Image
-                    src="/images/storm-shelter-interior.jpg"
+                    src={siteMedia.stormPage.interior}
                     alt="Interior of a completed storm shelter installation"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="bg-gunmetal border border-white/10 rounded-sm p-6">
+                <div className="card-elevated-dark p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <Wrench size={16} className="text-equipment-gold" />
                     <span className="text-bone-linen font-bold text-sm">Shelter Types We Install</span>
@@ -248,8 +252,9 @@ export default function StormShelterPage() {
         </section>
 
         {/* Installation Process */}
-        <section className="bg-section-mid">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-section-mid" texture="brand-2" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 text-matte-black">
             <div className="text-center mb-14">
               <span className="brand-divider mx-auto mb-4 block" />
               <h2 className="text-4xl font-bold text-gunmetal leading-tight">
@@ -261,7 +266,7 @@ export default function StormShelterPage() {
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {steps.map(({ number, title, desc }) => (
-                <div key={number} className="bg-section-light border border-soft-khaki/40 rounded-sm p-7">
+                <div key={number} className="card-elevated-light p-7">
                   <div className="text-4xl font-bold text-storm-blue/20 mb-3 leading-none">{number}</div>
                   <h3 className="font-bold text-gunmetal text-lg mb-2">{title}</h3>
                   <p className="text-clay-taupe text-sm leading-relaxed">{desc}</p>
@@ -272,15 +277,16 @@ export default function StormShelterPage() {
         </section>
 
         {/* FAQ */}
-        <section className="bg-section-light">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-section-light" texture="linen" />
+          <div className="relative z-[1] max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
             <div className="text-center mb-12">
               <span className="brand-divider mx-auto mb-4 block" />
               <h2 className="text-4xl font-bold text-gunmetal">
                 Common Questions
               </h2>
             </div>
-            <div className="bg-section-mid border border-soft-khaki/40 rounded-sm px-7">
+            <div className="card-shell-mid px-7">
               {faqs.map((faq) => (
                 <FAQItem key={faq.q} {...faq} />
               ))}
@@ -289,8 +295,9 @@ export default function StormShelterPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-storm-blue">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-storm-blue" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
             <h2 className="text-4xl font-bold text-bone-linen mb-4 text-balance">
               Don&apos;t wait for tornado season to start
             </h2>
@@ -300,14 +307,14 @@ export default function StormShelterPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-black/15 ring-1 ring-black/10"
               >
                 Request Your Free Quote
                 <ArrowRight size={14} />
               </Link>
               <a
                 href="tel:+14058675309"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/50 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/50 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
                 Call (405) 867-5309

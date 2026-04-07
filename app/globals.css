@@ -189,6 +189,67 @@
   }
 }
 
+@layer components {
+  /* Large content panels (embeds, wide forms) — depth, subtle hover shadow only */
+  .card-panel {
+    @apply rounded-2xl border border-soft-khaki/50 bg-section-mid shadow-lg shadow-gunmetal/10 ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-gunmetal/15;
+  }
+
+  /* Default elevated cards — section-mid */
+  .card-elevated {
+    @apply rounded-2xl border border-soft-khaki/50 bg-section-mid shadow-md shadow-gunmetal/8 ring-1 ring-soft-khaki/25 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-gunmetal/15;
+  }
+
+  /* Light surface cards */
+  .card-elevated-light {
+    @apply rounded-2xl border border-soft-khaki/50 bg-section-light shadow-md shadow-gunmetal/8 ring-1 ring-soft-khaki/20 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-gunmetal/12;
+  }
+
+  /* Sandstone / warm testimonial cards */
+  .card-elevated-warm {
+    @apply rounded-2xl border border-soft-khaki/50 bg-sandstone shadow-md shadow-gunmetal/8 ring-1 ring-soft-khaki/25 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-gunmetal/12;
+  }
+
+  /* Storm blue callout blocks */
+  .card-elevated-storm {
+    @apply rounded-2xl bg-storm-blue shadow-lg shadow-storm-blue/40 ring-1 ring-white/15 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-storm-blue/55;
+  }
+
+  /* Storm accent without hover motion (floating badges, overlays) */
+  .card-accent-storm {
+    @apply rounded-2xl bg-storm-blue shadow-lg shadow-storm-blue/40 ring-1 ring-white/15;
+  }
+
+  /* Dark gunmetal cards */
+  .card-elevated-dark {
+    @apply rounded-2xl border border-white/10 bg-gunmetal shadow-lg shadow-black/30 ring-1 ring-white/10 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:ring-white/20;
+  }
+
+  /* Frosted panels on dark sections */
+  .card-elevated-glass {
+    @apply rounded-2xl border border-white/10 bg-gunmetal/60 shadow-md shadow-black/20 ring-1 ring-white/10 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-equipment-gold/40 hover:shadow-lg hover:shadow-black/30;
+  }
+
+  /* Image / media frames */
+  .card-media {
+    @apply relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 transition-shadow duration-300 hover:shadow-2xl;
+  }
+
+  /* Small chips, tags, pills */
+  .card-chip {
+    @apply rounded-xl border border-soft-khaki/50 bg-section-light shadow-sm shadow-gunmetal/5 ring-1 ring-soft-khaki/20 transition-all duration-300 hover:shadow-md hover:shadow-gunmetal/10;
+  }
+
+  /* FAQ / accordion shells — static depth, no lift */
+  .card-shell-mid {
+    @apply rounded-2xl border border-soft-khaki/50 bg-section-mid shadow-md shadow-gunmetal/8 ring-1 ring-soft-khaki/25;
+  }
+
+  .card-shell-light {
+    @apply rounded-2xl border border-soft-khaki/50 bg-section-light shadow-md shadow-gunmetal/8 ring-1 ring-soft-khaki/20;
+  }
+}
+
 /* Subtle texture overlay utility */
 .texture-overlay::before {
   content: '';
@@ -234,6 +295,82 @@
   );
   pointer-events: none;
   z-index: 1;
+}
+
+/**
+ * Premium scroll transitions: only the top & bottom edges of the *backdrop*
+ * feather to transparent so the fixed hero shows through. Content above stays
+ * fully opaque (mask applies to this layer only, not copy).
+ */
+.premium-section-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 2.5%,
+    #000 6.5%,
+    #000 93.5%,
+    rgba(0, 0, 0, 0.45) 97.5%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 2.5%,
+    #000 6.5%,
+    #000 93.5%,
+    rgba(0, 0, 0, 0.45) 97.5%,
+    transparent 100%
+  );
+}
+
+.premium-section-backdrop__fill,
+.premium-section-backdrop__texture {
+  position: absolute;
+  inset: 0;
+}
+
+.premium-section-backdrop__texture--linen {
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeDiffuseLighting lighting-color='%23e7ddcf' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23paper)'/%3E%3C/svg%3E");
+}
+
+.premium-section-backdrop__texture--concrete {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+.premium-section-backdrop__texture--diagonal {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 10px,
+    rgba(181, 138, 58, 0.03) 10px,
+    rgba(181, 138, 58, 0.03) 11px
+  );
+}
+
+/* Brand textures (`public/textures/texture-*.webp` — generated from uploaded SVGs; see scripts/optimize-textures.mjs) */
+.premium-section-backdrop__texture--brand-1 {
+  opacity: 0.32;
+  background-image: url('/textures/texture-1.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: soft-light;
+}
+
+.premium-section-backdrop__texture--brand-2 {
+  opacity: 0.44;
+  background-image: url('/textures/texture-2.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: normal;
+  filter: contrast(1.02) saturate(0.94);
 }
 
 /* Section divider bar */

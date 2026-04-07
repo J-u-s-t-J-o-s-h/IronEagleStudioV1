@@ -1,6 +1,9 @@
 .electricBorder {
-  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  /* color-mix works broadly on mobile; avoid oklch(from …) which older WebKit mishandles */
+  --electric-light-color: color-mix(in srgb, var(--electric-border-color) 72%, white);
   position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
   border-radius: inherit;
   overflow: visible;
   isolation: isolate;
@@ -12,7 +15,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 2;
+  /* Below .content so noisy strokes do not paint over the logo */
+  z-index: 1;
 }
 
 .canvas {
@@ -22,7 +26,7 @@
 .content {
   position: relative;
   border-radius: inherit;
-  z-index: 1;
+  z-index: 2;
 }
 
 .layers {
@@ -44,7 +48,7 @@
 }
 
 .glow1 {
-  border: 2px solid oklch(from var(--electric-border-color) l c h / 0.6);
+  border: 2px solid color-mix(in srgb, var(--electric-border-color) 55%, transparent);
   filter: blur(1px);
 }
 
@@ -59,4 +63,17 @@
   filter: blur(32px);
   opacity: 0.3;
   background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--electric-border-color));
+}
+
+@media (max-width: 639px) {
+  /* Large scale + blur often caused horizontal overflow / clipped glow on narrow viewports */
+  .backgroundGlow {
+    transform: scale(1.03);
+    filter: blur(22px);
+    opacity: 0.26;
+  }
+
+  .glow2 {
+    filter: blur(3px);
+  }
 }

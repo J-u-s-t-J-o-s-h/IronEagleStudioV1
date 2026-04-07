@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useCallback, type CSSProperties, type ReactNode } from 'react'
+import { useLayoutEffect, useRef, useCallback, type CSSProperties, type ReactNode } from 'react'
 import styles from './ElectricBorder.module.css'
 import { cn } from '@/lib/utils'
 
@@ -11,6 +11,8 @@ interface ElectricBorderProps {
   chaos?: number
   thickness?: number
   borderRadius?: number
+  /** Max noise displacement in px; lower = less inward bleed over content */
+  displacement?: number
   className?: string
   style?: CSSProperties
 }
@@ -22,6 +24,7 @@ export default function ElectricBorder({
   chaos = 0.12,
   thickness = 2,
   borderRadius = 24,
+  displacement = 60,
   className,
   style,
 }: ElectricBorderProps) {
@@ -162,7 +165,7 @@ export default function ElectricBorder({
     [getCornerPoint]
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current
     const container = containerRef.current
     if (!canvas || !container) return
@@ -176,30 +179,48 @@ export default function ElectricBorder({
     const amplitude = chaos
     const frequency = 10
     const baseFlatness = 0
-    const displacement = 60
-    const borderOffset = 60
+    /** Room for stroke + noise; tighter on narrow viewports to reduce glow overflow / horizontal scroll */
+    let borderOffsetActive = 60
 
     const updateSize = () => {
+      borderOffsetActive =
+        typeof window !== 'undefined' && window.innerWidth < 640 ? 48 : 60
       const rect = container.getBoundingClientRect()
-      const width = rect.width + borderOffset * 2
-      const height = rect.height + borderOffset * 2
+      /** Avoid 0×0 during mobile layout / hydration — prevents NaN paths and invisible borders */
+      const innerW = Math.max(rect.width, 8)
+      const innerH = Math.max(rect.height, 8)
+      const width = innerW + borderOffsetActive * 2
+      const height = innerH + borderOffsetActive * 2
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      canvas.width = width * dpr
-      canvas.height = height * dpr
+      canvas.width = Math.max(1, Math.round(width * dpr))
+      canvas.height = Math.max(1, Math.round(height * dpr))
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
-      ctx.scale(dpr, dpr)
 
       return { width, height }
     }
 
     let { width, height } = updateSize()
 
+    let resizeRaf = 0
+    const scheduleResize = () => {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf)
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = 0
+        const next = updateSize()
+        width = next.width
+        height = next.height
+      })
+    }
+
     const drawElectricBorder = (currentTime: number) => {
       if (!canvas || !ctx) return
 
-      const deltaTime = (currentTime - lastFrameTimeRef.current) / 1000
+      if (lastFrameTimeRef.current === 0) {
+        lastFrameTimeRef.current = currentTime
+      }
+      const deltaTime = Math.min((currentTime - lastFrameTimeRef.current) / 1000, 0.05)
       timeRef.current += deltaTime * speed
       lastFrameTimeRef.current = currentTime
 
@@ -214,15 +235,19 @@ export default function ElectricBorder({
       ctx.lineJoin = 'round'
 
       const scale = displacement
-      const left = borderOffset
-      const top = borderOffset
-      const borderWidth = width - 2 * borderOffset
-      const borderHeight = height - 2 * borderOffset
+      const off = borderOffsetActive
+      const left = off
+      const top = off
+      const borderWidth = Math.max(width - 2 * off, 4)
+      const borderHeight = Math.max(height - 2 * off, 4)
       const maxRadius = Math.min(borderWidth, borderHeight) / 2
       const radius = Math.min(borderRadius, maxRadius)
 
-      const approximatePerimeter = 2 * (borderWidth + borderHeight) + 2 * Math.PI * radius
-      const sampleCount = Math.floor(approximatePerimeter / 2)
+      const approximatePerimeter = Math.max(
+        8,
+        2 * (borderWidth + borderHeight) + 2 * Math.PI * radius
+      )
+      const sampleCount = Math.max(32, Math.floor(approximatePerimeter / 2))
 
       ctx.beginPath()
 
@@ -271,9 +296,7 @@ export default function ElectricBorder({
     }
 
     const resizeObserver = new ResizeObserver(() => {
-      const newSize = updateSize()
-      width = newSize.width
-      height = newSize.height
+      scheduleResize()
     })
     resizeObserver.observe(container)
 
@@ -283,9 +306,11 @@ export default function ElectricBorder({
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
       }
+      if (resizeRaf) cancelAnimationFrame(resizeRaf)
       resizeObserver.disconnect()
+      lastFrameTimeRef.current = 0
     }
-  }, [color, speed, chaos, thickness, borderRadius, octavedNoise, getRoundedRectPoint])
+  }, [color, speed, chaos, thickness, borderRadius, displacement, octavedNoise, getRoundedRectPoint])
 
   const vars = {
     '--electric-border-color': color,

@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import Script from 'next/script'
 import { Phone, Mail, MapPin, Clock, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
+import { PremiumSectionBackdrop } from '@/components/premium-section-backdrop'
 
 const faqs = [
   {
@@ -60,154 +61,19 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   )
 }
 
-function ContactForm() {
-  const [submitted, setSubmitted] = useState(false)
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: '',
-    message: '',
-  })
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center py-14 text-center">
-        <div className="w-14 h-14 bg-storm-blue/20 rounded-full flex items-center justify-center mb-5">
-          <CheckCircle2 size={28} className="text-storm-blue" />
-        </div>
-        <h3 className="text-xl font-bold text-gunmetal mb-3">Message Received</h3>
-        <p className="text-clay-taupe text-sm leading-relaxed max-w-sm">
-          We&apos;ll be in touch shortly to discuss your project and schedule an estimate. If you need a faster response, call us directly at{' '}
-          <a href="tel:+14058675309" className="text-storm-blue font-semibold">(405) 867-5309</a>.
-        </p>
-      </div>
-    )
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-      <div className="grid sm:grid-cols-2 gap-6">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-sm font-bold tracking-wide text-gunmetal">
-            Your Name <span className="text-storm-blue">*</span>
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            autoComplete="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="John Smith"
-            className="px-5 py-4 bg-section-light border-2 border-soft-khaki/60 focus:border-storm-blue text-foreground text-base rounded-sm outline-none transition-colors placeholder:text-weathered-stone/60"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="phone" className="text-sm font-bold tracking-wide text-gunmetal">
-            Phone Number <span className="text-storm-blue">*</span>
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            required
-            autoComplete="tel"
-            value={form.phone}
-            onChange={handleChange}
-            placeholder="(405) 000-0000"
-            className="px-5 py-4 bg-section-light border-2 border-soft-khaki/60 focus:border-storm-blue text-foreground text-base rounded-sm outline-none transition-colors placeholder:text-weathered-stone/60"
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-sm font-bold tracking-wide text-gunmetal">
-          Email Address <span className="text-weathered-stone">(optional)</span>
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="you@example.com"
-          className="px-5 py-4 bg-section-light border-2 border-soft-khaki/60 focus:border-storm-blue text-foreground text-base rounded-sm outline-none transition-colors placeholder:text-weathered-stone/60"
-        />
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label htmlFor="service" className="text-sm font-bold tracking-wide text-gunmetal">
-          What Do You Need Help With?
-        </label>
-        <select
-          id="service"
-          name="service"
-          value={form.service}
-          onChange={handleChange}
-          className="px-5 py-4 bg-section-light border-2 border-soft-khaki/60 focus:border-storm-blue text-foreground text-base rounded-sm outline-none transition-colors"
-        >
-          <option value="">Pick a service...</option>
-          <option>Storm Shelter Installation</option>
-          <option>Excavation</option>
-          <option>Dirt Work</option>
-          <option>Land Clearing</option>
-          <option>Site Grading</option>
-          <option>Septic System Installation</option>
-          <option>Multiple Services</option>
-          <option>Other / Not Sure</option>
-        </select>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-sm font-bold tracking-wide text-gunmetal">
-          Tell Us About Your Project <span className="text-storm-blue">*</span>
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={5}
-          value={form.message}
-          onChange={handleChange}
-          placeholder="Where is your property? What work do you need done? Any timeline?"
-          className="px-5 py-4 bg-section-light border-2 border-soft-khaki/60 focus:border-storm-blue text-foreground text-base rounded-sm outline-none transition-colors resize-none placeholder:text-weathered-stone/60"
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="w-full py-5 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-lg tracking-wide uppercase rounded-sm transition-colors"
-      >
-        Send Message
-      </button>
-
-      <p className="text-weathered-stone text-sm text-center">
-        No spam. No pressure. We&apos;ll contact you to discuss your project.
-      </p>
-    </form>
-  )
-}
-
 export default function ContactPage() {
   return (
     <>
+      <Script
+        src="https://elfsightcdn.com/platform.js"
+        strategy="lazyOnload"
+      />
       <SiteNav />
       <main id="main-content">
         {/* Header */}
-        <section className="bg-soft-coal pb-16 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] lg:pb-20 lg:pt-[calc(11.75rem+env(safe-area-inset-top,0px))]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative isolate overflow-hidden pb-16 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] lg:pb-20 lg:pt-[calc(11.75rem+env(safe-area-inset-top,0px))]">
+          <PremiumSectionBackdrop fillClassName="bg-soft-coal" texture="concrete" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="brand-divider mb-4 block" />
             <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
               Get in Touch
@@ -222,22 +88,23 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Content */}
-        <section className="bg-section-light">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-section-light" texture="linen" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
             <div className="grid lg:grid-cols-3 gap-12">
               {/* Form */}
-              <div className="lg:col-span-2 bg-section-mid border border-soft-khaki/40 rounded-sm p-7 lg:p-10">
-                <h2 className="text-2xl font-bold text-gunmetal mb-2">Request a Free Estimate</h2>
-                <p className="text-clay-taupe text-sm mb-7">
-                  Tell us about your project and we&apos;ll be in touch to set up a site visit and estimate.
-                </p>
-                <ContactForm />
+              <div className="lg:col-span-2 card-panel p-7 lg:p-10">
+                {/* Elfsight Form Builder | HJH Lead Gen Form */}
+                <div
+                  className="elfsight-app-fe252980-983c-4859-bd8a-4f78cd2977c4"
+                  data-elfsight-app-lazy
+                />
               </div>
 
               {/* Contact Info */}
               <div className="flex flex-col gap-5">
                 {/* Phone */}
-                <div className="bg-storm-blue rounded-sm p-7">
+                <div className="card-elevated-storm p-7">
                   <div className="flex items-center gap-3 mb-3">
                     <Phone size={18} className="text-bone-linen" />
                     <span className="text-bone-linen font-bold text-sm uppercase tracking-wide">Call Us</span>
@@ -254,7 +121,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Email */}
-                <div className="bg-section-mid border border-soft-khaki/40 rounded-sm p-6">
+                <div className="card-elevated p-6">
                   <div className="flex items-center gap-3 mb-2">
                     <Mail size={16} className="text-storm-blue" />
                     <span className="text-gunmetal font-bold text-sm uppercase tracking-wide">Email</span>
@@ -268,7 +135,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Service Area */}
-                <div className="bg-section-mid border border-soft-khaki/40 rounded-sm p-6">
+                <div className="card-elevated p-6">
                   <div className="flex items-center gap-3 mb-2">
                     <MapPin size={16} className="text-storm-blue" />
                     <span className="text-gunmetal font-bold text-sm uppercase tracking-wide">Service Area</span>
@@ -279,7 +146,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Hours */}
-                <div className="bg-section-mid border border-soft-khaki/40 rounded-sm p-6">
+                <div className="card-elevated p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <Clock size={16} className="text-storm-blue" />
                     <span className="text-gunmetal font-bold text-sm uppercase tracking-wide">Hours</span>
@@ -299,7 +166,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* What to expect */}
-                <div className="bg-gunmetal border border-white/10 rounded-sm p-6">
+                <div className="card-elevated-dark p-6">
                   <p className="text-bone-linen font-bold text-sm mb-3">What to Expect</p>
                   <ul className="flex flex-col gap-2">
                     {[
@@ -321,8 +188,9 @@ export default function ContactPage() {
         </section>
 
         {/* FAQ */}
-        <section className="bg-section-mid">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-section-mid" texture="brand-2" />
+          <div className="relative z-[1] max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 text-matte-black">
             <div className="text-center mb-12">
               <span className="brand-divider mx-auto mb-4 block" />
               <h2 className="text-4xl font-bold text-gunmetal">Frequently Asked Questions</h2>
@@ -330,7 +198,7 @@ export default function ContactPage() {
                 Common questions we hear from customers before they get started.
               </p>
             </div>
-            <div className="bg-section-light border border-soft-khaki/40 rounded-sm px-7">
+            <div className="card-shell-light px-7">
               {faqs.map((faq) => (
                 <FAQItem key={faq.q} {...faq} />
               ))}

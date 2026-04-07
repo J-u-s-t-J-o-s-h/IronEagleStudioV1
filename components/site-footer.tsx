@@ -39,7 +39,7 @@ export function SiteFooter() {
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <a
               href="tel:+14058675309"
-              className="group flex items-center gap-3 px-8 py-4 bg-bone-linen text-soft-coal font-bold text-lg tracking-wide uppercase rounded-sm hover:bg-warm-concrete transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="group flex items-center gap-3 px-8 py-4 bg-bone-linen text-soft-coal font-bold text-lg tracking-wide uppercase rounded-xl hover:bg-warm-concrete transition-all duration-200 shadow-lg shadow-black/15 ring-1 ring-black/10 hover:shadow-xl hover:-translate-y-0.5"
               aria-label="Call us at (405) 867-5309"
             >
               <Phone size={22} className="group-hover:animate-pulse" aria-hidden="true" />
@@ -47,7 +47,7 @@ export function SiteFooter() {
             </a>
             <Link
               href="/contact"
-              className="flex items-center gap-3 px-8 py-4 border-2 border-bone-linen/70 text-bone-linen font-bold text-lg tracking-wide uppercase rounded-sm hover:border-bone-linen hover:bg-white/10 transition-all duration-200"
+              className="flex items-center gap-3 px-8 py-4 border-2 border-bone-linen/70 text-bone-linen font-bold text-lg tracking-wide uppercase rounded-xl hover:border-bone-linen hover:bg-white/10 transition-all duration-200"
             >
               Request Estimate
             </Link>
@@ -71,7 +71,7 @@ export function SiteFooter() {
                 href="https://facebook.com/hjhoutdoor"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-12 h-12 bg-white/5 hover:bg-storm-blue/30 text-soft-khaki hover:text-bone-linen rounded-sm transition-all duration-200"
+                className="flex items-center justify-center w-12 h-12 bg-white/5 hover:bg-storm-blue/30 text-soft-khaki hover:text-bone-linen rounded-xl shadow-md shadow-black/20 ring-1 ring-white/5 transition-all duration-200"
                 aria-label="Follow us on Facebook"
               >
                 <Facebook size={22} aria-hidden="true" />
@@ -136,7 +136,7 @@ export function SiteFooter() {
                   className="group flex items-center gap-4 py-1 text-base text-soft-khaki/80 hover:text-bone-linen transition-colors"
                   aria-label="Call us at (405) 867-5309"
                 >
-                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 group-hover:bg-storm-blue/30 rounded-sm transition-colors">
+                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 group-hover:bg-storm-blue/30 rounded-xl shadow-sm ring-1 ring-white/5 transition-colors">
                     <Phone size={20} className="text-equipment-gold" aria-hidden="true" />
                   </span>
                   <span className="font-semibold">(405) 867-5309</span>
@@ -148,7 +148,7 @@ export function SiteFooter() {
                   className="group flex items-center gap-4 py-1 text-base text-soft-khaki/80 hover:text-bone-linen transition-colors"
                   aria-label="Email us at info@hjhoutdoor.com"
                 >
-                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 group-hover:bg-storm-blue/30 rounded-sm transition-colors">
+                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 group-hover:bg-storm-blue/30 rounded-xl shadow-sm ring-1 ring-white/5 transition-colors">
                     <Mail size={20} className="text-equipment-gold" aria-hidden="true" />
                   </span>
                   <span>info@hjhoutdoor.com</span>
@@ -156,7 +156,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <div className="flex items-center gap-4 py-1 text-base text-soft-khaki/80">
-                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 rounded-sm">
+                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 rounded-xl shadow-sm ring-1 ring-white/5">
                     <MapPin size={20} className="text-equipment-gold" aria-hidden="true" />
                   </span>
                   <span>Serving all of Oklahoma</span>
@@ -164,7 +164,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <div className="flex items-center gap-4 py-1 text-base text-soft-khaki/80">
-                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 rounded-sm">
+                  <span className="flex items-center justify-center w-10 h-10 bg-white/5 rounded-xl shadow-sm ring-1 ring-white/5">
                     <Clock size={20} className="text-equipment-gold" aria-hidden="true" />
                   </span>
                   <span>Mon-Sat: 7AM - 6PM</span>

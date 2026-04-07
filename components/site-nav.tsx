@@ -11,6 +11,7 @@ import { Logo } from '@/components/logo'
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/about', label: 'About', icon: null },
+  { href: '/#testimonials', label: 'Reviews', icon: null },
   { 
     label: 'Services', 
     icon: Wrench,
@@ -83,6 +84,33 @@ export function SiteNav() {
     }
   }
 
+  const handleNavItemClick = (e: MouseEvent<HTMLAnchorElement>, href?: string) => {
+    if (!href || !href.startsWith('/#')) return
+
+    const targetId = href.split('#')[1]
+    if (!targetId) return
+
+    if (pathname !== '/') {
+      setMobileOpen(false)
+      setDropdownOpen(false)
+      return
+    }
+
+    e.preventDefault()
+    setMobileOpen(false)
+    setDropdownOpen(false)
+    document.body.style.overflow = ''
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const target = document.getElementById(targetId)
+        if (!target) return
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        window.history.replaceState(null, '', `/#${targetId}`)
+      })
+    })
+  }
+
   return (
     <header
       className={cn(
@@ -117,7 +145,7 @@ export function SiteNav() {
                   <button
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     className={cn(
-                      'flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold tracking-wide uppercase transition-all duration-200 rounded-sm lg:gap-2 lg:px-5 lg:py-3 lg:text-base',
+                      'flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold tracking-wide uppercase transition-all duration-200 rounded-xl lg:gap-2 lg:px-5 lg:py-3 lg:text-base',
                       dropdownOpen || pathname.startsWith('/services') || pathname.startsWith('/storm-shelter') || pathname.startsWith('/projects')
                         ? 'text-storm-blue bg-storm-blue/10'
                         : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
@@ -136,7 +164,7 @@ export function SiteNav() {
                   {/* Dropdown Menu */}
                   <div
                     className={cn(
-                      'absolute top-full left-0 mt-2 w-56 bg-gunmetal border border-white/10 rounded-sm shadow-xl shadow-black/40 overflow-hidden transition-all duration-200 origin-top',
+                      'absolute top-full left-0 mt-2 w-56 bg-gunmetal border border-white/10 rounded-2xl shadow-xl shadow-black/40 ring-1 ring-white/10 overflow-hidden transition-all duration-200 origin-top',
                       dropdownOpen 
                         ? 'opacity-100 scale-100 translate-y-0' 
                         : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
@@ -166,8 +194,9 @@ export function SiteNav() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => handleNavItemClick(e, item.href)}
                   className={cn(
-                    'px-3 py-2.5 text-sm font-semibold tracking-wide uppercase transition-colors duration-150 rounded-sm lg:px-5 lg:py-3 lg:text-base',
+                    'px-3 py-2.5 text-sm font-semibold tracking-wide uppercase transition-colors duration-150 rounded-xl lg:px-5 lg:py-3 lg:text-base',
                     pathname === item.href
                       ? 'text-storm-blue bg-storm-blue/10'
                       : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
@@ -183,7 +212,7 @@ export function SiteNav() {
           <div className="hidden md:flex items-center gap-2 lg:gap-3">
             <a
               href="tel:+14058675309"
-              className="flex items-center gap-2 px-3 py-2.5 text-soft-khaki hover:text-bone-linen hover:bg-white/5 text-sm font-semibold tracking-wide transition-colors rounded-sm lg:px-4 lg:py-3 lg:text-base"
+              className="flex items-center gap-2 px-3 py-2.5 text-soft-khaki hover:text-bone-linen hover:bg-white/5 text-sm font-semibold tracking-wide transition-colors rounded-xl lg:px-4 lg:py-3 lg:text-base"
               aria-label="Call us at (405) 867-5309"
             >
               <Phone size={20} aria-hidden="true" />
@@ -191,7 +220,7 @@ export function SiteNav() {
             </a>
             <Link
               href="/contact"
-              className="px-4 py-2.5 bg-storm-blue hover:bg-steel-blue text-bone-linen text-sm font-bold tracking-wide uppercase transition-colors duration-150 rounded-sm shadow-lg shadow-storm-blue/30 hover:shadow-storm-blue/50 lg:px-6 lg:py-3 lg:text-base"
+              className="px-4 py-2.5 bg-storm-blue hover:bg-steel-blue text-bone-linen text-sm font-bold tracking-wide uppercase transition-colors duration-150 rounded-xl shadow-lg shadow-storm-blue/30 ring-1 ring-white/15 hover:shadow-storm-blue/50 lg:px-6 lg:py-3 lg:text-base"
             >
               Free Quote
             </Link>
@@ -201,14 +230,14 @@ export function SiteNav() {
           <div className="flex md:hidden items-center gap-2">
             <a
               href="tel:+14058675309"
-              className="flex items-center justify-center w-12 h-12 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-sm"
+              className="flex items-center justify-center w-12 h-12 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
               aria-label="Call us at (405) 867-5309"
             >
               <Phone size={24} aria-hidden="true" />
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex items-center justify-center w-12 h-12 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-sm"
+              className="flex items-center justify-center w-12 h-12 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
               aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileOpen}
             >
@@ -239,7 +268,7 @@ export function SiteNav() {
                       key={subItem.href}
                       href={subItem.href}
                       className={cn(
-                        'flex items-center gap-3 px-5 py-4 text-lg font-semibold rounded-sm transition-colors',
+                        'flex items-center gap-3 px-5 py-4 text-lg font-semibold rounded-xl transition-colors',
                         pathname === subItem.href
                           ? 'text-storm-blue bg-storm-blue/10'
                           : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
@@ -255,8 +284,9 @@ export function SiteNav() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleNavItemClick(e, item.href)}
                 className={cn(
-                  'flex items-center gap-3 px-5 py-4 text-lg font-semibold rounded-sm transition-colors',
+                  'flex items-center gap-3 px-5 py-4 text-lg font-semibold rounded-xl transition-colors',
                   pathname === item.href
                     ? 'text-storm-blue bg-storm-blue/10'
                     : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
@@ -271,7 +301,7 @@ export function SiteNav() {
           <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
             <a
               href="tel:+14058675309"
-              className="flex items-center justify-center gap-3 px-5 py-4 border-2 border-soft-khaki/40 text-soft-khaki text-lg font-bold tracking-wide uppercase rounded-sm hover:border-bone-linen hover:text-bone-linen transition-colors"
+              className="flex items-center justify-center gap-3 px-5 py-4 border-2 border-soft-khaki/40 text-soft-khaki text-lg font-bold tracking-wide uppercase rounded-xl hover:border-bone-linen hover:text-bone-linen transition-colors"
               aria-label="Call us at (405) 867-5309"
             >
               <Phone size={20} aria-hidden="true" />
@@ -279,7 +309,7 @@ export function SiteNav() {
             </a>
             <Link
               href="/contact"
-              className="flex items-center justify-center px-5 py-4 bg-storm-blue text-bone-linen text-lg font-bold tracking-wide uppercase rounded-sm hover:bg-steel-blue transition-colors"
+              className="flex items-center justify-center px-5 py-4 bg-storm-blue text-bone-linen text-lg font-bold tracking-wide uppercase rounded-xl shadow-lg shadow-storm-blue/30 ring-1 ring-white/15 hover:bg-steel-blue transition-colors"
             >
               Get a Free Quote
             </Link>

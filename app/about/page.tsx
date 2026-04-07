@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Phone } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
+import { PremiumSectionBackdrop } from '@/components/premium-section-backdrop'
+import { siteMedia } from '@/lib/site-media'
 
 const values = [
   {
@@ -36,8 +38,9 @@ export default function AboutPage() {
       <SiteNav />
       <main id="main-content">
         {/* Page Header */}
-        <section className="bg-soft-coal pb-16 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] lg:pb-20 lg:pt-[calc(11.75rem+env(safe-area-inset-top,0px))]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative isolate overflow-hidden pb-16 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] lg:pb-20 lg:pt-[calc(11.75rem+env(safe-area-inset-top,0px))]">
+          <PremiumSectionBackdrop fillClassName="bg-soft-coal" texture="concrete" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="brand-divider mb-4 block" />
             <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
               About Us
@@ -52,8 +55,9 @@ export default function AboutPage() {
         </section>
 
         {/* Stats Bar */}
-        <section className="bg-storm-blue">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-storm-blue" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map(({ value, label }) => (
                 <div key={label} className="text-center">
@@ -66,8 +70,9 @@ export default function AboutPage() {
         </section>
 
         {/* Our Story */}
-        <section className="bg-section-light">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-section-light" texture="linen" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
             <div className="grid lg:grid-cols-2 gap-14 items-center">
               <div>
                 <span className="brand-divider mb-4 block" />
@@ -93,15 +98,15 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-xl">
+                <div className="card-media aspect-[4/3]">
                   <Image
-                    src="/images/about-team.jpg"
+                    src={siteMedia.about.team}
                     alt="HJH Outdoor Operations crew with equipment on Oklahoma jobsite"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="relative mt-6 w-full max-w-xs sm:absolute sm:-bottom-5 sm:-left-5 sm:mt-0 bg-gunmetal border border-white/10 px-5 py-4 sm:px-6 sm:py-5 rounded-sm shadow-xl">
+                <div className="relative mt-6 w-full max-w-xs sm:absolute sm:-bottom-5 sm:-left-5 sm:mt-0 card-elevated-dark px-5 py-4 sm:px-6 sm:py-5">
                   <p className="text-bone-linen font-bold text-sm mb-1">HJH Outdoor Operations LLC</p>
                   <p className="text-soft-khaki/70 text-xs">Oklahoma&apos;s trusted outdoor contractor since 2014</p>
                 </div>
@@ -111,8 +116,9 @@ export default function AboutPage() {
         </section>
 
         {/* Values */}
-        <section className="bg-section-mid">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-section-mid" texture="brand-2" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 text-matte-black">
             <div className="text-center mb-12">
               <span className="brand-divider mx-auto mb-4 block" />
               <h2 className="text-4xl font-bold text-gunmetal">How We Work</h2>
@@ -124,7 +130,7 @@ export default function AboutPage() {
               {values.map(({ title, desc }) => (
                 <div
                   key={title}
-                  className="bg-section-light border border-soft-khaki/40 rounded-sm p-7"
+                  className="card-elevated-light p-7"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <CheckCircle2 size={18} className="text-storm-blue shrink-0" />
@@ -141,13 +147,14 @@ export default function AboutPage() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="bg-gunmetal">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="concrete" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
             <div className="grid lg:grid-cols-2 gap-14 items-center">
               <div className="relative">
-                <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-xl">
+                <div className="card-media aspect-[4/3]">
                   <Image
-                    src="/images/dirt-work.jpg"
+                    src={siteMedia.about.dirtWork}
                     alt="HJH crew performing precision grading work"
                     fill
                     className="object-cover"
@@ -184,8 +191,9 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-section-light border-t border-soft-khaki/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <section className="relative isolate overflow-hidden border-t border-soft-khaki/30">
+          <PremiumSectionBackdrop fillClassName="bg-section-light" texture="linen" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold text-gunmetal mb-4 text-balance">
               Ready to talk about your project?
             </h2>
@@ -195,14 +203,14 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
               >
                 Get a Free Estimate
                 <ArrowRight size={14} />
               </Link>
               <a
                 href="tel:+14058675309"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gunmetal hover:bg-gunmetal/10 text-gunmetal font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gunmetal hover:bg-gunmetal/10 text-gunmetal font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
                 (405) 867-5309

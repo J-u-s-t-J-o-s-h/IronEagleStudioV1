@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Phone, Shield, Shovel, Trees, Layers, Droplets, Wrench } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
+import { PremiumSectionBackdrop } from '@/components/premium-section-backdrop'
+import { siteMedia } from '@/lib/site-media'
 
 const services = [
   {
@@ -10,7 +12,7 @@ const services = [
     icon: Shield,
     title: 'Storm Shelter Installation',
     tagline: 'Safe rooms built for Oklahoma tornado country.',
-    image: '/images/storm-shelter-install.jpg',
+    image: siteMedia.services.storm,
     imageAlt: 'Underground storm shelter being installed',
     forWho: 'Homeowners, rural property owners, and anyone in tornado-prone areas of Oklahoma.',
     description:
@@ -30,7 +32,7 @@ const services = [
     icon: Shovel,
     title: 'Excavation',
     tagline: 'Precision earthmoving for foundations, ponds, and more.',
-    image: '/images/hero-excavation.jpg',
+    image: siteMedia.services.excavation,
     imageAlt: 'Large excavator working on Oklahoma jobsite',
     forWho: 'Homeowners, builders, and landowners needing earth moved for foundations, ponds, utilities, or drainage.',
     description:
@@ -50,7 +52,7 @@ const services = [
     icon: Shovel,
     title: 'Dirt Work',
     tagline: 'Ground prep done right — for driveways, pads, and properties.',
-    image: '/images/dirt-work.jpg',
+    image: siteMedia.services.dirtWork,
     imageAlt: 'Skid steer performing precision dirt work and grading',
     forWho: 'Property owners needing site prep, driveway work, lot leveling, or general earth shaping.',
     description:
@@ -70,7 +72,7 @@ const services = [
     icon: Trees,
     title: 'Land Clearing',
     tagline: 'Clear brush, trees, and overgrowth to reclaim your property.',
-    image: '/images/land-clearing.jpg',
+    image: siteMedia.services.landClearing,
     imageAlt: 'Heavy equipment clearing brush and trees from Oklahoma land',
     forWho: 'Landowners, developers, and homeowners with overgrown or timbered land that needs to be cleared for building, farming, or personal use.',
     description:
@@ -90,7 +92,7 @@ const services = [
     icon: Layers,
     title: 'Site Grading',
     tagline: 'Level pads, proper drainage, and finished ground surfaces.',
-    image: '/images/project-completed.jpg',
+    image: siteMedia.services.grading,
     imageAlt: 'Completed site grading work on residential property',
     forWho: 'Anyone building a new home, shop, outbuilding, or commercial facility who needs proper grade, drainage, and surface prep.',
     description:
@@ -110,7 +112,7 @@ const services = [
     icon: Droplets,
     title: 'Septic System Installation',
     tagline: 'Full septic systems installed to code on residential and rural properties.',
-    image: '/images/septic-install.jpg',
+    image: siteMedia.services.septic,
     imageAlt: 'Septic system installation in progress on rural property',
     forWho: 'Rural homeowners, new construction projects, and properties requiring on-site wastewater systems.',
     description:
@@ -130,7 +132,7 @@ const services = [
     icon: Wrench,
     title: 'Additional Site Services',
     tagline: 'Demolition, culverts, haul-off, and more.',
-    image: '/images/hero-excavation.jpg',
+    image: siteMedia.services.additional,
     imageAlt: 'HJH equipment on jobsite performing additional services',
     forWho: 'Customers with project-specific needs that fall outside the standard service categories above.',
     description:
@@ -153,8 +155,9 @@ export default function ServicesPage() {
       <SiteNav />
       <main id="main-content">
         {/* Header */}
-        <section className="bg-soft-coal pb-16 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] lg:pb-20 lg:pt-[calc(11.75rem+env(safe-area-inset-top,0px))]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative isolate overflow-hidden pb-16 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] lg:pb-20 lg:pt-[calc(11.75rem+env(safe-area-inset-top,0px))]">
+          <PremiumSectionBackdrop fillClassName="bg-soft-coal" texture="concrete" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="brand-divider mb-4 block" />
             <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
               Services
@@ -169,14 +172,15 @@ export default function ServicesPage() {
         </section>
 
         {/* Jump Nav */}
-        <section className="bg-gunmetal border-b border-white/10 sticky top-[calc(env(safe-area-inset-top,0px)+5.75rem)] z-40 lg:top-[calc(env(safe-area-inset-top,0px)+6.75rem)]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative isolate overflow-hidden border-b border-white/10 sticky top-[calc(env(safe-area-inset-top,0px)+5.75rem)] z-40 lg:top-[calc(env(safe-area-inset-top,0px)+6.75rem)]">
+          <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="concrete" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="-mx-1 flex touch-pan-x items-center gap-2 overflow-x-auto px-1 py-3 [scrollbar-width:none] sm:-mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
               {services.map((s) => (
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="min-h-11 shrink-0 touch-manipulation px-4 py-2 text-xs font-bold tracking-wide uppercase text-soft-khaki hover:text-bone-linen hover:bg-white/10 rounded-sm transition-colors whitespace-nowrap"
+                  className="min-h-11 shrink-0 touch-manipulation px-4 py-2 text-xs font-bold tracking-wide uppercase text-soft-khaki hover:text-bone-linen hover:bg-white/10 rounded-xl transition-colors whitespace-nowrap"
                 >
                   {s.title.split(' ')[0]}
                 </a>
@@ -193,9 +197,13 @@ export default function ServicesPage() {
             <section
               key={service.id}
               id={service.id}
-              className={isEven ? 'bg-section-light' : 'bg-section-mid'}
+              className="relative isolate overflow-hidden"
             >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+              <PremiumSectionBackdrop
+                fillClassName={isEven ? 'bg-section-light' : 'bg-section-mid'}
+                texture={isEven ? 'linen' : 'brand-2'}
+              />
+              <div className={`relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 ${isEven ? '' : 'text-matte-black'}`}>
                 <div
                   className={`grid lg:grid-cols-2 gap-12 items-center ${
                     isEven ? '' : 'lg:grid-flow-dense'
@@ -203,7 +211,7 @@ export default function ServicesPage() {
                 >
                   {/* Image */}
                   <div className={isEven ? '' : 'lg:col-start-2'}>
-                    <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-xl">
+                    <div className="card-media aspect-[4/3]">
                       <Image
                         src={service.image}
                         alt={service.imageAlt}
@@ -216,7 +224,7 @@ export default function ServicesPage() {
                   {/* Content */}
                   <div className={isEven ? '' : 'lg:col-start-1 lg:row-start-1'}>
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="flex items-center justify-center w-10 h-10 bg-gunmetal rounded-sm">
+                      <div className="flex items-center justify-center w-10 h-10 bg-gunmetal rounded-xl shadow-md shadow-black/30 ring-1 ring-white/10">
                         <Icon size={18} className="text-bone-linen" />
                       </div>
                       <span className="text-equipment-gold text-xs font-bold tracking-widest uppercase">
@@ -224,27 +232,27 @@ export default function ServicesPage() {
                       </span>
                     </div>
                     <span className="brand-divider mb-4 block" />
-                    <h2 className="text-3xl lg:text-4xl font-bold text-gunmetal mb-4 text-balance">
+                    <h2 className={`text-3xl lg:text-4xl font-bold mb-4 text-balance ${isEven ? 'text-gunmetal' : 'text-matte-black'}`}>
                       {service.title}
                     </h2>
-                    <p className="text-clay-taupe leading-relaxed mb-3">
+                    <p className={`leading-relaxed mb-3 ${isEven ? 'text-clay-taupe' : 'text-matte-black'}`}>
                       {service.description}
                     </p>
-                    <p className="text-weathered-stone text-sm mb-5 italic">
-                      <strong className="not-italic text-gunmetal">Who it&apos;s for:</strong>{' '}
+                    <p className={`text-sm mb-5 italic ${isEven ? 'text-weathered-stone' : 'text-matte-black'}`}>
+                      <strong className={`not-italic ${isEven ? 'text-gunmetal' : 'text-matte-black'}`}>Who it&apos;s for:</strong>{' '}
                       {service.forWho}
                     </p>
                     <ul className="flex flex-col gap-2 mb-7">
                       {service.benefits.map((b) => (
                         <li key={b} className="flex items-start gap-3">
                           <CheckCircle2 size={15} className="text-storm-blue mt-0.5 shrink-0" />
-                          <span className="text-foreground text-sm">{b}</span>
+                          <span className={`text-sm ${isEven ? 'text-foreground' : 'text-matte-black'}`}>{b}</span>
                         </li>
                       ))}
                     </ul>
                     <Link
                       href={service.href}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
                     >
                       {service.cta}
                       <ArrowRight size={14} />
@@ -257,8 +265,9 @@ export default function ServicesPage() {
         })}
 
         {/* CTA */}
-        <section className="bg-deep-slate">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <section className="relative isolate overflow-hidden">
+          <PremiumSectionBackdrop fillClassName="bg-deep-slate" texture="concrete" />
+          <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
             <h2 className="text-4xl font-bold text-bone-linen mb-4 text-balance">
               Not sure which service you need?
             </h2>
@@ -268,14 +277,14 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-black/15 ring-1 ring-black/10"
               >
                 Get a Free Estimate
                 <ArrowRight size={14} />
               </Link>
               <a
                 href="tel:+14058675309"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
                 (405) 867-5309

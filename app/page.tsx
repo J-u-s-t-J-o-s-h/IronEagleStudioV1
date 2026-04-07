@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import Script from 'next/script'
 import { useEffect, useRef, useState } from 'react'
 import {
   Shield,
@@ -14,13 +15,20 @@ import {
   ArrowRight,
   Phone,
   MapPin,
-  Star,
   ChevronDown,
+  Hammer,
+  MessageSquare,
+  Mountain,
+  Timer,
+  BadgeCheck,
 } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { Logo } from '@/components/logo'
 import ElectricBorder from '@/components/ElectricBorder'
+import { PremiumSectionBackdrop } from '@/components/premium-section-backdrop'
+import { ElfsightWidget } from '@/components/elfsight-widget'
+import { homeProjectCards, siteMedia } from '@/lib/site-media'
 
 const services = [
   {
@@ -65,51 +73,31 @@ const trustPillars = [
   {
     title: 'Quality Workmanship',
     desc: 'We do the job the right way. Every project gets the same level of care regardless of size.',
+    icon: Hammer,
   },
   {
     title: 'Straight Talk',
     desc: 'No surprises. We give you honest estimates, clear timelines, and direct communication.',
+    icon: MessageSquare,
   },
   {
     title: 'Oklahoma Experience',
     desc: 'We know the soil, the weather, and the demands of working land in this state.',
+    icon: Mountain,
   },
   {
     title: 'Shows Up, Gets It Done',
     desc: 'We show up on time and work until the job is finished. No disappearing acts.',
+    icon: Timer,
   },
   {
     title: 'Licensed & Insured',
     desc: 'Fully licensed and insured for your protection and peace of mind.',
+    icon: BadgeCheck,
   },
 ]
 
-const projects = [
-  {
-    src: '/images/storm-shelter-install.jpg',
-    alt: 'Underground storm shelter installation in progress',
-    label: 'Storm Shelter — Edmond, OK',
-    tag: 'Storm Shelter',
-  },
-  {
-    src: '/images/land-clearing.jpg',
-    alt: 'Heavy equipment clearing brush and trees from rural Oklahoma land',
-    label: 'Land Clearing — 12 Acres',
-    tag: 'Land Clearing',
-  },
-  {
-    src: '/images/dirt-work.jpg',
-    alt: 'Precision dirt work and site grading on residential property',
-    label: 'Site Grading — New Build Pad',
-    tag: 'Grading',
-  },
-  {
-    src: '/images/project-completed.jpg',
-    alt: 'Completed residential site work with fresh grading',
-    label: 'Residential Site Prep',
-    tag: 'Completed',
-  },
-]
+const projects = [...homeProjectCards]
 
 // Services section with organized tabs
 function ServicesSectionComponent() {
@@ -140,8 +128,9 @@ function ServicesSectionComponent() {
   }
 
   return (
-    <section className="bg-sandstone relative texture-diagonal">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <section className="relative isolate overflow-hidden">
+      <PremiumSectionBackdrop fillClassName="bg-sandstone" texture="brand-2" />
+      <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-matte-black">
         <AnimatedSection className="text-center mb-16">
           <span className="brand-divider mx-auto mb-5 block" />
           <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
@@ -150,7 +139,7 @@ function ServicesSectionComponent() {
           <h2 className="text-4xl lg:text-5xl font-bold text-gunmetal leading-tight text-balance">
             Complete Outdoor Services
           </h2>
-          <p className="text-clay-taupe text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-matte-black text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
             From storm shelters to septic systems, we handle the hard jobs that take real equipment and real experience.
           </p>
         </AnimatedSection>
@@ -162,7 +151,7 @@ function ServicesSectionComponent() {
               key={key}
               type="button"
               onClick={() => setActiveCategory(key)}
-              className={`min-h-11 touch-manipulation px-5 py-3 font-bold text-sm tracking-wide uppercase rounded-sm transition-all duration-300 sm:px-6 ${activeCategory === key
+              className={`min-h-11 touch-manipulation px-5 py-3 font-bold text-sm tracking-wide uppercase rounded-xl transition-all duration-300 sm:px-6 ${activeCategory === key
                   ? 'bg-gunmetal text-bone-linen shadow-md'
                   : 'bg-section-light border-2 border-gunmetal/40 text-gunmetal hover:border-storm-blue hover:text-storm-blue'
                 }`}
@@ -172,66 +161,49 @@ function ServicesSectionComponent() {
           ))}
         </div>
 
-        {/* Services Grid - Animated */}
-        <div className="overflow-hidden">
+        {/* Services Grid - Animated — overflow only when collapsed so hover lift is not clipped */}
+        <div>
           {Object.entries(serviceCategories).map(([key, { services: catServices }]) => (
             <div
               key={key}
               className={`transition-all duration-500 ease-out ${activeCategory === key
-                  ? 'opacity-100 max-h-[2000px]'
-                  : 'opacity-0 max-h-0 pointer-events-none'
+                  ? 'opacity-100 max-h-[2000px] overflow-visible'
+                  : 'max-h-0 overflow-hidden opacity-0 pointer-events-none'
                 }`}
             >
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-1 pt-1">
                 {catServices.map(({ icon: Icon, title, desc, href }, i) => (
-                  <AnimatedSection key={title} delay={i * 100}>
+                  <AnimatedSection key={title} delay={i * 100} className="h-full min-h-0">
                     <Link
                       href={href}
-                      className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-soft-khaki/25 bg-gunmetal p-8 transition-all duration-300 [transform:perspective(900px)_translateZ(0)] hover:-translate-y-1.5 hover:border-storm-blue/55 hover:[transform:perspective(900px)_translateZ(8px)] hover:shadow-2xl hover:shadow-black/30"
+                      className="group relative flex h-full min-h-[17rem] flex-col rounded-2xl border border-soft-khaki/25 bg-gunmetal p-8 pb-9 shadow-lg shadow-black/25 ring-1 ring-white/5 transition-all duration-300 [transform:perspective(900px)_translateZ(0)] hover:-translate-y-1.5 hover:border-storm-blue/55 hover:[transform:perspective(900px)_translateZ(8px)] hover:shadow-2xl hover:shadow-black/35 sm:min-h-[18rem] sm:p-9"
                     >
-                      <div
-                        className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-white/6"
+                      <span
+                        className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
                         aria-hidden="true"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-[1px] rounded-[2px] border border-black/25"
-                        aria-hidden="true"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-storm-blue/22 via-gunmetal/95 to-matte-black/96"
-                        aria-hidden="true"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-0 opacity-50 [background:radial-gradient(circle_at_12%_8%,rgba(181,138,58,0.2),transparent_35%),radial-gradient(circle_at_88%_92%,rgba(58,98,138,0.22),transparent_40%)]"
-                        aria-hidden="true"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-equipment-gold/75 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-                        aria-hidden="true"
-                      />
-                      <div
-                        className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-storm-blue/25 blur-2xl transition-opacity duration-300 group-hover:bg-storm-blue/35"
-                        aria-hidden="true"
-                      />
-                      <div
-                        className="pointer-events-none absolute -left-12 -bottom-12 h-40 w-40 rounded-full bg-equipment-gold/12 blur-3xl transition-opacity duration-300 group-hover:bg-equipment-gold/18"
-                        aria-hidden="true"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/25 to-transparent"
-                        aria-hidden="true"
-                      />
+                      >
+                        <span className="absolute inset-0 rounded-2xl ring-1 ring-white/8" />
+                        <span className="absolute inset-[1px] rounded-[0.85rem] border border-black/25" />
+                        <span className="absolute inset-0 bg-gradient-to-b from-storm-blue/22 via-gunmetal/95 to-matte-black/96" />
+                        <span className="absolute inset-0 opacity-50 [background:radial-gradient(circle_at_12%_8%,rgba(181,138,58,0.2),transparent_35%),radial-gradient(circle_at_88%_92%,rgba(58,98,138,0.22),transparent_40%)]" />
+                        <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-equipment-gold/75 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+                        <span className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-storm-blue/25 blur-2xl transition-opacity duration-300 group-hover:bg-storm-blue/35" />
+                        <span className="absolute -left-12 -bottom-12 h-40 w-40 rounded-full bg-equipment-gold/12 blur-3xl transition-opacity duration-300 group-hover:bg-equipment-gold/18" />
+                        <span className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/25 to-transparent" />
+                      </span>
 
-                      <div className="relative z-10 mb-6 flex h-14 w-14 items-center justify-center rounded-sm border border-soft-khaki/30 bg-soft-coal/85 shadow-md shadow-black/35 transition-colors duration-300 group-hover:border-storm-blue/40 group-hover:bg-storm-blue">
+                      <div className="relative z-10 mb-5 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-soft-khaki/30 bg-soft-coal/85 shadow-md shadow-black/35 ring-1 ring-white/5 transition-colors duration-300 group-hover:border-storm-blue/40 group-hover:bg-storm-blue">
                         <Icon size={26} className="text-bone-linen" />
                       </div>
 
-                      <h3 className="relative z-10 mb-3 text-xl font-bold text-bone-linen transition-colors group-hover:text-blue-200">
+                      <h3 className="relative z-10 mb-3 text-balance text-xl font-bold leading-snug text-bone-linen transition-colors group-hover:text-blue-200">
                         {title}
                       </h3>
-                      <p className="relative z-10 mb-6 leading-relaxed text-soft-khaki/90">{desc}</p>
+                      <p className="relative z-10 mb-6 grow leading-relaxed text-pretty text-soft-khaki/90">
+                        {desc}
+                      </p>
 
-                      <span className="relative z-10 mt-4 inline-flex items-center gap-2 text-sm font-bold tracking-widest text-equipment-gold uppercase transition-all group-hover:gap-3 group-hover:text-burnished-amber md:mt-auto">
+                      <span className="relative z-10 mt-auto inline-flex items-center gap-2 pb-0.5 text-sm font-bold tracking-widest text-equipment-gold uppercase transition-all group-hover:gap-3 group-hover:text-burnished-amber">
                         Learn More <ArrowRight size={14} className="translate-y-[0.5px]" />
                       </span>
                     </Link>
@@ -245,7 +217,7 @@ function ServicesSectionComponent() {
         <AnimatedSection delay={600} className="text-center mt-12">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-gunmetal hover:bg-soft-coal text-bone-linen font-bold text-base tracking-wide uppercase rounded-sm transition-colors shadow-md"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-gunmetal hover:bg-soft-coal text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-black/25 ring-1 ring-white/10 hover:shadow-xl"
           >
             View All Services
             <ArrowRight size={16} />
@@ -330,14 +302,32 @@ export default function HomePage() {
   ]
   const [heroLoaded, setHeroLoaded] = useState(false)
 
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (hash) {
+      requestAnimationFrame(() => {
+        const el = document.getElementById(hash)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      })
+    } else {
+      window.scrollTo({ top: 0 })
+    }
+  }, [])
+
   return (
     <>
       <SiteNav />
+      <Script
+        src="https://elfsightcdn.com/platform.js"
+        strategy="afterInteractive"
+      />
 
       {/* Fixed Hero Background - spans entire page */}
       <div className="fixed inset-0 z-0">
         <Image
-          src="/images/hero-excavation.jpg"
+          src={siteMedia.hero}
           alt=""
           fill
           priority
@@ -361,10 +351,32 @@ export default function HomePage() {
                   className={`hero-reveal transition-all duration-[620ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-16 translate-y-4'
                     }`}
                 >
+                  <div
+                    className={`hero-reveal mb-5 flex w-full max-w-xl flex-col gap-3 transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9 ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 scale-100' : 'opacity-0 -translate-x-14 translate-y-8 scale-[0.95]'
+                      }`}
+                    style={{ transitionDelay: '40ms' }}
+                  >
+                    <Link
+                      href="/contact"
+                      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-xl bg-storm-blue px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen shadow-lg shadow-storm-blue/40 ring-1 ring-white/15 uppercase transition-colors hover:bg-steel-blue hover:shadow-storm-blue/55 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
+                    >
+                      Get a Free Quote
+                      <ArrowRight size={20} />
+                    </Link>
+                    <a
+                      href="tel:+14058675309"
+                      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-xl border-2 border-bone-linen/40 px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen uppercase transition-colors hover:border-bone-linen/80 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
+                      aria-label="Call us at (405) 867-5309"
+                    >
+                      <Phone size={20} aria-hidden="true" />
+                      (405) 867-5309
+                    </a>
+                  </div>
+
                   <p
                     className={`hero-reveal mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold transition-all duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-4 sm:text-xs ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-12 translate-y-2'
                       }`}
-                    style={{ transitionDelay: '40ms' }}
+                    style={{ transitionDelay: '120ms' }}
                   >
                     HJH Outdoor Operations
                   </p>
@@ -372,81 +384,64 @@ export default function HomePage() {
                   <h1
                     className={`hero-reveal mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 rotate-0' : 'opacity-0 -translate-x-24 translate-y-3 -rotate-2'
                       }`}
-                    style={{ transitionDelay: '120ms' }}
+                    style={{ transitionDelay: '190ms' }}
                   >
                     Storm Shelters &amp; Site Work Done Right.
                   </h1>
 
                   <p
-                    className={`hero-reveal mb-6 max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:text-[1.06rem] md:text-lg lg:mb-10 lg:text-xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-12 translate-y-6'
-                      }`}
-                    style={{ transitionDelay: '190ms' }}
-                  >
-                    HJH Outdoor Operations provides storm shelter installation, excavation, land clearing, grading, and septic services for Oklahoma homeowners and landowners.
-                  </p>
-
-                  <div
-                    className={`hero-reveal mb-5 flex w-full max-w-xl flex-col gap-3 transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-7 sm:max-w-none sm:flex-row sm:items-center sm:gap-4 lg:mb-9 ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 scale-100' : 'opacity-0 -translate-x-14 translate-y-8 scale-[0.95]'
+                    className={`hero-reveal max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-[1.06rem] md:text-lg lg:text-xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-12 translate-y-6'
                       }`}
                     style={{ transitionDelay: '280ms' }}
                   >
-                    <Link
-                      href="/contact"
-                      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-sm bg-storm-blue px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen shadow-lg uppercase transition-colors hover:bg-steel-blue sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
-                    >
-                      Get a Free Quote
-                      <ArrowRight size={20} />
-                    </Link>
-                    <a
-                      href="tel:+14058675309"
-                      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-sm border-2 border-bone-linen/40 px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen uppercase transition-colors hover:border-bone-linen/80 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
-                      aria-label="Call us at (405) 867-5309"
-                    >
-                      <Phone size={20} aria-hidden="true" />
-                      (405) 867-5309
-                    </a>
-                  </div>
+                    HJH Outdoor Operations provides storm shelter installation, excavation, land clearing, grading, and septic services for Oklahoma homeowners and landowners.
+                  </p>
                 </div>
 
                 <div
-                  className={`hero-reveal order-first relative mx-auto mb-3 w-full max-w-[11rem] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:max-w-[14rem] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${heroLoaded ? 'opacity-100 translate-y-0 scale-100 rotate-0 hero-logo-drop' : 'opacity-0 -translate-y-28 scale-[0.86] rotate-[8deg]'
+                  className={`hero-reveal order-first relative mx-auto mb-3 w-full min-w-0 max-sm:max-w-[min(94vw,20rem)] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:max-w-[14rem] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${heroLoaded ? 'opacity-100 translate-y-0 scale-100 rotate-0 hero-logo-drop' : 'opacity-0 -translate-y-28 scale-[0.86] rotate-[8deg]'
                     }`}
                   style={{ transitionDelay: '130ms' }}
                 >
                   <ElectricBorder
                     color="#3c648c"
                     speed={0.55}
-                    chaos={0.1}
+                    chaos={0.08}
                     thickness={1.8}
                     borderRadius={360}
+                    displacement={34}
                     className="rounded-full"
                   >
-                    <ElectricBorder
-                      color="#b48c3c"
-                      speed={0.8}
-                      chaos={0.08}
-                      thickness={1.2}
-                      borderRadius={360}
-                      className="rounded-full"
-                    >
-                      <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
+                    <div className="p-1.5 sm:p-2 md:p-2.5">
+                      <ElectricBorder
+                        color="#b48c3c"
+                        speed={0.8}
+                        chaos={0.06}
+                        thickness={1.2}
+                        borderRadius={360}
+                        displacement={28}
+                        className="rounded-full"
+                      >
+                        <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
                         <div
                           className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
                           aria-hidden="true"
                         />
                         <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
-                          <div className="relative w-full max-w-[84vw] aspect-square overflow-hidden rounded-full">
+                          <div className="relative w-full max-sm:max-w-full sm:max-w-[84vw] aspect-square overflow-hidden rounded-full">
                             <Image
                               src="/brand/logo-transparent.png"
                               alt="HJH Outdoor Operations LLC — storm shelter installation, dirt work, land clearing, Oklahoma"
                               fill
                               priority
-                              className="object-contain object-center scale-[.86]"
+                              loading="eager"
+                              className="object-contain object-center max-sm:scale-[0.96] sm:scale-[.86]"
                             />
                           </div>
                         </div>
                       </div>
-                    </ElectricBorder>
+                      </ElectricBorder>
+                    </div>
                   </ElectricBorder>
                 </div>
               </div>
@@ -455,7 +450,7 @@ export default function HomePage() {
                 {serviceChips.map((tag, index) => (
                   <span
                     key={tag}
-                    className={`hero-reveal shrink-0 rounded-sm border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase backdrop-blur-sm transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-8 translate-y-4'
+                    className={`hero-reveal shrink-0 rounded-xl border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase shadow-md shadow-black/20 ring-1 ring-white/10 backdrop-blur-sm transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-8 translate-y-4'
                       } ${index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'
                       }`}
                     style={{ transitionDelay: `${360 + index * 70}ms` }}
@@ -480,15 +475,16 @@ export default function HomePage() {
         <div className="relative">
 
           {/* ====== TRUST BAR ====== */}
-          <section className="bg-gunmetal relative texture-concrete">
-            <div className="py-8">
+          <section className="relative isolate overflow-hidden">
+            <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="brand-1" />
+            <div className="relative z-[1] py-8">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="trust-marquee overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                   <div className="trust-marquee-track flex w-max items-center gap-3">
                     {[...trustItems, ...trustItems].map((item, index) => (
                       <div
                         key={`${item}-${index}`}
-                        className="flex min-h-12 items-center justify-center gap-2 rounded-sm border border-white/8 bg-soft-coal/35 px-4 py-3 text-center"
+                        className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-soft-coal/35 px-4 py-3 text-center shadow-md shadow-black/25 ring-1 ring-white/5"
                       >
                         <CheckCircle2 size={16} className="text-equipment-gold shrink-0" aria-hidden="true" />
                         <span className="text-soft-khaki text-sm font-semibold tracking-wide whitespace-nowrap">{item}</span>
@@ -504,17 +500,18 @@ export default function HomePage() {
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== STORM SHELTER CALLOUT ====== */}
-          <section className="bg-section-light relative overflow-hidden texture-linen">
+          <section className="relative isolate overflow-hidden">
+            <PremiumSectionBackdrop fillClassName="bg-section-light" texture="brand-2" />
             {/* Decorative diagonal line */}
-            <div className="absolute top-0 right-0 w-1/2 h-1 bg-gradient-to-r from-transparent via-equipment-gold/40 to-equipment-gold" />
+            <div className="absolute top-0 right-0 z-[2] w-1/2 h-1 bg-gradient-to-r from-transparent via-equipment-gold/40 to-equipment-gold" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-matte-black">
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <AnimatedSection>
                   <div className="relative">
-                    <div className="aspect-[4/3] relative rounded-sm overflow-hidden shadow-2xl">
+                    <div className="card-media aspect-[4/3]">
                       <Image
-                        src="/images/storm-shelter-install.jpg"
+                        src={siteMedia.stormCallout}
                         alt="Storm shelter being installed in Oklahoma residential yard"
                         fill
                         className="object-cover"
@@ -522,7 +519,7 @@ export default function HomePage() {
                     </div>
                     {/* Badge */}
                     <div className="relative mt-4 w-fit max-w-full ms-auto sm:mt-0 sm:absolute sm:-bottom-5 sm:-right-5 sm:ms-0">
-                      <div className="bg-storm-blue text-bone-linen px-5 py-4 sm:px-6 sm:py-5 rounded-sm shadow-xl">
+                      <div className="card-accent-storm text-bone-linen px-5 py-4 sm:px-6 sm:py-5">
                         <div className="text-2xl font-bold">Tornado</div>
                         <div className="text-xs tracking-widest uppercase text-blue-200/80">Season Ready</div>
                       </div>
@@ -538,7 +535,7 @@ export default function HomePage() {
                   <h2 className="text-4xl lg:text-5xl font-bold text-gunmetal leading-tight mb-6 text-balance">
                     Oklahoma&apos;s Storm Shelter Experts
                   </h2>
-                  <p className="text-clay-taupe text-lg leading-relaxed mb-6">
+                  <p className="text-matte-black text-lg leading-relaxed mb-6">
                     Living in tornado country isn&apos;t optional — but being unprepared is. We install underground storm shelters that are anchored properly, waterproofed, and built to give your family a real safe room when it matters most.
                   </p>
                   <ul className="flex flex-col gap-3 mb-8">
@@ -557,14 +554,14 @@ export default function HomePage() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
                       href="/storm-shelter"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-sm transition-colors shadow-md"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10 hover:shadow-storm-blue/50"
                     >
                       Learn More
                       <ArrowRight size={16} />
                     </Link>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gunmetal hover:bg-gunmetal hover:text-bone-linen text-gunmetal font-bold text-base tracking-wide uppercase rounded-sm transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gunmetal hover:bg-gunmetal hover:text-bone-linen text-gunmetal font-bold text-base tracking-wide uppercase rounded-xl transition-colors"
                     >
                       Get Shelter Quote
                     </Link>
@@ -584,9 +581,9 @@ export default function HomePage() {
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== WHY CHOOSE US ====== */}
-          <section className="bg-soft-coal relative texture-concrete">
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+          <section className="relative isolate overflow-hidden">
+            <PremiumSectionBackdrop fillClassName="bg-soft-coal" texture="concrete" />
+            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
               <div className="grid lg:grid-cols-2 gap-16 items-start">
                 <AnimatedSection>
                   <span className="brand-divider mb-5 block" />
@@ -601,7 +598,7 @@ export default function HomePage() {
                   </p>
                   <Link
                     href="/about"
-                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-storm-blue hover:bg-storm-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-sm transition-colors"
+                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-storm-blue hover:bg-storm-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors"
                   >
                     About Our Company
                     <ArrowRight size={16} />
@@ -609,10 +606,12 @@ export default function HomePage() {
                 </AnimatedSection>
 
                 <div className="grid gap-4">
-                  {trustPillars.map(({ title, desc }, i) => (
+                  {trustPillars.map(({ title, desc, icon: Icon }, i) => (
                     <AnimatedSection key={title} delay={i * 100}>
-                      <div className="flex items-start gap-4 bg-gunmetal/60 backdrop-blur-sm border border-white/10 rounded-sm p-6 hover:border-equipment-gold/40 transition-colors">
-                        <div className="w-3 h-3 rounded-full bg-equipment-gold shrink-0 mt-1.5" />
+                      <div className="card-elevated-glass flex items-start gap-4 p-6">
+                        <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-gunmetal/70 ring-1 ring-white/10">
+                          <Icon size={18} className="text-equipment-gold" aria-hidden="true" />
+                        </div>
                         <div>
                           <h4 className="font-bold text-bone-linen mb-1">{title}</h4>
                           <p className="text-soft-khaki/80 leading-relaxed">{desc}</p>
@@ -629,9 +628,9 @@ export default function HomePage() {
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== PROJECTS PREVIEW ====== */}
-          <section className="bg-section-light relative texture-linen">
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+          <section className="relative isolate overflow-hidden">
+            <PremiumSectionBackdrop fillClassName="bg-section-light" texture="brand-2" />
+            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
               <AnimatedSection>
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
                   <div>
@@ -639,7 +638,7 @@ export default function HomePage() {
                     <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
                       Recent Work
                     </p>
-                    <h2 className="text-4xl lg:text-5xl font-bold text-gunmetal leading-tight text-balance">
+                    <h2 className="text-4xl lg:text-5xl font-bold text-matte-black leading-tight text-balance">
                       Project Gallery
                     </h2>
                   </div>
@@ -655,7 +654,7 @@ export default function HomePage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {projects.map(({ src, alt, label, tag }, i) => (
                   <AnimatedSection key={label} delay={i * 100}>
-                    <div className="group relative aspect-[4/3] overflow-hidden rounded-sm bg-section-mid shadow-lg">
+                    <div className="group relative aspect-[4/3] card-media bg-section-mid">
                       <Image
                         src={src}
                         alt={alt}
@@ -664,7 +663,7 @@ export default function HomePage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-matte-black/90 via-matte-black/20 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <span className="inline-block px-2 py-1 bg-storm-blue text-bone-linen text-xs font-bold tracking-wide uppercase rounded-sm mb-2">
+                        <span className="inline-block px-2 py-1 bg-storm-blue text-bone-linen text-xs font-bold tracking-wide uppercase rounded-lg shadow-md shadow-storm-blue/30 ring-1 ring-white/10 mb-2">
                           {tag}
                         </span>
                         <p className="text-bone-linen font-semibold leading-tight">{label}</p>
@@ -680,27 +679,46 @@ export default function HomePage() {
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== SERVICE AREA ====== */}
-          <section className="bg-sandstone border-t border-soft-khaki/30">
-            <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="flex items-start gap-4 flex-1">
-                  <MapPin size={32} className="text-storm-blue shrink-0 mt-1" aria-hidden="true" />
+          <section className="relative isolate overflow-hidden">
+            <PremiumSectionBackdrop fillClassName="bg-sandstone" texture="brand-2" />
+            <AnimatedSection className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-matte-black">
+              <div className="relative overflow-hidden rounded-3xl border border-soft-khaki/45 bg-section-light/70 p-6 shadow-xl shadow-black/10 ring-1 ring-white/35 backdrop-blur-[2px] sm:p-8 lg:p-10">
+                <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-storm-blue/18 blur-2xl" aria-hidden="true" />
+                <div className="pointer-events-none absolute -left-12 -bottom-16 h-40 w-40 rounded-full bg-equipment-gold/12 blur-3xl" aria-hidden="true" />
+
+                <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
                   <div>
-                    <h3 className="font-bold text-gunmetal text-xl mb-2">Serving Oklahoma &amp; Surrounding Areas</h3>
-                    <p className="text-clay-taupe leading-relaxed">
-                      Based in Oklahoma, we work across the state and take on projects wherever you need us. Storm shelter installation, excavation, land clearing, and site prep — wherever the work is, we go.
+                    <div className="mb-4 inline-flex items-center gap-3 rounded-xl border border-storm-blue/20 bg-storm-blue/10 px-4 py-2">
+                      <MapPin size={18} className="text-storm-blue shrink-0" aria-hidden="true" />
+                      <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-storm-blue">Service Area</span>
+                    </div>
+                    <h3 className="text-2xl font-bold leading-tight text-matte-black sm:text-3xl">Serving Oklahoma &amp; Surrounding Areas</h3>
+                    <p className="mt-3 max-w-2xl leading-relaxed text-matte-black/90">
+                      Based in Oklahoma, we work across the state and take on projects wherever you need us. Storm shelter installation, excavation, land clearing, and site prep - wherever the work is, we go.
                     </p>
                   </div>
-                </div>
-                <div className="flex flex-wrap gap-2 flex-1 justify-center md:justify-end">
-                  {['Oklahoma City', 'Tulsa', 'Edmond', 'Norman', 'Stillwater', 'Lawton', 'Enid', 'Yukon', 'And More'].map((city) => (
-                    <span
-                      key={city}
-                      className="px-4 py-2 bg-section-light border border-soft-khaki/50 text-clay-taupe text-sm font-semibold tracking-wide uppercase rounded-sm"
-                    >
-                      {city}
-                    </span>
-                  ))}
+
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="rounded-2xl border border-soft-khaki/55 bg-section-mid/85 p-4 text-center shadow-sm">
+                      <p className="text-2xl font-bold text-matte-black">Statewide</p>
+                      <p className="mt-1 text-[11px] font-bold tracking-[0.16em] uppercase text-matte-black/75">Coverage</p>
+                    </div>
+                    <div className="rounded-2xl border border-soft-khaki/55 bg-section-mid/85 p-4 text-center shadow-sm">
+                      <p className="text-2xl font-bold text-matte-black">Fast</p>
+                      <p className="mt-1 text-[11px] font-bold tracking-[0.16em] uppercase text-matte-black/75">Response</p>
+                    </div>
+                    <div className="col-span-2 flex flex-wrap justify-center gap-2 pt-1">
+                      {['Oklahoma City', 'Tulsa', 'Edmond', 'Norman', 'Stillwater', 'Lawton', 'Enid', 'Yukon', 'And More'].map((city) => (
+                        <span
+                          key={city}
+                          className="inline-flex items-center gap-2 rounded-xl border border-soft-khaki/55 bg-section-mid/90 px-4 py-2 text-xs font-bold tracking-wide uppercase text-matte-black shadow-sm"
+                        >
+                          <span className="h-1.5 w-1.5 rounded-full bg-storm-blue/85" aria-hidden="true" />
+                          {city}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
@@ -710,45 +728,15 @@ export default function HomePage() {
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== TESTIMONIALS ====== */}
-          <section className="bg-section-light texture-linen relative">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+          <section id="testimonials" className="relative isolate overflow-hidden" style={{ scrollMarginTop: '7.5rem' }}>
+            <PremiumSectionBackdrop fillClassName="bg-section-light" texture="brand-2" />
+            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-matte-black">
               <AnimatedSection className="text-center mb-14">
                 <span className="brand-divider mx-auto mb-5 block" />
-                <h2 className="text-3xl lg:text-4xl font-bold text-gunmetal">What Customers Say</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold text-matte-black">What Customers Say</h2>
               </AnimatedSection>
-              <div className="grid sm:grid-cols-3 gap-6">
-                {[
-                  {
-                    quote: "HJH installed our storm shelter in one day. The crew was professional, the site was clean when they left, and the quality is excellent.",
-                    name: 'David M.',
-                    location: 'Edmond, OK',
-                  },
-                  {
-                    quote: "We needed a pond dug and a driveway graded. HJH came in, assessed the property, gave us a fair estimate, and knocked it out ahead of schedule.",
-                    name: 'Randy T.',
-                    location: 'Stillwater, OK',
-                  },
-                  {
-                    quote: "From septic to land clearing to final grading — HJH handled everything for our new build site. One company, start to finish.",
-                    name: 'Lisa P.',
-                    location: 'Norman, OK',
-                  },
-                ].map(({ quote, name, location }, i) => (
-                  <AnimatedSection key={name} delay={i * 150}>
-                    <div className="bg-sandstone border border-soft-khaki/40 rounded-sm p-8 h-full hover:shadow-lg transition-shadow">
-                      <div className="flex gap-1 mb-5" aria-label="5 out of 5 stars">
-                        {[...Array(5)].map((_, j) => (
-                          <Star key={j} size={20} className="text-equipment-gold fill-equipment-gold" aria-hidden="true" />
-                        ))}
-                      </div>
-                      <p className="text-clay-taupe leading-relaxed mb-6 italic">&ldquo;{quote}&rdquo;</p>
-                      <div>
-                        <p className="font-bold text-gunmetal">{name}</p>
-                        <p className="text-weathered-stone text-sm">{location}</p>
-                      </div>
-                    </div>
-                  </AnimatedSection>
-                ))}
+              <div className="card-elevated-warm p-4 sm:p-6 lg:p-8">
+                <ElfsightWidget appId="5d358237-668a-4bb2-be66-6b8addb8696a" />
               </div>
             </div>
           </section>
@@ -757,9 +745,9 @@ export default function HomePage() {
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== FINAL CTA ====== */}
-          <section className="bg-deep-slate relative texture-concrete">
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+          <section className="relative isolate overflow-hidden">
+            <PremiumSectionBackdrop fillClassName="bg-deep-slate" texture="concrete" />
+            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
               <AnimatedSection>
                 <span className="brand-divider mx-auto mb-6 block" />
                 <h2 className="text-4xl lg:text-5xl font-bold text-bone-linen leading-tight mb-6 text-balance">
@@ -771,14 +759,14 @@ export default function HomePage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-3 px-12 py-5 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-lg tracking-wide uppercase rounded-sm transition-colors shadow-xl"
+                    className="inline-flex items-center gap-3 px-12 py-5 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-lg tracking-wide uppercase rounded-xl transition-colors shadow-xl shadow-black/20 ring-1 ring-black/10"
                   >
                     Request a Free Estimate
                     <ArrowRight size={20} />
                   </Link>
                   <a
                     href="tel:+14058675309"
-                    className="inline-flex items-center gap-3 px-12 py-5 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-lg tracking-wide uppercase rounded-sm transition-colors"
+                    className="inline-flex items-center gap-3 px-12 py-5 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-lg tracking-wide uppercase rounded-xl transition-colors"
                     aria-label="Call us at (405) 867-5309"
                   >
                     <Phone size={20} aria-hidden="true" />
