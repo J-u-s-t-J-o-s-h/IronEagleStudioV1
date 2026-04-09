@@ -103,6 +103,7 @@ export default function AboutPage() {
                     src={siteMedia.about.team}
                     alt="HJH Outdoor Operations crew with equipment on Oklahoma jobsite"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 48vw"
                     className="object-cover"
                   />
                 </div>
@@ -157,6 +158,7 @@ export default function AboutPage() {
                     src={siteMedia.about.dirtWork}
                     alt="HJH crew performing precision grading work"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 48vw"
                     className="object-cover"
                   />
                 </div>

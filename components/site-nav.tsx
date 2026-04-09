@@ -121,20 +121,20 @@ export function SiteNav() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-[5.75rem] items-center justify-between lg:h-[6.75rem]">
+        <div className="flex h-[3.5rem] items-center justify-between md:h-[5.75rem] lg:h-[6.75rem]">
           {/* Logo */}
           <Link
             href="/#home-hero"
             onClick={handleLogoClick}
             className={cn(
-              'flex min-w-0 items-center py-1 pr-4 transition-all duration-500 ease-out lg:pr-6',
+              'flex min-w-0 items-center py-0.5 pr-3 transition-all duration-500 ease-out md:py-1 md:pr-4 lg:pr-6',
               showHeaderLogo ? 'opacity-100 translate-y-0 scale-100' : 'pointer-events-none -translate-y-1 scale-95 opacity-0'
             )}
             aria-label="HJH Outdoor Operations - Home"
             aria-hidden={!showHeaderLogo}
             tabIndex={showHeaderLogo ? undefined : -1}
           >
-            <Logo size="md" showText priority className="min-w-0" />
+            <Logo size="md" showText priority className="min-w-0 max-md:scale-[0.68] max-md:origin-left" />
           </Link>
 
           {/* Desktop / tablet nav */}
@@ -230,14 +230,14 @@ export function SiteNav() {
           <div className="flex md:hidden items-center gap-2">
             <a
               href="tel:+14058675309"
-              className="flex items-center justify-center w-12 h-12 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
+              className="flex items-center justify-center w-11 h-11 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
               aria-label="Call us at (405) 867-5309"
             >
               <Phone size={24} aria-hidden="true" />
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex items-center justify-center w-12 h-12 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
+              className="flex items-center justify-center w-11 h-11 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
               aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileOpen}
             >

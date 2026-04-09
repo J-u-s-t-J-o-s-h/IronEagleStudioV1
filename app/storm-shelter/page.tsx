@@ -111,19 +111,21 @@ export default function StormShelterPage() {
               alt="Storm shelter installation in Oklahoma residential property"
               fill
               priority
+              sizes="100vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-matte-black via-matte-black/70 to-matte-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-matte-black via-matte-black/82 to-matte-black/58" />
+            <div className="absolute inset-0 bg-gradient-to-r from-matte-black/58 via-matte-black/28 to-matte-black/10" />
           </div>
           <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] sm:px-6 lg:px-8">
             <span className="brand-divider mb-4 block" />
             <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
               Featured Service
             </p>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-bone-linen leading-tight text-balance max-w-3xl mb-5">
+            <h1 className="text-shadow-strong text-4xl sm:text-6xl lg:text-7xl font-bold text-bone-linen leading-tight text-balance max-w-3xl mb-5">
               Storm Shelter Installation
             </h1>
-            <p className="text-warm-concrete text-lg max-w-2xl leading-relaxed mb-8">
+            <p className="text-shadow-strong text-warm-concrete text-lg max-w-2xl leading-relaxed mb-8">
               Oklahoma gets hit hard by tornadoes every season. A properly installed underground shelter is the only guarantee your family has a safe place to go. We install them right.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -224,6 +226,7 @@ export default function StormShelterPage() {
                     src={siteMedia.stormPage.interior}
                     alt="Interior of a completed storm shelter installation"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 48vw"
                     className="object-cover"
                   />
                 </div>

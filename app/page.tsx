@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import Script from 'next/script'
 import { useEffect, useRef, useState } from 'react'
 import {
   Shield,
@@ -22,10 +21,9 @@ import {
   Timer,
   BadgeCheck,
 } from 'lucide-react'
+import ElectricBorder from '@/components/ElectricBorder'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { Logo } from '@/components/logo'
-import ElectricBorder from '@/components/ElectricBorder'
 import { PremiumSectionBackdrop } from '@/components/premium-section-backdrop'
 import { ElfsightWidget } from '@/components/elfsight-widget'
 import { homeProjectCards, siteMedia } from '@/lib/site-media'
@@ -63,9 +61,21 @@ const services = [
   },
   {
     icon: Wrench,
-    title: 'Additional Site Services',
-    desc: 'Demolition, haul-off, culvert work, driveway prep, and more. Ask us about your project.',
-    href: '/services',
+    title: 'Culvert Installation',
+    desc: 'Culvert installs and replacements to improve drainage, driveway access, and long-term property protection.',
+    href: '/services#additional',
+  },
+  {
+    icon: Hammer,
+    title: 'Demolition',
+    desc: 'Targeted residential demolition and haul-off for barns, concrete pads, and other site obstacles.',
+    href: '/services#additional',
+  },
+  {
+    icon: Layers,
+    title: 'Driveways',
+    desc: 'Driveway prep, regrading, and base shaping for smoother access and better water runoff.',
+    href: '/services#additional',
   },
 ]
 
@@ -122,7 +132,9 @@ function ServicesSectionComponent() {
     additional: {
       label: 'Additional Services',
       services: [
-        services[5], // Additional Site Services
+        services[5], // Culvert Installation
+        services[6], // Demolition
+        services[7], // Driveways
       ]
     }
   }
@@ -204,7 +216,7 @@ function ServicesSectionComponent() {
                       </p>
 
                       <span className="relative z-10 mt-auto inline-flex items-center gap-2 pb-0.5 text-sm font-bold tracking-widest text-equipment-gold uppercase transition-all group-hover:gap-3 group-hover:text-burnished-amber">
-                        Learn More <ArrowRight size={14} className="translate-y-[0.5px]" />
+                        Explore {title} <ArrowRight size={14} className="translate-y-[0.5px]" />
                       </span>
                     </Link>
                   </AnimatedSection>
@@ -259,6 +271,11 @@ function AnimatedSection({
       return
     }
 
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches) {
+      reveal()
+      return
+    }
+
     // Positive bottom rootMargin helps bottom-aligned hero blocks intersect on mobile; negative margin was hiding them.
     const observer = new IntersectionObserver(
       (entries) => {
@@ -300,7 +317,33 @@ export default function HomePage() {
     'Over 10 Years Experience',
     'Quality You Can See',
   ]
-  const [heroLoaded, setHeroLoaded] = useState(false)
+  const processSteps = [
+    {
+      step: '01',
+      title: 'Consultation',
+      description: 'Share your project goals, location, and timeline so we can scope the work correctly.',
+      outcome: 'Clear scope and next steps.',
+      icon: MessageSquare,
+    },
+    {
+      step: '02',
+      title: 'Installation',
+      description: 'Our crew schedules the work, handles site prep, and completes the job with the right equipment.',
+      outcome: 'Work completed safely and on plan.',
+      icon: Wrench,
+    },
+    {
+      step: '03',
+      title: 'Final Inspection',
+      description: 'We walk the site with you, confirm quality, and make sure everything is finished the right way.',
+      outcome: 'You sign off with confidence.',
+      icon: Shield,
+    },
+  ]
+  const heroLoaded = true
+  const testimonialsRef = useRef<HTMLElement>(null)
+  const reviewsEnabled = process.env.NEXT_PUBLIC_ENABLE_REVIEWS_WIDGET !== 'false'
+  const [shouldLoadReviewsScript, setShouldLoadReviewsScript] = useState(false)
 
   useEffect(() => {
     const hash = window.location.hash.replace('#', '')
@@ -316,14 +359,40 @@ export default function HomePage() {
     }
   }, [])
 
+  useEffect(() => {
+    if (!reviewsEnabled) return
+    const sectionEl = testimonialsRef.current
+    if (!sectionEl) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoadReviewsScript(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '350px 0px' }
+    )
+
+    observer.observe(sectionEl)
+    return () => observer.disconnect()
+  }, [reviewsEnabled])
+
+  useEffect(() => {
+    if (!reviewsEnabled || !shouldLoadReviewsScript) return
+    if (document.querySelector('script[data-elfsight-platform="true"]')) return
+
+    const script = document.createElement('script')
+    script.src = 'https://elfsightcdn.com/platform.js'
+    script.async = true
+    script.defer = true
+    script.dataset.elfsightPlatform = 'true'
+    document.body.appendChild(script)
+  }, [reviewsEnabled, shouldLoadReviewsScript])
+
   return (
     <>
       <SiteNav />
-      <Script
-        src="https://elfsightcdn.com/platform.js"
-        strategy="afterInteractive"
-      />
-
       {/* Fixed Hero Background - spans entire page */}
       <div className="fixed inset-0 z-0">
         <Image
@@ -331,8 +400,9 @@ export default function HomePage() {
           alt=""
           fill
           priority
-          onLoad={() => setHeroLoaded(true)}
-          className={`object-cover object-center transition-[transform,filter,opacity] duration-[950ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${heroLoaded ? 'scale-100 blur-0 opacity-100' : 'scale-[1.06] blur-[1px] opacity-65'
+          unoptimized
+          sizes="100vw"
+          className={`object-cover object-center transition-opacity duration-700 ease-out ${heroLoaded ? 'opacity-100' : 'opacity-70'
             }`}
           aria-hidden="true"
         />
@@ -343,7 +413,7 @@ export default function HomePage() {
 
       <main id="main-content" className="relative z-10">
         {/* ====== HERO SECTION ====== */}
-        <section id="home-hero" className="flex min-h-[100dvh] flex-col justify-end pb-6 pt-[calc(5.6rem+env(safe-area-inset-top,0px))] sm:pb-6 sm:pt-[calc(6rem+env(safe-area-inset-top,0px))] md:pb-12 md:pt-[calc(7.2rem+env(safe-area-inset-top,0px))] lg:pb-16 lg:pt-[calc(7.75rem+env(safe-area-inset-top,0px))]">
+        <section id="home-hero" className="flex min-h-[100dvh] flex-col justify-end pb-6 pt-[calc(4.2rem+env(safe-area-inset-top,0px))] sm:pb-6 sm:pt-[calc(4.5rem+env(safe-area-inset-top,0px))] md:pb-12 md:pt-[calc(7rem+env(safe-area-inset-top,0px))] lg:pb-16 lg:pt-[calc(7.65rem+env(safe-area-inset-top,0px))]">
           <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection immediate>
               <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_minmax(290px,0.88fr)] md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.96fr)] lg:gap-14">
@@ -381,8 +451,26 @@ export default function HomePage() {
                     HJH Outdoor Operations
                   </p>
 
+                  <div
+                    className={`hero-reveal mb-4 flex flex-wrap items-center gap-2 transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-16 translate-y-3'
+                      }`}
+                    style={{ transitionDelay: '150ms' }}
+                  >
+                    <Link
+                      href="/#testimonials"
+                      className="inline-flex min-h-9 items-center gap-2 rounded-xl border border-white/20 bg-storm-blue/85 px-3 py-1.5 text-[11px] font-bold tracking-[0.12em] text-bone-linen uppercase shadow-md shadow-black/30 ring-1 ring-white/20 transition-colors hover:bg-steel-blue"
+                    >
+                      <span aria-hidden="true">★★★★★</span>
+                      Google 5.0 Star
+                    </Link>
+                    <span className="inline-flex min-h-9 items-center gap-2 rounded-xl border border-white/20 bg-white/12 px-3 py-1.5 text-[11px] font-bold tracking-[0.12em] text-bone-linen uppercase shadow-md shadow-black/20 ring-1 ring-white/10">
+                      <BadgeCheck size={14} aria-hidden="true" className="text-equipment-gold" />
+                      Licensed &amp; Insured
+                    </span>
+                  </div>
+
                   <h1
-                    className={`hero-reveal mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 rotate-0' : 'opacity-0 -translate-x-24 translate-y-3 -rotate-2'
+                    className={`hero-reveal text-shadow-strong mb-4 max-w-3xl text-balance text-[1.9rem] font-bold leading-[1.08] text-bone-linen transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:text-[2.6rem] md:text-5xl lg:mb-7 lg:text-7xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0 rotate-0' : 'opacity-0 -translate-x-24 translate-y-3 -rotate-2'
                       }`}
                     style={{ transitionDelay: '190ms' }}
                   >
@@ -390,7 +478,7 @@ export default function HomePage() {
                   </h1>
 
                   <p
-                    className={`hero-reveal max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-[1.06rem] md:text-lg lg:text-xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-12 translate-y-6'
+                    className={`hero-reveal text-shadow-strong max-w-2xl text-[1rem] leading-relaxed text-warm-concrete transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-[1.06rem] md:text-lg lg:text-xl ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-12 translate-y-6'
                       }`}
                     style={{ transitionDelay: '280ms' }}
                   >
@@ -399,50 +487,92 @@ export default function HomePage() {
                 </div>
 
                 <div
-                  className={`hero-reveal order-first relative mx-auto mb-3 w-full min-w-0 max-sm:max-w-[min(94vw,20rem)] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:max-w-[14rem] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${heroLoaded ? 'opacity-100 translate-y-0 scale-100 rotate-0 hero-logo-drop' : 'opacity-0 -translate-y-28 scale-[0.86] rotate-[8deg]'
+                  className={`hero-reveal order-first relative mx-auto mb-3 w-full min-w-0 max-sm:max-w-[min(98vw,22rem)] transition-all duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-5 sm:max-w-[14rem] md:order-none md:mb-0 md:mt-0 md:max-w-[18rem] lg:-mt-12 lg:max-w-[36rem] ${heroLoaded ? 'opacity-100 translate-y-0 scale-100 rotate-0 hero-logo-drop' : 'opacity-0 -translate-y-28 scale-[0.86] rotate-[8deg]'
                     }`}
                   style={{ transitionDelay: '130ms' }}
                 >
-                  <ElectricBorder
-                    color="#3c648c"
-                    speed={0.55}
-                    chaos={0.08}
-                    thickness={1.8}
-                    borderRadius={360}
-                    displacement={34}
-                    className="rounded-full"
-                  >
-                    <div className="p-1.5 sm:p-2 md:p-2.5">
-                      <ElectricBorder
-                        color="#b48c3c"
-                        speed={0.8}
-                        chaos={0.06}
-                        thickness={1.2}
-                        borderRadius={360}
-                        displacement={28}
-                        className="rounded-full"
-                      >
-                        <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
-                        <div
-                          className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
-                          aria-hidden="true"
-                        />
-                        <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
-                          <div className="relative w-full max-sm:max-w-full sm:max-w-[84vw] aspect-square overflow-hidden rounded-full">
-                            <Image
-                              src="/brand/logo-transparent.png"
-                              alt="HJH Outdoor Operations LLC — storm shelter installation, dirt work, land clearing, Oklahoma"
-                              fill
-                              priority
-                              loading="eager"
-                              className="object-contain object-center max-sm:scale-[0.96] sm:scale-[.86]"
-                            />
+                  <div className="sm:hidden">
+                    <ElectricBorder
+                      color="#3c648c"
+                      speed={0.5}
+                      chaos={0.08}
+                      thickness={1.25}
+                      borderRadius={360}
+                      displacement={19}
+                      className="rounded-full"
+                    >
+                      <div className="p-2.25">
+                        <ElectricBorder
+                          color="#b48c3c"
+                          speed={0.75}
+                          chaos={0.06}
+                          thickness={0.9}
+                          borderRadius={360}
+                          displacement={14}
+                          className="rounded-full"
+                        >
+                          <div className="relative aspect-square overflow-hidden rounded-full border border-white/15 bg-matte-black/72 p-2.25 shadow-[0_26px_58px_rgba(0,0,0,0.56)]">
+                            <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent" aria-hidden="true" />
+                            <div className="relative flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.75">
+                              <div className="relative w-full aspect-square rounded-full">
+                                <img
+                                  src="/brand/logo-transparent.webp"
+                                  alt="HJH Outdoor Operations LLC — storm shelter installation, dirt work, land clearing, Oklahoma"
+                                  loading="eager"
+                                  fetchPriority="high"
+                                  decoding="async"
+                                  className="absolute inset-0 h-full w-full object-contain object-center scale-[1.05]"
+                                />
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        </ElectricBorder>
                       </div>
-                      </ElectricBorder>
-                    </div>
-                  </ElectricBorder>
+                    </ElectricBorder>
+                  </div>
+
+                  <div className="hidden sm:block">
+                    <ElectricBorder
+                      color="#3c648c"
+                      speed={0.55}
+                      chaos={0.08}
+                      thickness={1.8}
+                      borderRadius={360}
+                      displacement={34}
+                      className="rounded-full"
+                    >
+                      <div className="p-1.5 sm:p-2 md:p-2.5">
+                        <ElectricBorder
+                          color="#b48c3c"
+                          speed={0.8}
+                          chaos={0.06}
+                          thickness={1.2}
+                          borderRadius={360}
+                          displacement={25}
+                          className="rounded-full"
+                        >
+                          <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
+                            <div
+                              className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
+                              aria-hidden="true"
+                            />
+                            <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
+                              <div className="relative w-full sm:max-w-[84vw] aspect-square overflow-hidden rounded-full">
+                                <img
+                                  src="/brand/logo-transparent.webp"
+                                  alt="HJH Outdoor Operations LLC — storm shelter installation, dirt work, land clearing, Oklahoma"
+                                  loading="eager"
+                                  decoding="async"
+                                  className="absolute inset-0 h-full w-full object-contain object-center sm:scale-[.86]"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </ElectricBorder>
+                      </div>
+                    </ElectricBorder>
+                  </div>
+
                 </div>
               </div>
 
@@ -514,6 +644,7 @@ export default function HomePage() {
                         src={siteMedia.stormCallout}
                         alt="Storm shelter being installed in Oklahoma residential yard"
                         fill
+                        sizes="(max-width: 1024px) 100vw, 48vw"
                         className="object-cover"
                       />
                     </div>
@@ -556,7 +687,7 @@ export default function HomePage() {
                       href="/storm-shelter"
                       className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10 hover:shadow-storm-blue/50"
                     >
-                      Learn More
+                      Explore Storm Shelter Options
                       <ArrowRight size={16} />
                     </Link>
                     <Link
@@ -576,6 +707,43 @@ export default function HomePage() {
 
           {/* ====== SERVICES ====== */}
           <ServicesSectionComponent />
+
+          {/* ====== HOW WE WORK ====== */}
+          <section className="relative isolate overflow-hidden">
+            <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="concrete" />
+            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-14">
+              <AnimatedSection className="text-center mb-8">
+                <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-2">
+                  How We Work
+                </p>
+                <h3 className="text-2xl lg:text-3xl font-bold text-bone-linen text-balance">
+                  Clear 3-Step Process From First Call to Final Sign-Off
+                </h3>
+                <p className="mt-3 text-soft-khaki/85 max-w-3xl mx-auto leading-relaxed">
+                  You always know what happens next. No vague timelines, no guessing, and no surprise handoffs.
+                </p>
+              </AnimatedSection>
+              <div className="grid gap-4 md:grid-cols-3">
+                {processSteps.map(({ step, title, description, outcome, icon: Icon }, idx) => (
+                  <AnimatedSection key={title} delay={idx * 90}>
+                    <div className="card-elevated-glass h-full p-5 sm:p-6">
+                      <div className="mb-4 flex items-center justify-between gap-3">
+                        <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border border-white/15 bg-storm-blue/25 px-2 text-xs font-bold tracking-wider text-bone-linen">
+                          {step}
+                        </span>
+                        <Icon size={18} className="text-equipment-gold shrink-0" aria-hidden="true" />
+                      </div>
+                      <h3 className="text-bone-linen text-lg font-bold mb-2">{title}</h3>
+                      <p className="text-soft-khaki/85 text-sm leading-relaxed mb-3">{description}</p>
+                      <p className="text-[0.78rem] uppercase tracking-wider text-equipment-gold/90 font-semibold">
+                        {outcome}
+                      </p>
+                    </div>
+                  </AnimatedSection>
+                ))}
+              </div>
+            </div>
+          </section>
 
           {/* Spacer — backdrop reveal */}
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
@@ -613,7 +781,7 @@ export default function HomePage() {
                           <Icon size={18} className="text-equipment-gold" aria-hidden="true" />
                         </div>
                         <div>
-                          <h4 className="font-bold text-bone-linen mb-1">{title}</h4>
+                          <h3 className="font-bold text-bone-linen mb-1">{title}</h3>
                           <p className="text-soft-khaki/80 leading-relaxed">{desc}</p>
                         </div>
                       </div>
@@ -659,14 +827,15 @@ export default function HomePage() {
                         src={src}
                         alt={alt}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-matte-black/90 via-matte-black/20 to-transparent" />
+                      <div className="banner-overlay-contrast absolute inset-0" />
                       <div className="absolute bottom-0 left-0 right-0 p-5">
                         <span className="inline-block px-2 py-1 bg-storm-blue text-bone-linen text-xs font-bold tracking-wide uppercase rounded-lg shadow-md shadow-storm-blue/30 ring-1 ring-white/10 mb-2">
                           {tag}
                         </span>
-                        <p className="text-bone-linen font-semibold leading-tight">{label}</p>
+                        <p className="text-shadow-strong text-bone-linen font-semibold leading-tight">{label}</p>
                       </div>
                     </div>
                   </AnimatedSection>
@@ -728,7 +897,11 @@ export default function HomePage() {
           <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
 
           {/* ====== TESTIMONIALS ====== */}
-          <section id="testimonials" className="relative isolate overflow-hidden" style={{ scrollMarginTop: '7.5rem' }}>
+          <section
+            id="testimonials"
+            ref={testimonialsRef}
+            className="relative isolate overflow-hidden scroll-mt-24 md:scroll-mt-32"
+          >
             <PremiumSectionBackdrop fillClassName="bg-section-light" texture="brand-2" />
             <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-matte-black">
               <AnimatedSection className="text-center mb-14">
@@ -736,46 +909,21 @@ export default function HomePage() {
                 <h2 className="text-3xl lg:text-4xl font-bold text-matte-black">What Customers Say</h2>
               </AnimatedSection>
               <div className="card-elevated-warm p-4 sm:p-6 lg:p-8">
-                <ElfsightWidget appId="5d358237-668a-4bb2-be66-6b8addb8696a" />
+                {reviewsEnabled ? (
+                  shouldLoadReviewsScript ? (
+                    <ElfsightWidget appId="5d358237-668a-4bb2-be66-6b8addb8696a" />
+                  ) : (
+                    <p className="text-center text-matte-black/75">Loading reviews...</p>
+                  )
+                ) : (
+                  <p className="text-center text-matte-black/75">
+                    Reviews are temporarily disabled while we optimize page performance.
+                  </p>
+                )}
               </div>
             </div>
           </section>
 
-          {/* Spacer — backdrop reveal */}
-          <div className="h-10 sm:h-20 lg:h-44 bg-transparent" aria-hidden="true" />
-
-          {/* ====== FINAL CTA ====== */}
-          <section className="relative isolate overflow-hidden">
-            <PremiumSectionBackdrop fillClassName="bg-deep-slate" texture="concrete" />
-            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
-              <AnimatedSection>
-                <span className="brand-divider mx-auto mb-6 block" />
-                <h2 className="text-4xl lg:text-5xl font-bold text-bone-linen leading-tight mb-6 text-balance">
-                  Talk About Your Project
-                </h2>
-                <p className="text-warm-concrete text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-                  Whether you need a storm shelter before tornado season, or you&apos;ve got a piece of land that needs work — call us or request an estimate. We&apos;ll give you a straight answer.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-3 px-12 py-5 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-lg tracking-wide uppercase rounded-xl transition-colors shadow-xl shadow-black/20 ring-1 ring-black/10"
-                  >
-                    Request a Free Estimate
-                    <ArrowRight size={20} />
-                  </Link>
-                  <a
-                    href="tel:+14058675309"
-                    className="inline-flex items-center gap-3 px-12 py-5 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-lg tracking-wide uppercase rounded-xl transition-colors"
-                    aria-label="Call us at (405) 867-5309"
-                  >
-                    <Phone size={20} aria-hidden="true" />
-                    Call (405) 867-5309
-                  </a>
-                </div>
-              </AnimatedSection>
-            </div>
-          </section>
         </div>
       </main>
       <SiteFooter />
@@ -790,19 +938,15 @@ export default function HomePage() {
         @keyframes hero-logo-drop {
           0% {
             transform: translateY(-180px) scale(0.78) rotate(9deg);
-            filter: blur(1.3px);
           }
           62% {
             transform: translateY(16px) scale(1.05) rotate(-3deg);
-            filter: blur(0);
           }
           82% {
             transform: translateY(-6px) scale(0.99) rotate(1deg);
-            filter: blur(0);
           }
           100% {
             transform: translateY(0) scale(1) rotate(0deg);
-            filter: blur(0);
           }
         }
 

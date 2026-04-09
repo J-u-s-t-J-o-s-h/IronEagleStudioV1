@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0 --port 3000",
+    "dev": "next dev --webpack --hostname 0.0.0.0 --port 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "perf:clean": "node scripts/clean-lighthouse-reports.mjs",
+    "perf:audit:mobile": "node scripts/run-lighthouse-profile.mjs mobile",
+    "perf:audit:desktop": "node scripts/run-lighthouse-profile.mjs desktop",
+    "perf:assert": "node scripts/check-lighthouse-budgets.mjs",
+    "perf:audit": "npm run perf:clean && start-server-and-test \"npm run start -- --hostname 127.0.0.1 --port 3000\" http://127.0.0.1:3000 \"npm run perf:audit:mobile && npm run perf:audit:desktop && npm run perf:assert\"",
+    "perf:baseline": "npm run build && npm run perf:audit",
+    "perf:ci": "lhci autorun --config=.lighthouserc.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -60,11 +67,14 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "lighthouse": "^13.1.0",
     "postcss": "^8.5",
+    "start-server-and-test": "^3.0.0",
     "tailwindcss": "^4.2.0",
     "tw-animate-css": "1.3.3",
     "typescript": "5.7.3"

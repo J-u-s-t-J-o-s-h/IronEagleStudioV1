@@ -157,6 +157,7 @@ export default function ServicesPage() {
         {/* Header */}
         <section className="relative isolate overflow-hidden pb-16 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] lg:pb-20 lg:pt-[calc(11.75rem+env(safe-area-inset-top,0px))]">
           <PremiumSectionBackdrop fillClassName="bg-soft-coal" texture="concrete" />
+          <div className="banner-overlay-contrast absolute inset-0 z-[0] opacity-70" />
           <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="brand-divider mb-4 block" />
             <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
@@ -172,7 +173,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Jump Nav */}
-        <section className="relative isolate overflow-hidden border-b border-white/10 sticky top-[calc(env(safe-area-inset-top,0px)+5.75rem)] z-40 lg:top-[calc(env(safe-area-inset-top,0px)+6.75rem)]">
+        <section className="relative isolate overflow-hidden border-b border-white/10 sticky top-[calc(env(safe-area-inset-top,0px)+3.5rem)] z-40 md:top-[calc(env(safe-area-inset-top,0px)+5.75rem)] lg:top-[calc(env(safe-area-inset-top,0px)+6.75rem)]">
           <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="concrete" />
           <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="-mx-1 flex touch-pan-x items-center gap-2 overflow-x-auto px-1 py-3 [scrollbar-width:none] sm:-mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
@@ -216,6 +217,7 @@ export default function ServicesPage() {
                         src={service.image}
                         alt={service.imageAlt}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 48vw"
                         className="object-cover"
                       />
                     </div>

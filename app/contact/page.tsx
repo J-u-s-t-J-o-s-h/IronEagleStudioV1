@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import Script from 'next/script'
+import { useEffect, useState } from 'react'
 import { Phone, Mail, MapPin, Clock, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
@@ -62,12 +61,19 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function ContactPage() {
+  useEffect(() => {
+    if (document.querySelector('script[data-elfsight-platform="true"]')) return
+
+    const script = document.createElement('script')
+    script.src = 'https://elfsightcdn.com/platform.js'
+    script.async = true
+    script.defer = true
+    script.dataset.elfsightPlatform = 'true'
+    document.body.appendChild(script)
+  }, [])
+
   return (
     <>
-      <Script
-        src="https://elfsightcdn.com/platform.js"
-        strategy="lazyOnload"
-      />
       <SiteNav />
       <main id="main-content">
         {/* Header */}

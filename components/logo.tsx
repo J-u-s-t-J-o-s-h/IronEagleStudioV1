@@ -8,12 +8,12 @@ import { cn } from '@/lib/utils'
 export const LOGO_SVG = '/brand/LogoV-B.svg'
 
 /**
- * Default raster path — add your **transparent PNG** at `public/brand/logo-transparent.png`.
+ * Default raster path — optimized WebP lockup in `public/brand/logo-transparent.webp`.
  * If the file is missing, the component falls back to `LogoV-B.svg` after one failed load.
  * Force SVG only (no PNG request): `NEXT_PUBLIC_LOGO_RASTER=svg` in `.env`.
- * Custom path: `NEXT_PUBLIC_LOGO_RASTER=/brand/other.png` or `<Logo rasterSrc="..." />`.
+ * Custom path: `NEXT_PUBLIC_LOGO_RASTER=/brand/other.webp` or `<Logo rasterSrc="..." />`.
  */
-export const LOGO_RASTER_DEFAULT = '/brand/logo-transparent.png'
+export const LOGO_RASTER_DEFAULT = '/brand/logo-transparent.webp'
 
 /** @deprecated Use LOGO_RASTER_DEFAULT */
 export const LOGO_PNG_TRANSPARENT = LOGO_RASTER_DEFAULT
@@ -52,7 +52,7 @@ interface LogoProps {
   priority?: boolean
   /** Force SVG even when a raster path is configured. */
   useSvg?: boolean
-  /** Public path under `/public` (e.g. `/brand/logo-transparent.png`). */
+  /** Public path under `/public` (e.g. `/brand/logo-transparent.webp`). */
   rasterSrc?: string
   /**
    * With a **raster** logo, `mix-blend-mode: screen` can soften a solid black plate on dark bars.

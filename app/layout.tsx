@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Barlow, Barlow_Condensed } from 'next/font/google'
-import Script from 'next/script'
+import { Barlow } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { StickyCallButton } from '@/components/sticky-call-button'
 import { SkipLink } from '@/components/skip-link'
@@ -8,14 +7,9 @@ import './globals.css'
 
 const barlow = Barlow({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '600', '700'],
   variable: '--font-barlow',
-})
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['600', '700', '800'],
-  variable: '--font-barlow-condensed',
+  display: 'swap',
 })
 
 const defaultMetadataBase =
@@ -86,35 +80,10 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${barlow.variable} ${barlowCondensed.variable}`}
+      className={barlow.variable}
       suppressHydrationWarning
     >
-      <head>
-        <Script
-          id="strip-grammarly-body-attrs"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function () {
-                var attrs = ['data-new-gr-c-s-check-loaded', 'data-gr-ext-installed', 'data-gr-ext-disabled'];
-                function cleanBodyAttrs() {
-                  var b = document.body;
-                  if (!b) return;
-                  for (var i = 0; i < attrs.length; i++) b.removeAttribute(attrs[i]);
-                }
-                cleanBodyAttrs();
-                var mo = new MutationObserver(cleanBodyAttrs);
-                mo.observe(document.documentElement, {
-                  subtree: true,
-                  attributes: true,
-                  attributeFilter: attrs
-                });
-                document.addEventListener('DOMContentLoaded', cleanBodyAttrs);
-              })();
-            `,
-          }}
-        />
-      </head>
+      <head />
       <body
         className="font-sans antialiased min-h-dvh overflow-x-clip pb-[env(safe-area-inset-bottom)]"
         suppressHydrationWarning

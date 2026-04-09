@@ -1,21 +1,37 @@
 import Link from 'next/link'
-import { Phone, MapPin, Mail, Facebook, Clock, Shield, Shovel, Truck } from 'lucide-react'
+import {
+  Phone,
+  MapPin,
+  Mail,
+  Facebook,
+  Clock,
+  Shield,
+  Shovel,
+  Truck,
+  TreePine,
+  Droplets,
+  Home,
+  Users,
+  Images,
+  MessageSquare,
+  FileText,
+} from 'lucide-react'
 import { Logo } from '@/components/logo'
 
 const services = [
   { label: 'Storm Shelters', href: '/storm-shelter', icon: Shield },
   { label: 'Excavation', href: '/services#excavation', icon: Shovel },
   { label: 'Dirt Work', href: '/services#dirt-work', icon: Truck },
-  { label: 'Land Clearing', href: '/services#land-clearing', icon: null },
-  { label: 'Septic Systems', href: '/services#septic', icon: null },
+  { label: 'Land Clearing', href: '/services#land-clearing', icon: TreePine },
+  { label: 'Septic Systems', href: '/services#septic', icon: Droplets },
 ]
 
 const quickLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Our Work', href: '/projects' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Get a Quote', href: '/contact' },
+  { label: 'Home', href: '/', icon: Home },
+  { label: 'About Us', href: '/about', icon: Users },
+  { label: 'Our Work', href: '/projects', icon: Images },
+  { label: 'Contact', href: '/contact', icon: MessageSquare },
+  { label: 'Get a Quote', href: '/contact', icon: FileText },
 ]
 
 export function SiteFooter() {
@@ -93,8 +109,7 @@ export function SiteFooter() {
                     href={s.href}
                     className="group flex items-center gap-3 py-1 text-base text-soft-khaki/80 hover:text-bone-linen transition-colors"
                   >
-                    {s.icon && <s.icon size={18} className="text-equipment-gold/70 group-hover:text-equipment-gold transition-colors" aria-hidden="true" />}
-                    {!s.icon && <span className="w-1.5 h-1.5 rounded-full bg-equipment-gold/50 group-hover:bg-equipment-gold transition-colors" />}
+                    <s.icon size={18} className="text-equipment-gold/70 group-hover:text-equipment-gold group-hover:translate-x-0.5 transition-all duration-200" aria-hidden="true" />
                     <span className="group-hover:translate-x-1 transition-transform duration-200">{s.label}</span>
                   </Link>
                 </li>
@@ -115,7 +130,7 @@ export function SiteFooter() {
                     href={l.href}
                     className="group flex items-center gap-3 py-1 text-base text-soft-khaki/80 hover:text-bone-linen transition-colors"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-equipment-gold/50 group-hover:bg-equipment-gold transition-colors" />
+                    <l.icon size={18} className="text-equipment-gold/70 group-hover:text-equipment-gold group-hover:translate-x-0.5 transition-all duration-200" aria-hidden="true" />
                     <span className="group-hover:translate-x-1 transition-transform duration-200">{l.label}</span>
                   </Link>
                 </li>
