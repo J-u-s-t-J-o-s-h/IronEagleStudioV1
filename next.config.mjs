@@ -8,11 +8,11 @@ const extraAllowedDevOrigins =
 
 const isProd = process.env.NODE_ENV === 'production'
 const scriptSrc = isProd
-  ? "script-src 'self' 'unsafe-inline' https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com"
-  : "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com"
+  ? "script-src 'self' 'unsafe-inline' https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
+  : "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
 const connectSrc = isProd
-  ? "connect-src 'self' https://elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com"
-  : "connect-src 'self' ws: wss: http: https: https://elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com"
+  ? "connect-src 'self' https://elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
+  : "connect-src 'self' ws: wss: http: https: https://elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
 const cspDirectives = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -23,7 +23,7 @@ const cspDirectives = [
   "style-src 'self' 'unsafe-inline' https://*.elfsight.com",
   "img-src 'self' data: blob: https: https://*.elfsight.com",
   "font-src 'self' data: https://*.elfsight.com https://fonts.gstatic.com",
-  "frame-src 'self' https://*.elfsight.com",
+  "frame-src 'self' https://*.elfsight.com https://vercel.live",
   "worker-src 'self' blob: https://*.elfsight.com",
   "child-src 'self' blob: https://*.elfsight.com",
   ...(isProd ? ['upgrade-insecure-requests'] : []),
