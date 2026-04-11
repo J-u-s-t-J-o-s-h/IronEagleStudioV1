@@ -11,8 +11,8 @@ const scriptSrc = isProd
   ? "script-src 'self' 'unsafe-inline' https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com"
   : "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com"
 const connectSrc = isProd
-  ? "connect-src 'self' https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com"
-  : "connect-src 'self' ws: wss: http: https: https://elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com"
+  ? "connect-src 'self' https://elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com"
+  : "connect-src 'self' ws: wss: http: https: https://elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com"
 const cspDirectives = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -21,9 +21,11 @@ const cspDirectives = [
   scriptSrc,
   connectSrc,
   "style-src 'self' 'unsafe-inline' https://*.elfsight.com",
-  "img-src 'self' data: blob: https:",
+  "img-src 'self' data: blob: https: https://*.elfsight.com",
   "font-src 'self' data: https://*.elfsight.com https://fonts.gstatic.com",
   "frame-src 'self' https://*.elfsight.com",
+  "worker-src 'self' blob: https://*.elfsight.com",
+  "child-src 'self' blob: https://*.elfsight.com",
   ...(isProd ? ['upgrade-insecure-requests'] : []),
 ].join('; ')
 
