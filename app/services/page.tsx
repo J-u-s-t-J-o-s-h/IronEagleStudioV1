@@ -173,7 +173,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Jump Nav */}
-        <section className="relative isolate overflow-hidden border-b border-white/10 sticky top-[calc(env(safe-area-inset-top,0px)+3.5rem)] z-40 md:top-[calc(env(safe-area-inset-top,0px)+5.75rem)] lg:top-[calc(env(safe-area-inset-top,0px)+6.75rem)]">
+        <section className="relative isolate overflow-hidden border-b border-bone-linen/10 sticky top-[calc(env(safe-area-inset-top,0px)+3.5rem)] z-40 md:top-[calc(env(safe-area-inset-top,0px)+5.75rem)] lg:top-[calc(env(safe-area-inset-top,0px)+6.75rem)]">
           <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="concrete" />
           <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="-mx-1 flex touch-pan-x items-center gap-2 overflow-x-auto px-1 py-3 [scrollbar-width:none] sm:-mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
@@ -181,7 +181,7 @@ export default function ServicesPage() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="min-h-11 shrink-0 touch-manipulation px-4 py-2 text-xs font-bold tracking-wide uppercase text-soft-khaki hover:text-bone-linen hover:bg-white/10 rounded-xl transition-colors whitespace-nowrap"
+                  className="min-h-11 shrink-0 touch-manipulation px-4 py-2 text-xs font-bold tracking-wide uppercase text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/10 rounded-xl transition-colors whitespace-nowrap"
                 >
                   {s.title.split(' ')[0]}
                 </a>
@@ -226,7 +226,7 @@ export default function ServicesPage() {
                   {/* Content */}
                   <div className={isEven ? '' : 'lg:col-start-1 lg:row-start-1'}>
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="flex items-center justify-center w-10 h-10 bg-gunmetal rounded-xl shadow-md shadow-black/30 ring-1 ring-white/10">
+                      <div className="flex items-center justify-center w-10 h-10 bg-gunmetal rounded-xl shadow-md shadow-matte-black/30 ring-1 ring-bone-linen/10">
                         <Icon size={18} className="text-bone-linen" />
                       </div>
                       <span className="text-equipment-gold text-xs font-bold tracking-widest uppercase">
@@ -240,6 +240,16 @@ export default function ServicesPage() {
                     <p className={`leading-relaxed mb-3 ${isEven ? 'text-clay-taupe' : 'text-matte-black'}`}>
                       {service.description}
                     </p>
+                    {service.id === 'storm-shelter' && (
+                      <p className={`text-sm mb-3 ${isEven ? 'text-weathered-stone' : 'text-matte-black/80'}`}>
+                        Standard shelter pricing applies within a 60-mile radius of Marlow, Oklahoma. Additional mileage may include an extra charge.
+                      </p>
+                    )}
+                    {service.id === 'dirt-work' && (
+                      <p className={`text-sm mb-3 ${isEven ? 'text-weathered-stone' : 'text-matte-black/80'}`}>
+                        Dirt work pricing requires a personal quote based on site access, material movement, and scope.
+                      </p>
+                    )}
                     <p className={`text-sm mb-5 italic ${isEven ? 'text-weathered-stone' : 'text-matte-black'}`}>
                       <strong className={`not-italic ${isEven ? 'text-gunmetal' : 'text-matte-black'}`}>Who it&apos;s for:</strong>{' '}
                       {service.forWho}
@@ -254,7 +264,7 @@ export default function ServicesPage() {
                     </ul>
                     <Link
                       href={service.href}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-bone-linen/10"
                     >
                       {service.cta}
                       <ArrowRight size={14} />
@@ -279,17 +289,17 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-black/15 ring-1 ring-black/10"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-matte-black/15 ring-1 ring-matte-black/10"
               >
                 Get a Free Estimate
                 <ArrowRight size={14} />
               </Link>
               <a
-                href="tel:+14058675309"
+                href="tel:+14057567304"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
-                (405) 867-5309
+                (405) 756-7304
               </a>
             </div>
           </div>

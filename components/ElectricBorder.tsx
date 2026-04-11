@@ -19,7 +19,7 @@ interface ElectricBorderProps {
 
 export default function ElectricBorder({
   children,
-  color = '#5227FF',
+  color = '#0A3D62',
   speed = 1,
   chaos = 0.12,
   thickness = 2,

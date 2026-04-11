@@ -11,9 +11,9 @@ export function StickyCallButton() {
 
   return (
     <a
-      href="tel:+14058675309"
-      className="lg:hidden fixed z-50 flex items-center justify-center gap-2 rounded-xl bg-storm-blue px-4 py-3.5 text-bone-linen shadow-xl shadow-storm-blue/45 ring-1 ring-white/15 transition-all duration-200 hover:bg-steel-blue hover:shadow-2xl hover:shadow-storm-blue/55 sm:gap-3 sm:px-6 sm:py-4 max-sm:right-[max(0.75rem,env(safe-area-inset-right))] max-sm:bottom-[max(0.75rem,env(safe-area-inset-bottom))] sm:right-[max(1.5rem,env(safe-area-inset-right))] sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))]"
-      aria-label="Call HJH Outdoor Operations at (405) 867-5309"
+      href="tel:+14057567304"
+      className="lg:hidden fixed z-50 flex items-center justify-center gap-2 rounded-xl bg-storm-blue px-4 py-3.5 text-bone-linen shadow-xl shadow-storm-blue/45 ring-1 ring-bone-linen/15 transition-all duration-200 hover:bg-steel-blue hover:shadow-2xl hover:shadow-storm-blue/55 sm:gap-3 sm:px-6 sm:py-4 max-sm:right-[max(0.75rem,env(safe-area-inset-right))] max-sm:bottom-[max(0.75rem,env(safe-area-inset-bottom))] sm:right-[max(1.5rem,env(safe-area-inset-right))] sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))]"
+      aria-label="Call HJH Outdoor Operations at (405) 756-7304"
     >
       <Phone size={24} className="shrink-0" aria-hidden="true" />
       <span className="hidden font-bold text-lg tracking-wide sm:inline">Call Now</span>

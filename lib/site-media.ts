@@ -89,8 +89,8 @@ export const projectGallery: ProjectGalleryItem[] = [
     category: 'Land Clearing',
     description:
       'Full land clearing of 12 wooded acres in preparation for a new residential development. Brush clearing, tree removal, stump grinding, and debris haul-off.',
-    src: `${HJH}/Excavation_and_Earthwork/HJH_photo_049.webp`,
-    alt: 'Heavy equipment clearing Oklahoma brush and timber',
+    src: `${HJH}/Equipment_and_Trucks/HJH_photo_042.webp`,
+    alt: 'Bulldozer and heavy equipment clearing Oklahoma brush and timber',
     tags: ['12 acres', 'Timber removal'],
   },
   {

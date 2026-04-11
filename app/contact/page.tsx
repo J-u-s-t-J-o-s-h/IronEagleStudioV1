@@ -9,7 +9,7 @@ import { PremiumSectionBackdrop } from '@/components/premium-section-backdrop'
 const faqs = [
   {
     q: 'How do I get a quote?',
-    a: 'Fill out the form on this page, call us directly at (405) 867-5309, or send us an email. For most jobs, we like to do a quick site visit before giving a firm number — it helps us give you an accurate estimate and catch any site-specific considerations upfront.',
+    a: 'Fill out the form on this page, call us directly at (405) 756-7304 or (580) 458-0087, or send us an email. For most jobs, we like to do a quick site visit before giving a firm number — it helps us give you an accurate estimate and catch any site-specific considerations upfront.',
   },
   {
     q: 'How quickly can you start a project?',
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: 'What areas do you serve?',
-    a: 'We are based in Oklahoma and serve customers throughout the state, including Oklahoma City, Tulsa, Edmond, Norman, Stillwater, Lawton, Enid, Yukon, and surrounding areas. For larger projects, we will travel further — give us a call and we can discuss.',
+    a: 'We are based in Oklahoma and serve customers throughout the state, including Duncan, Chickasha, Lawton, Altus, Blanchard, Paul&apos;s Valley, Oklahoma City, Ardmore, Ada, and surrounding areas. For larger projects, we will travel further — give us a call and we can discuss.',
   },
   {
     q: 'How do I prepare my site for excavation or land clearing?',
@@ -116,12 +116,18 @@ export default function ContactPage() {
                     <span className="text-bone-linen font-bold text-sm uppercase tracking-wide">Call Us</span>
                   </div>
                   <a
-                    href="tel:+14058675309"
-                    className="text-xl font-bold text-bone-linen hover:text-blue-200 transition-colors block mb-1 break-words sm:text-2xl"
+                    href="tel:+14057567304"
+                    className="text-xl font-bold text-bone-linen hover:text-bone-linen/85 transition-colors block mb-1 break-words sm:text-2xl"
                   >
-                    (405) 867-5309
+                    (405) 756-7304
                   </a>
-                  <p className="text-blue-200/70 text-xs">
+                  <a
+                    href="tel:+15804580087"
+                    className="text-lg font-bold text-bone-linen hover:text-bone-linen/85 transition-colors block mb-1 break-words sm:text-xl"
+                  >
+                    (580) 458-0087
+                  </a>
+                  <p className="text-bone-linen/70 text-xs">
                     Fastest way to reach us. We answer during business hours and often evenings.
                   </p>
                 </div>
@@ -133,10 +139,10 @@ export default function ContactPage() {
                     <span className="text-gunmetal font-bold text-sm uppercase tracking-wide">Email</span>
                   </div>
                   <a
-                    href="mailto:info@hjhoutdoor.com"
+                    href="mailto:Hjhoutdoor@gmail.com"
                     className="text-storm-blue text-sm font-semibold hover:text-steel-blue transition-colors"
                   >
-                    info@hjhoutdoor.com
+                    Hjhoutdoor@gmail.com
                   </a>
                 </div>
 
@@ -147,7 +153,7 @@ export default function ContactPage() {
                     <span className="text-gunmetal font-bold text-sm uppercase tracking-wide">Service Area</span>
                   </div>
                   <p className="text-clay-taupe text-sm leading-relaxed">
-                    Serving all of Oklahoma including Oklahoma City, Tulsa, Edmond, Norman, Stillwater, Lawton, Enid, Yukon, and surrounding communities.
+                    Serving Oklahoma including Duncan, Chickasha, Lawton, Altus, Blanchard, Paul&apos;s Valley, Oklahoma City, Ardmore, Ada, and surrounding communities.
                   </p>
                 </div>
 
@@ -211,7 +217,7 @@ export default function ContactPage() {
             </div>
             <p className="text-center text-clay-taupe text-sm mt-6">
               Have a question not answered here?{' '}
-              <a href="tel:+14058675309" className="text-storm-blue font-semibold hover:underline">
+              <a href="tel:+14057567304" className="text-storm-blue font-semibold hover:underline">
                 Give us a call
               </a>{' '}
               and we&apos;ll answer it directly.

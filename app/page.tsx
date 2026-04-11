@@ -144,8 +144,8 @@ function ServicesSectionComponent() {
       <PremiumSectionBackdrop fillClassName="bg-sandstone" texture="brand-2" />
       <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-matte-black">
         <AnimatedSection className="text-center mb-16">
-          <span className="brand-divider mx-auto mb-5 block" />
-          <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
+          <span className="brand-divider mx-auto mb-5 block h-1 w-20 rounded-full shadow-[0_0_18px_rgba(212,175,55,0.35)]" />
+          <p className="text-equipment-gold text-sm sm:text-base font-extrabold tracking-[0.16em] uppercase mb-3">
             What We Do
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-gunmetal leading-tight text-balance">
@@ -188,27 +188,27 @@ function ServicesSectionComponent() {
                   <AnimatedSection key={title} delay={i * 100} className="h-full min-h-0">
                     <Link
                       href={href}
-                      className="group relative flex h-full min-h-[17rem] flex-col rounded-2xl border border-soft-khaki/25 bg-gunmetal p-8 pb-9 shadow-lg shadow-black/25 ring-1 ring-white/5 transition-all duration-300 [transform:perspective(900px)_translateZ(0)] hover:-translate-y-1.5 hover:border-storm-blue/55 hover:[transform:perspective(900px)_translateZ(8px)] hover:shadow-2xl hover:shadow-black/35 sm:min-h-[18rem] sm:p-9"
+                      className="group relative flex h-full min-h-[17rem] flex-col rounded-2xl border border-soft-khaki/25 bg-gunmetal p-8 pb-9 shadow-lg shadow-matte-black/25 ring-1 ring-bone-linen/5 transition-all duration-300 [transform:perspective(900px)_translateZ(0)] hover:-translate-y-1.5 hover:border-storm-blue/55 hover:[transform:perspective(900px)_translateZ(8px)] hover:shadow-2xl hover:shadow-matte-black/35 sm:min-h-[18rem] sm:p-9"
                     >
                       <span
                         className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
                         aria-hidden="true"
                       >
-                        <span className="absolute inset-0 rounded-2xl ring-1 ring-white/8" />
-                        <span className="absolute inset-[1px] rounded-[0.85rem] border border-black/25" />
+                        <span className="absolute inset-0 rounded-2xl ring-1 ring-bone-linen/8" />
+                        <span className="absolute inset-[1px] rounded-[0.85rem] border border-matte-black/25" />
                         <span className="absolute inset-0 bg-gradient-to-b from-storm-blue/22 via-gunmetal/95 to-matte-black/96" />
-                        <span className="absolute inset-0 opacity-50 [background:radial-gradient(circle_at_12%_8%,rgba(181,138,58,0.2),transparent_35%),radial-gradient(circle_at_88%_92%,rgba(58,98,138,0.22),transparent_40%)]" />
+                        <span className="absolute inset-0 opacity-50 [background:radial-gradient(circle_at_12%_8%,rgba(212,175,55,0.2),transparent_35%),radial-gradient(circle_at_88%_92%,rgba(10,61,98,0.22),transparent_40%)]" />
                         <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-equipment-gold/75 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
                         <span className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-storm-blue/25 blur-2xl transition-opacity duration-300 group-hover:bg-storm-blue/35" />
                         <span className="absolute -left-12 -bottom-12 h-40 w-40 rounded-full bg-equipment-gold/12 blur-3xl transition-opacity duration-300 group-hover:bg-equipment-gold/18" />
-                        <span className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/25 to-transparent" />
+                        <span className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-matte-black/25 to-transparent" />
                       </span>
 
-                      <div className="relative z-10 mb-5 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-soft-khaki/30 bg-soft-coal/85 shadow-md shadow-black/35 ring-1 ring-white/5 transition-colors duration-300 group-hover:border-storm-blue/40 group-hover:bg-storm-blue">
+                      <div className="relative z-10 mb-5 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-soft-khaki/30 bg-soft-coal/85 shadow-md shadow-matte-black/35 ring-1 ring-bone-linen/5 transition-colors duration-300 group-hover:border-storm-blue/40 group-hover:bg-storm-blue">
                         <Icon size={26} className="text-bone-linen" />
                       </div>
 
-                      <h3 className="relative z-10 mb-3 text-balance text-xl font-bold leading-snug text-bone-linen transition-colors group-hover:text-blue-200">
+                      <h3 className="relative z-10 mb-3 text-balance text-xl font-bold leading-snug text-bone-linen transition-colors group-hover:text-bone-linen">
                         {title}
                       </h3>
                       <p className="relative z-10 mb-6 grow leading-relaxed text-pretty text-soft-khaki/90">
@@ -229,7 +229,7 @@ function ServicesSectionComponent() {
         <AnimatedSection delay={600} className="text-center mt-12">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-gunmetal hover:bg-soft-coal text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-black/25 ring-1 ring-white/10 hover:shadow-xl"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-gunmetal hover:bg-soft-coal text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-matte-black/25 ring-1 ring-bone-linen/10 hover:shadow-xl"
           >
             View All Services
             <ArrowRight size={16} />
@@ -309,7 +309,7 @@ function AnimatedSection({
 }
 
 export default function HomePage() {
-  const serviceChips = ['Storm Shelters', 'Excavation', 'Land Clearing', 'Dirt Work', 'Septic Systems']
+  const serviceChips = ['Storm Shelters', 'Excavation', 'Land Clearing', 'Dirt Work', 'Septic Systems', 'And More']
   const trustItems = [
     'Licensed & Insured',
     'Free Estimates',
@@ -428,23 +428,23 @@ export default function HomePage() {
                   >
                     <Link
                       href="/contact"
-                      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-xl bg-storm-blue px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen shadow-lg shadow-storm-blue/40 ring-1 ring-white/15 uppercase transition-colors hover:bg-steel-blue hover:shadow-storm-blue/55 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
+                      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-xl bg-storm-blue px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen shadow-lg shadow-storm-blue/40 ring-1 ring-bone-linen/15 uppercase transition-colors hover:bg-steel-blue hover:shadow-storm-blue/55 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
                     >
                       Get a Free Quote
                       <ArrowRight size={20} />
                     </Link>
                     <a
-                      href="tel:+14058675309"
+                      href="tel:+14057567304"
                       className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-3 rounded-xl border-2 border-bone-linen/40 px-7 py-3.5 text-[0.95rem] font-bold tracking-wide text-bone-linen uppercase transition-colors hover:border-bone-linen/80 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
-                      aria-label="Call us at (405) 867-5309"
+                      aria-label="Call us at (405) 756-7304"
                     >
                       <Phone size={20} aria-hidden="true" />
-                      (405) 867-5309
+                      (405) 756-7304
                     </a>
                   </div>
 
                   <p
-                    className={`hero-reveal mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold transition-all duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-4 sm:text-xs ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-12 translate-y-2'
+                    className={`hero-reveal mb-3 mx-auto flex w-fit items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-equipment-gold before:block before:h-px before:w-10 before:bg-gradient-to-r before:from-transparent before:to-equipment-gold/80 after:block after:h-px after:w-14 after:bg-gradient-to-r after:from-equipment-gold/80 after:to-transparent transition-all duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:mb-4 sm:text-xs ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-12 translate-y-2'
                       }`}
                     style={{ transitionDelay: '120ms' }}
                   >
@@ -452,18 +452,18 @@ export default function HomePage() {
                   </p>
 
                   <div
-                    className={`hero-reveal mb-4 flex flex-wrap items-center gap-2 transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-16 translate-y-3'
+                    className={`hero-reveal mb-4 mx-auto flex w-fit flex-wrap items-center justify-center gap-2 transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 -translate-x-16 translate-y-3'
                       }`}
                     style={{ transitionDelay: '150ms' }}
                   >
                     <Link
                       href="/#testimonials"
-                      className="inline-flex min-h-9 items-center gap-2 rounded-xl border border-white/20 bg-storm-blue/85 px-3 py-1.5 text-[11px] font-bold tracking-[0.12em] text-bone-linen uppercase shadow-md shadow-black/30 ring-1 ring-white/20 transition-colors hover:bg-steel-blue"
+                      className="inline-flex min-h-9 items-center gap-2 rounded-xl border border-bone-linen/20 bg-storm-blue/85 px-3 py-1.5 text-[11px] font-bold tracking-[0.12em] text-bone-linen uppercase shadow-md shadow-matte-black/30 ring-1 ring-bone-linen/20 transition-colors hover:bg-steel-blue"
                     >
                       <span aria-hidden="true">★★★★★</span>
                       Google 5.0 Star
                     </Link>
-                    <span className="inline-flex min-h-9 items-center gap-2 rounded-xl border border-white/20 bg-white/12 px-3 py-1.5 text-[11px] font-bold tracking-[0.12em] text-bone-linen uppercase shadow-md shadow-black/20 ring-1 ring-white/10">
+                    <span className="inline-flex min-h-9 items-center gap-2 rounded-xl border border-bone-linen/25 bg-soft-coal/55 px-3 py-1.5 text-[11px] font-bold tracking-[0.12em] text-bone-linen uppercase shadow-md shadow-matte-black/20 ring-1 ring-bone-linen/10">
                       <BadgeCheck size={14} aria-hidden="true" className="text-equipment-gold" />
                       Licensed &amp; Insured
                     </span>
@@ -493,7 +493,7 @@ export default function HomePage() {
                 >
                   <div className="sm:hidden">
                     <ElectricBorder
-                      color="#3c648c"
+                      color="#0A3D62"
                       speed={0.5}
                       chaos={0.08}
                       thickness={1.25}
@@ -503,7 +503,7 @@ export default function HomePage() {
                     >
                       <div className="p-2.25">
                         <ElectricBorder
-                          color="#b48c3c"
+                          color="#D4AF37"
                           speed={0.75}
                           chaos={0.06}
                           thickness={0.9}
@@ -511,9 +511,9 @@ export default function HomePage() {
                           displacement={14}
                           className="rounded-full"
                         >
-                          <div className="relative aspect-square overflow-hidden rounded-full border border-white/15 bg-matte-black/72 p-2.25 shadow-[0_26px_58px_rgba(0,0,0,0.56)]">
+                          <div className="relative aspect-square overflow-hidden rounded-full border border-bone-linen/15 bg-matte-black/72 p-2.25 shadow-[0_26px_58px_rgba(45,52,54,0.56)]">
                             <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent" aria-hidden="true" />
-                            <div className="relative flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.75">
+                            <div className="relative flex h-full items-center justify-center rounded-full border border-bone-linen/10 bg-gradient-to-br from-bone-linen/[0.06] via-transparent to-bone-linen/[0.02] p-0.75">
                               <div className="relative w-full aspect-square rounded-full">
                                 <img
                                   src="/brand/logo-transparent.webp"
@@ -533,7 +533,7 @@ export default function HomePage() {
 
                   <div className="hidden sm:block">
                     <ElectricBorder
-                      color="#3c648c"
+                      color="#0A3D62"
                       speed={0.55}
                       chaos={0.08}
                       thickness={1.8}
@@ -543,7 +543,7 @@ export default function HomePage() {
                     >
                       <div className="p-1.5 sm:p-2 md:p-2.5">
                         <ElectricBorder
-                          color="#b48c3c"
+                          color="#D4AF37"
                           speed={0.8}
                           chaos={0.06}
                           thickness={1.2}
@@ -551,12 +551,12 @@ export default function HomePage() {
                           displacement={25}
                           className="rounded-full"
                         >
-                          <div className="relative aspect-square overflow-hidden rounded-full border border-white/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(0,0,0,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
+                          <div className="relative aspect-square overflow-hidden rounded-full border border-bone-linen/12 bg-matte-black/72 p-0.5 shadow-[0_26px_58px_rgba(45,52,54,0.56)] backdrop-blur-[4px] sm:p-0.75 md:p-1.25 lg:p-1.75">
                             <div
                               className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent sm:inset-x-6"
                               aria-hidden="true"
                             />
-                            <div className="flex h-full items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
+                            <div className="flex h-full items-center justify-center rounded-full border border-bone-linen/10 bg-gradient-to-br from-bone-linen/[0.06] via-transparent to-bone-linen/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
                               <div className="relative w-full sm:max-w-[84vw] aspect-square overflow-hidden rounded-full">
                                 <img
                                   src="/brand/logo-transparent.webp"
@@ -576,12 +576,11 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-2 md:mt-7 md:flex-wrap">
+              <div className="mt-4 grid grid-cols-2 gap-2 md:mt-7 md:flex md:flex-row md:flex-wrap md:items-center">
                 {serviceChips.map((tag, index) => (
                   <span
                     key={tag}
-                    className={`hero-reveal shrink-0 rounded-xl border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase shadow-md shadow-black/20 ring-1 ring-white/10 backdrop-blur-sm transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-8 translate-y-4'
-                      } ${index >= 3 ? 'hidden md:inline-flex' : 'inline-flex'
+                    className={`hero-reveal inline-flex w-full justify-center rounded-xl border border-bone-linen/20 bg-bone-linen/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-soft-khaki uppercase shadow-md shadow-matte-black/20 ring-1 ring-bone-linen/10 backdrop-blur-sm transition-all duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] md:w-auto ${heroLoaded ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-8 translate-y-4'
                       }`}
                     style={{ transitionDelay: `${360 + index * 70}ms` }}
                   >
@@ -614,7 +613,7 @@ export default function HomePage() {
                     {[...trustItems, ...trustItems].map((item, index) => (
                       <div
                         key={`${item}-${index}`}
-                        className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-soft-coal/35 px-4 py-3 text-center shadow-md shadow-black/25 ring-1 ring-white/5"
+                        className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-bone-linen/10 bg-soft-coal/35 px-4 py-3 text-center shadow-md shadow-matte-black/25 ring-1 ring-bone-linen/5"
                       >
                         <CheckCircle2 size={16} className="text-equipment-gold shrink-0" aria-hidden="true" />
                         <span className="text-soft-khaki text-sm font-semibold tracking-wide whitespace-nowrap">{item}</span>
@@ -652,15 +651,15 @@ export default function HomePage() {
                     <div className="relative mt-4 w-fit max-w-full ms-auto sm:mt-0 sm:absolute sm:-bottom-5 sm:-right-5 sm:ms-0">
                       <div className="card-accent-storm text-bone-linen px-5 py-4 sm:px-6 sm:py-5">
                         <div className="text-2xl font-bold">Tornado</div>
-                        <div className="text-xs tracking-widest uppercase text-blue-200/80">Season Ready</div>
+                        <div className="text-xs tracking-widest uppercase text-bone-linen/80">Season Ready</div>
                       </div>
                     </div>
                   </div>
                 </AnimatedSection>
 
                 <AnimatedSection delay={200}>
-                  <span className="brand-divider mb-5 block" />
-                  <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
+                  <span className="brand-divider mb-5 block h-1 w-20 rounded-full shadow-[0_0_18px_rgba(212,175,55,0.35)]" />
+                  <p className="text-equipment-gold text-sm sm:text-base font-extrabold tracking-[0.16em] uppercase mb-3">
                     Featured Service
                   </p>
                   <h2 className="text-4xl lg:text-5xl font-bold text-gunmetal leading-tight mb-6 text-balance">
@@ -685,7 +684,7 @@ export default function HomePage() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
                       href="/storm-shelter"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10 hover:shadow-storm-blue/50"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-bone-linen/10 hover:shadow-storm-blue/50"
                     >
                       Explore Storm Shelter Options
                       <ArrowRight size={16} />
@@ -711,9 +710,9 @@ export default function HomePage() {
           {/* ====== HOW WE WORK ====== */}
           <section className="relative isolate overflow-hidden">
             <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="concrete" />
-            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-14">
+            <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-24 lg:py-28">
               <AnimatedSection className="text-center mb-8">
-                <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-2">
+                <p className="text-equipment-gold text-sm sm:text-base font-extrabold tracking-[0.16em] uppercase mb-2">
                   How We Work
                 </p>
                 <h3 className="text-2xl lg:text-3xl font-bold text-bone-linen text-balance">
@@ -723,22 +722,46 @@ export default function HomePage() {
                   You always know what happens next. No vague timelines, no guessing, and no surprise handoffs.
                 </p>
               </AnimatedSection>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
                 {processSteps.map(({ step, title, description, outcome, icon: Icon }, idx) => (
-                  <AnimatedSection key={title} delay={idx * 90}>
-                    <div className="card-elevated-glass h-full p-5 sm:p-6">
-                      <div className="mb-4 flex items-center justify-between gap-3">
-                        <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border border-white/15 bg-storm-blue/25 px-2 text-xs font-bold tracking-wider text-bone-linen">
-                          {step}
-                        </span>
-                        <Icon size={18} className="text-equipment-gold shrink-0" aria-hidden="true" />
+                  <AnimatedSection key={title} delay={idx * 90} className="relative">
+                    <div className="relative mx-auto w-full max-w-[18rem]">
+                      <span
+                        className={`pointer-events-none absolute -top-5 left-1 text-5xl font-black leading-none ${idx === 0 ? 'text-storm-blue/70' : idx === 1 ? 'text-equipment-gold/80' : 'text-bone-linen/65'}`}
+                        aria-hidden="true"
+                      >
+                        {step}
+                      </span>
+
+                      <div
+                        className={`relative flex aspect-square items-center justify-center rounded-full border-2 bg-soft-coal/55 p-4 shadow-[0_14px_28px_rgba(45,52,54,0.26)] ${idx === 0 ? 'border-storm-blue/80' : idx === 1 ? 'border-equipment-gold/80' : 'border-bone-linen/70'}`}
+                      >
+                        <div className="relative flex h-full w-full flex-col items-center justify-center rounded-full border border-bone-linen/10 bg-soft-coal/40 px-4 text-center">
+                          <Icon size={24} className="mb-3 text-equipment-gold" aria-hidden="true" />
+                          <h3 className="mb-2 text-xl font-bold leading-tight text-bone-linen">{title}</h3>
+                          <p className="text-xs leading-relaxed text-soft-khaki/85 sm:text-sm">{description}</p>
+                        </div>
                       </div>
-                      <h3 className="text-bone-linen text-lg font-bold mb-2">{title}</h3>
-                      <p className="text-soft-khaki/85 text-sm leading-relaxed mb-3">{description}</p>
-                      <p className="text-[0.78rem] uppercase tracking-wider text-equipment-gold/90 font-semibold">
+
+                      <p className="mt-4 text-center text-[0.78rem] font-semibold uppercase tracking-wider text-equipment-gold/90">
                         {outcome}
                       </p>
                     </div>
+
+                    {idx < processSteps.length - 1 && (
+                      <>
+                        <div
+                          className="mx-auto mt-3 h-6 w-px bg-gradient-to-b from-equipment-gold/65 to-transparent md:hidden"
+                          aria-hidden="true"
+                        />
+                        <div
+                          className="pointer-events-none absolute -right-5 top-[42%] hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-equipment-gold/45 bg-soft-coal/85 text-equipment-gold md:flex"
+                          aria-hidden="true"
+                        >
+                          <ArrowRight size={15} />
+                        </div>
+                      </>
+                    )}
                   </AnimatedSection>
                 ))}
               </div>
@@ -754,8 +777,8 @@ export default function HomePage() {
             <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
               <div className="grid lg:grid-cols-2 gap-16 items-start">
                 <AnimatedSection>
-                  <span className="brand-divider mb-5 block" />
-                  <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
+                  <span className="brand-divider mb-5 block h-1 w-20 rounded-full shadow-[0_0_18px_rgba(212,175,55,0.35)]" />
+                  <p className="text-equipment-gold text-sm sm:text-base font-extrabold tracking-[0.16em] uppercase mb-3">
                     Why HJH
                   </p>
                   <h2 className="text-4xl lg:text-5xl font-bold text-bone-linen leading-tight mb-6 text-balance">
@@ -766,7 +789,7 @@ export default function HomePage() {
                   </p>
                   <Link
                     href="/about"
-                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-storm-blue hover:bg-storm-blue text-bone-linen font-bold text-base tracking-wide uppercase rounded-xl transition-colors"
+                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-equipment-gold text-equipment-gold hover:bg-equipment-gold hover:text-matte-black active:bg-equipment-gold active:text-matte-black focus-visible:bg-equipment-gold focus-visible:text-matte-black font-bold text-base tracking-wide uppercase rounded-xl transition-colors"
                   >
                     About Our Company
                     <ArrowRight size={16} />
@@ -777,7 +800,7 @@ export default function HomePage() {
                   {trustPillars.map(({ title, desc, icon: Icon }, i) => (
                     <AnimatedSection key={title} delay={i * 100}>
                       <div className="card-elevated-glass flex items-start gap-4 p-6">
-                        <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-gunmetal/70 ring-1 ring-white/10">
+                        <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-bone-linen/15 bg-gunmetal/70 ring-1 ring-bone-linen/10">
                           <Icon size={18} className="text-equipment-gold" aria-hidden="true" />
                         </div>
                         <div>
@@ -802,8 +825,8 @@ export default function HomePage() {
               <AnimatedSection>
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
                   <div>
-                    <span className="brand-divider mb-5 block" />
-                    <p className="text-equipment-gold text-xs font-bold tracking-widest uppercase mb-3">
+                    <span className="brand-divider mb-5 block h-1 w-20 rounded-full shadow-[0_0_18px_rgba(212,175,55,0.35)]" />
+                    <p className="text-equipment-gold text-sm sm:text-base font-extrabold tracking-[0.16em] uppercase mb-3">
                       Recent Work
                     </p>
                     <h2 className="text-4xl lg:text-5xl font-bold text-matte-black leading-tight text-balance">
@@ -832,7 +855,7 @@ export default function HomePage() {
                       />
                       <div className="banner-overlay-contrast absolute inset-0" />
                       <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <span className="inline-block px-2 py-1 bg-storm-blue text-bone-linen text-xs font-bold tracking-wide uppercase rounded-lg shadow-md shadow-storm-blue/30 ring-1 ring-white/10 mb-2">
+                        <span className="inline-block px-2 py-1 bg-storm-blue text-bone-linen text-xs font-bold tracking-wide uppercase rounded-lg shadow-md shadow-storm-blue/30 ring-1 ring-bone-linen/10 mb-2">
                           {tag}
                         </span>
                         <p className="text-shadow-strong text-bone-linen font-semibold leading-tight">{label}</p>
@@ -851,7 +874,7 @@ export default function HomePage() {
           <section className="relative isolate overflow-hidden">
             <PremiumSectionBackdrop fillClassName="bg-sandstone" texture="brand-2" />
             <AnimatedSection className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-matte-black">
-              <div className="relative overflow-hidden rounded-3xl border border-soft-khaki/45 bg-section-light/70 p-6 shadow-xl shadow-black/10 ring-1 ring-white/35 backdrop-blur-[2px] sm:p-8 lg:p-10">
+              <div className="relative overflow-hidden rounded-3xl border border-soft-khaki/45 bg-section-light/70 p-6 shadow-xl shadow-matte-black/10 ring-1 ring-bone-linen/35 backdrop-blur-[2px] sm:p-8 lg:p-10">
                 <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-storm-blue/18 blur-2xl" aria-hidden="true" />
                 <div className="pointer-events-none absolute -left-12 -bottom-16 h-40 w-40 rounded-full bg-equipment-gold/12 blur-3xl" aria-hidden="true" />
 
@@ -877,7 +900,7 @@ export default function HomePage() {
                       <p className="mt-1 text-[11px] font-bold tracking-[0.16em] uppercase text-matte-black/75">Response</p>
                     </div>
                     <div className="col-span-2 flex flex-wrap justify-center gap-2 pt-1">
-                      {['Oklahoma City', 'Tulsa', 'Edmond', 'Norman', 'Stillwater', 'Lawton', 'Enid', 'Yukon', 'And More'].map((city) => (
+                      {['Duncan', 'Chickasha', 'Lawton', 'Altus', 'Blanchard', "Paul's Valley", 'Oklahoma City', 'Ardmore', 'Ada', 'And More'].map((city) => (
                         <span
                           key={city}
                           className="inline-flex items-center gap-2 rounded-xl border border-soft-khaki/55 bg-section-mid/90 px-4 py-2 text-xs font-bold tracking-wide uppercase text-matte-black shadow-sm"

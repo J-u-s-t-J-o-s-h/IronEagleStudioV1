@@ -42,7 +42,7 @@ export default function ProjectsPage() {
         </section>
 
         {/* Filter Tabs */}
-        <section className="relative isolate overflow-hidden border-b border-white/10">
+        <section className="relative isolate overflow-hidden border-b border-bone-linen/10">
           <PremiumSectionBackdrop fillClassName="bg-gunmetal" texture="concrete" />
           <div className="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="sr-only" id="filter-label">Filter projects by category</p>
@@ -55,7 +55,7 @@ export default function ProjectsPage() {
                   className={`min-h-11 shrink-0 touch-manipulation px-4 py-2.5 text-sm font-bold tracking-wide uppercase rounded-xl transition-colors sm:px-6 sm:py-3 sm:text-base ${
                     activeCategory === cat
                       ? 'bg-storm-blue text-bone-linen'
-                      : 'text-soft-khaki hover:text-bone-linen hover:bg-white/10'
+                      : 'text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/10'
                   }`}
                 >
                   {cat}
@@ -85,7 +85,7 @@ export default function ProjectsPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-matte-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3">
-                      <span className="inline-block px-2 py-0.5 bg-storm-blue text-bone-linen text-xs font-bold tracking-wide uppercase rounded-lg shadow-md shadow-storm-blue/30 ring-1 ring-white/10">
+                      <span className="inline-block px-2 py-0.5 bg-storm-blue text-bone-linen text-xs font-bold tracking-wide uppercase rounded-lg shadow-md shadow-storm-blue/30 ring-1 ring-bone-linen/10">
                         {project.category}
                       </span>
                     </div>
@@ -133,17 +133,17 @@ export default function ProjectsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-bone-linen/10"
               >
                 Request an Estimate
                 <ArrowRight size={14} />
               </Link>
               <a
-                href="tel:+14058675309"
+                href="tel:+14057567304"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gunmetal hover:bg-gunmetal/10 text-gunmetal font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
-                (405) 867-5309
+                (405) 756-7304
               </a>
             </div>
           </div>

@@ -107,15 +107,15 @@ export default function StormShelterPage() {
         <section className="relative flex min-h-[min(100dvh,56rem)] items-end overflow-hidden pb-16 sm:min-h-[60vh]">
           <div className="absolute inset-0 z-0">
             <Image
-              src={siteMedia.stormPage.hero}
+              src={siteMedia.stormCallout}
               alt="Storm shelter installation in Oklahoma residential property"
               fill
               priority
               sizes="100vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-matte-black via-matte-black/82 to-matte-black/58" />
-            <div className="absolute inset-0 bg-gradient-to-r from-matte-black/58 via-matte-black/28 to-matte-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-matte-black/86 via-matte-black/68 to-matte-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-matte-black/45 via-matte-black/22 to-matte-black/8" />
           </div>
           <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-[calc(9.75rem+env(safe-area-inset-top,0px))] sm:px-6 lg:px-8">
             <span className="brand-divider mb-4 block" />
@@ -131,17 +131,17 @@ export default function StormShelterPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-bone-linen/10"
               >
                 Get a Shelter Quote
                 <ArrowRight size={14} />
               </Link>
               <a
-                href="tel:+14058675309"
+                href="tel:+14057567304"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/40 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
-                (405) 867-5309
+                (405) 756-7304
               </a>
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function StormShelterPage() {
                 </ul>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-bone-linen/10"
                 >
                   Schedule a Free Assessment
                   <ArrowRight size={14} />
@@ -223,11 +223,11 @@ export default function StormShelterPage() {
               <div className="flex flex-col gap-5">
                 <div className="card-media aspect-[4/3]">
                   <Image
-                    src={siteMedia.stormPage.interior}
+                    src="/HJH_media/More_pictures/More pictures/FB_IMG_1775445503450.jpg"
                     alt="Interior of a completed storm shelter installation"
                     fill
                     sizes="(max-width: 1024px) 100vw, 48vw"
-                    className="object-cover"
+                    className="object-cover object-center"
                   />
                 </div>
                 <div className="card-elevated-dark p-6">
@@ -269,9 +269,20 @@ export default function StormShelterPage() {
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {steps.map(({ number, title, desc }) => (
-                <div key={number} className="card-elevated-light p-7">
-                  <div className="text-4xl font-bold text-storm-blue/20 mb-3 leading-none">{number}</div>
-                  <h3 className="font-bold text-gunmetal text-lg mb-2">{title}</h3>
+                <div key={number} className="card-elevated-light relative h-full overflow-hidden p-6 sm:p-7">
+                  <span
+                    className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-storm-blue/45 to-transparent"
+                    aria-hidden="true"
+                  />
+                  <div className="mb-4 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center rounded-lg border border-storm-blue/30 bg-storm-blue/12 px-3 py-1 text-[11px] font-bold tracking-[0.14em] uppercase text-deep-slate">
+                      Step {number}
+                    </span>
+                    <span className="text-5xl font-black leading-none text-storm-blue/12" aria-hidden="true">
+                      {number}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-gunmetal text-lg mb-2 leading-tight">{title}</h3>
                   <p className="text-clay-taupe text-sm leading-relaxed">{desc}</p>
                 </div>
               ))}
@@ -304,23 +315,23 @@ export default function StormShelterPage() {
             <h2 className="text-4xl font-bold text-bone-linen mb-4 text-balance">
               Don&apos;t wait for tornado season to start
             </h2>
-            <p className="text-blue-200/80 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+            <p className="text-bone-linen/80 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
               We schedule installations year-round. Get a free estimate now and have your shelter in place before the storms come.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-black/15 ring-1 ring-black/10"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-equipment-gold hover:bg-burnished-amber text-matte-black font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-matte-black/15 ring-1 ring-matte-black/10"
               >
                 Request Your Free Quote
                 <ArrowRight size={14} />
               </Link>
               <a
-                href="tel:+14058675309"
+                href="tel:+14057567304"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-bone-linen/50 hover:border-bone-linen text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
-                Call (405) 867-5309
+                Call (405) 756-7304
               </a>
             </div>
           </div>

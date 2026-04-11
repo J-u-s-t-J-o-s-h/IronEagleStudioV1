@@ -7,7 +7,7 @@ const defaultMetadataBase =
 const baseUrl = new URL(defaultMetadataBase)
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ['', '/about', '/services', '/projects', '/contact', '/storm-shelter']
+  const routes = ['', '/about', '/services', '/projects', '/contact', '/storm-shelter', '/financing']
 
   return routes.map((route) => ({
     url: new URL(route || '/', baseUrl).toString(),

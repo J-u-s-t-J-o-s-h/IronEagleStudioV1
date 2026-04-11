@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, type MouseEvent } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Phone, ChevronDown, Shovel, Home, Shield, Wrench, Images, MessageSquare } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown, Shovel, Home, Shield, Wrench, Images, MessageSquare, CircleDollarSign } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Logo } from '@/components/logo'
 
@@ -21,6 +21,7 @@ const navItems = [
       { href: '/projects', label: 'Our Work', icon: Images },
     ]
   },
+  { href: '/financing', label: 'Financing', icon: CircleDollarSign },
   { href: '/contact', label: 'Contact', icon: MessageSquare },
 ]
 
@@ -116,7 +117,7 @@ export function SiteNav() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 pt-[env(safe-area-inset-top)] transition-[background-color,backdrop-filter,box-shadow,border-color] duration-500',
         useSolidHeader
-          ? 'bg-soft-coal/96 backdrop-blur-sm shadow-lg shadow-black/30 border-b border-white/10'
+          ? 'bg-soft-coal/96 backdrop-blur-sm shadow-lg shadow-matte-black/30 border-b border-bone-linen/10'
           : 'bg-gradient-to-b from-matte-black/35 via-matte-black/15 to-transparent border-b border-transparent'
       )}
     >
@@ -147,8 +148,8 @@ export function SiteNav() {
                     className={cn(
                       'flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold tracking-wide uppercase transition-all duration-200 rounded-xl lg:gap-2 lg:px-5 lg:py-3 lg:text-base',
                       dropdownOpen || pathname.startsWith('/services') || pathname.startsWith('/storm-shelter') || pathname.startsWith('/projects')
-                        ? 'text-storm-blue bg-storm-blue/10'
-                        : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
+                        ? 'text-bone-linen bg-storm-blue/35 ring-1 ring-bone-linen/20 shadow-sm shadow-matte-black/25'
+                        : 'text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/5'
                     )}
                     aria-expanded={dropdownOpen}
                     aria-haspopup="true"
@@ -164,7 +165,7 @@ export function SiteNav() {
                   {/* Dropdown Menu */}
                   <div
                     className={cn(
-                      'absolute top-full left-0 mt-2 w-56 bg-gunmetal border border-white/10 rounded-2xl shadow-xl shadow-black/40 ring-1 ring-white/10 overflow-hidden transition-all duration-200 origin-top',
+                      'absolute top-full left-0 mt-2 w-56 bg-gunmetal border border-bone-linen/10 rounded-2xl shadow-xl shadow-matte-black/40 ring-1 ring-bone-linen/10 overflow-hidden transition-all duration-200 origin-top',
                       dropdownOpen 
                         ? 'opacity-100 scale-100 translate-y-0' 
                         : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
@@ -177,10 +178,10 @@ export function SiteNav() {
                           key={subItem.href}
                           href={subItem.href}
                           className={cn(
-                            'flex items-center gap-3 px-5 py-4 text-base font-medium transition-colors border-b border-white/5 last:border-0',
+                            'flex items-center gap-3 px-5 py-4 text-base font-medium transition-colors border-b border-bone-linen/5 last:border-0',
                             pathname === subItem.href
-                              ? 'text-storm-blue bg-storm-blue/10'
-                              : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
+                              ? 'text-bone-linen bg-storm-blue/35 ring-1 ring-bone-linen/20 shadow-sm shadow-matte-black/25'
+                              : 'text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/5'
                           )}
                         >
                           {Icon && <Icon size={20} className="text-equipment-gold" aria-hidden="true" />}
@@ -198,8 +199,8 @@ export function SiteNav() {
                   className={cn(
                     'px-3 py-2.5 text-sm font-semibold tracking-wide uppercase transition-colors duration-150 rounded-xl lg:px-5 lg:py-3 lg:text-base',
                     pathname === item.href
-                      ? 'text-storm-blue bg-storm-blue/10'
-                      : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
+                      ? 'text-bone-linen bg-storm-blue/35 ring-1 ring-bone-linen/20 shadow-sm shadow-matte-black/25'
+                      : 'text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/5'
                   )}
                 >
                   {item.label}
@@ -211,16 +212,16 @@ export function SiteNav() {
           {/* Desktop / tablet CTA */}
           <div className="hidden md:flex items-center gap-2 lg:gap-3">
             <a
-              href="tel:+14058675309"
-              className="flex items-center gap-2 px-3 py-2.5 text-soft-khaki hover:text-bone-linen hover:bg-white/5 text-sm font-semibold tracking-wide transition-colors rounded-xl lg:px-4 lg:py-3 lg:text-base"
-              aria-label="Call us at (405) 867-5309"
+              href="tel:+14057567304"
+              className="flex items-center gap-2 px-3 py-2.5 text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/5 text-sm font-semibold tracking-wide transition-colors rounded-xl lg:px-4 lg:py-3 lg:text-base"
+              aria-label="Call us at (405) 756-7304"
             >
               <Phone size={20} aria-hidden="true" />
-              <span className="hidden lg:inline">(405) 867-5309</span>
+              <span className="hidden lg:inline">(405) 756-7304</span>
             </a>
             <Link
               href="/contact"
-              className="px-4 py-2.5 bg-storm-blue hover:bg-steel-blue text-bone-linen text-sm font-bold tracking-wide uppercase transition-colors duration-150 rounded-xl shadow-lg shadow-storm-blue/30 ring-1 ring-white/15 hover:shadow-storm-blue/50 lg:px-6 lg:py-3 lg:text-base"
+              className="px-4 py-2.5 bg-storm-blue hover:bg-steel-blue text-bone-linen text-sm font-bold tracking-wide uppercase transition-colors duration-150 rounded-xl shadow-lg shadow-storm-blue/30 ring-1 ring-bone-linen/15 hover:shadow-storm-blue/50 lg:px-6 lg:py-3 lg:text-base"
             >
               Free Quote
             </Link>
@@ -229,15 +230,15 @@ export function SiteNav() {
           {/* Mobile: phone + menu */}
           <div className="flex md:hidden items-center gap-2">
             <a
-              href="tel:+14058675309"
-              className="flex items-center justify-center w-11 h-11 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
-              aria-label="Call us at (405) 867-5309"
+              href="tel:+14057567304"
+              className="flex items-center justify-center w-11 h-11 text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/10 transition-colors rounded-xl"
+              aria-label="Call us at (405) 756-7304"
             >
               <Phone size={24} aria-hidden="true" />
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex items-center justify-center w-11 h-11 text-soft-khaki hover:text-bone-linen hover:bg-white/10 transition-colors rounded-xl"
+              className="flex items-center justify-center w-11 h-11 text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/10 transition-colors rounded-xl"
               aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileOpen}
             >
@@ -250,7 +251,7 @@ export function SiteNav() {
       {/* Mobile Menu - Simplified */}
       <div
         className={cn(
-          'md:hidden bg-gunmetal border-t border-white/10 overflow-y-auto overscroll-contain transition-all duration-300',
+          'md:hidden bg-gunmetal border-t border-bone-linen/10 overflow-y-auto overscroll-contain transition-all duration-300',
           mobileOpen ? 'max-h-[min(80vh,100dvh-4rem)] opacity-100' : 'max-h-0 opacity-0'
         )}
       >
@@ -270,8 +271,8 @@ export function SiteNav() {
                       className={cn(
                         'flex items-center gap-3 px-5 py-4 text-lg font-semibold rounded-xl transition-colors',
                         pathname === subItem.href
-                          ? 'text-storm-blue bg-storm-blue/10'
-                          : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
+                          ? 'text-bone-linen bg-storm-blue/35 ring-1 ring-bone-linen/20 shadow-sm shadow-matte-black/25'
+                          : 'text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/5'
                       )}
                     >
                       {Icon && <Icon size={22} className="text-equipment-gold" aria-hidden="true" />}
@@ -288,8 +289,8 @@ export function SiteNav() {
                 className={cn(
                   'flex items-center gap-3 px-5 py-4 text-lg font-semibold rounded-xl transition-colors',
                   pathname === item.href
-                    ? 'text-storm-blue bg-storm-blue/10'
-                    : 'text-soft-khaki hover:text-bone-linen hover:bg-white/5'
+                    ? 'text-bone-linen bg-storm-blue/35 ring-1 ring-bone-linen/20 shadow-sm shadow-matte-black/25'
+                    : 'text-soft-khaki hover:text-bone-linen hover:bg-bone-linen/5'
                 )}
               >
                 {item.icon && <item.icon size={22} className="text-equipment-gold" aria-hidden="true" />}
@@ -298,18 +299,18 @@ export function SiteNav() {
             )
           ))}
           
-          <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+          <div className="mt-4 pt-4 border-t border-bone-linen/10 flex flex-col gap-3">
             <a
-              href="tel:+14058675309"
+              href="tel:+14057567304"
               className="flex items-center justify-center gap-3 px-5 py-4 border-2 border-soft-khaki/40 text-soft-khaki text-lg font-bold tracking-wide uppercase rounded-xl hover:border-bone-linen hover:text-bone-linen transition-colors"
-              aria-label="Call us at (405) 867-5309"
+              aria-label="Call us at (405) 756-7304"
             >
               <Phone size={20} aria-hidden="true" />
-              (405) 867-5309
+              (405) 756-7304
             </a>
             <Link
               href="/contact"
-              className="flex items-center justify-center px-5 py-4 bg-storm-blue text-bone-linen text-lg font-bold tracking-wide uppercase rounded-xl shadow-lg shadow-storm-blue/30 ring-1 ring-white/15 hover:bg-steel-blue transition-colors"
+              className="flex items-center justify-center px-5 py-4 bg-storm-blue text-bone-linen text-lg font-bold tracking-wide uppercase rounded-xl shadow-lg shadow-storm-blue/30 ring-1 ring-bone-linen/15 hover:bg-steel-blue transition-colors"
             >
               Get a Free Quote
             </Link>

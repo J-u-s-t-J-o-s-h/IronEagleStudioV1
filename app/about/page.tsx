@@ -62,7 +62,7 @@ export default function AboutPage() {
               {stats.map(({ value, label }) => (
                 <div key={label} className="text-center">
                   <div className="text-4xl font-bold text-bone-linen mb-1">{value}</div>
-                  <div className="text-blue-200/80 text-xs font-semibold tracking-widest uppercase">{label}</div>
+                  <div className="text-bone-linen/80 text-xs font-semibold tracking-widest uppercase">{label}</div>
                 </div>
               ))}
             </div>
@@ -205,17 +205,17 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-white/10"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-storm-blue hover:bg-steel-blue text-bone-linen font-bold text-sm tracking-wide uppercase rounded-xl transition-colors shadow-lg shadow-storm-blue/35 ring-1 ring-bone-linen/10"
               >
                 Get a Free Estimate
                 <ArrowRight size={14} />
               </Link>
               <a
-                href="tel:+14058675309"
+                href="tel:+14057567304"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gunmetal hover:bg-gunmetal/10 text-gunmetal font-bold text-sm tracking-wide uppercase rounded-xl transition-colors"
               >
                 <Phone size={14} />
-                (405) 867-5309
+                (405) 756-7304
               </a>
             </div>
           </div>

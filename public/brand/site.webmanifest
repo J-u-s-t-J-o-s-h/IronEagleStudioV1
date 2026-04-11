@@ -2,8 +2,8 @@
   "name": "HJH Outdoor Operations LLC",
   "short_name": "HJH Outdoor",
   "start_url": "/",
-  "theme_color": "#3a628a",
-  "background_color": "#e7ddcf",
+  "theme_color": "#0A3D62",
+  "background_color": "#F9F9F9",
   "icons": [
     {
       "src": "/brand/web-app-manifest-192x192.png",
