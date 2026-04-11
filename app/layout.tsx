@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Barlow } from 'next/font/google'
+import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { StickyCallButton } from '@/components/sticky-call-button'
 import { SkipLink } from '@/components/skip-link'
@@ -88,6 +89,7 @@ export default function RootLayout({
         className="font-sans antialiased min-h-dvh overflow-x-clip pb-[env(safe-area-inset-bottom)]"
         suppressHydrationWarning
       >
+        <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
         <SkipLink />
         {children}
         <StickyCallButton />

@@ -378,18 +378,6 @@ export default function HomePage() {
     return () => observer.disconnect()
   }, [reviewsEnabled])
 
-  useEffect(() => {
-    if (!reviewsEnabled || !shouldLoadReviewsScript) return
-    if (document.querySelector('script[data-elfsight-platform="true"]')) return
-
-    const script = document.createElement('script')
-    script.src = 'https://elfsightcdn.com/platform.js'
-    script.async = true
-    script.defer = true
-    script.dataset.elfsightPlatform = 'true'
-    document.body.appendChild(script)
-  }, [reviewsEnabled, shouldLoadReviewsScript])
-
   return (
     <>
       <SiteNav />
