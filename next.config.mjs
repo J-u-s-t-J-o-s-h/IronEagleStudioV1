@@ -7,12 +7,84 @@ const extraAllowedDevOrigins =
     : []
 
 const isProd = process.env.NODE_ENV === 'production'
+
 const scriptSrc = isProd
-  ? "script-src 'self' 'unsafe-inline' https://elfsightcdn.com https://*.elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
-  : "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://elfsightcdn.com https://*.elfsightcdn.com https://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
+  ? [
+      "script-src",
+      "'self'",
+      "'unsafe-inline'",
+      "https://elfsightcdn.com",
+      "https://*.elfsightcdn.com",
+      "https://elfsight.com",
+      "https://*.elfsight.com",
+      "https://static.elfsight.com",
+      "https://apps.elfsight.com",
+      "https://c.elfsight.com",
+      "https://va.vercel-scripts.com",
+      "https://vercel.live",
+    ].join(' ')
+  : [
+      "script-src",
+      "'self'",
+      "'unsafe-inline'",
+      "'unsafe-eval'",
+      "https://elfsightcdn.com",
+      "https://*.elfsightcdn.com",
+      "https://elfsight.com",
+      "https://*.elfsight.com",
+      "https://static.elfsight.com",
+      "https://apps.elfsight.com",
+      "https://c.elfsight.com",
+      "https://va.vercel-scripts.com",
+      "https://vercel.live",
+    ].join(' ')
+
 const connectSrc = isProd
-  ? "connect-src 'self' https://elfsightcdn.com https://*.elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
-  : "connect-src 'self' ws: wss: http: https: https://elfsightcdn.com https://*.elfsightcdn.com https://*.elfsight.com wss://*.elfsight.com https://va.vercel-scripts.com https://vercel.live"
+  ? [
+      "connect-src",
+      "'self'",
+      "https://elfsightcdn.com",
+      "https://*.elfsightcdn.com",
+      "https://elfsight.com",
+      "https://*.elfsight.com",
+      "https://static.elfsight.com",
+      "https://apps.elfsight.com",
+      "https://c.elfsight.com",
+      "wss://*.elfsight.com",
+      "https://va.vercel-scripts.com",
+      "https://vercel.live",
+    ].join(' ')
+  : [
+      "connect-src",
+      "'self'",
+      "ws:",
+      "wss:",
+      "http:",
+      "https:",
+      "https://elfsightcdn.com",
+      "https://*.elfsightcdn.com",
+      "https://elfsight.com",
+      "https://*.elfsight.com",
+      "https://static.elfsight.com",
+      "https://apps.elfsight.com",
+      "https://c.elfsight.com",
+      "wss://*.elfsight.com",
+      "https://va.vercel-scripts.com",
+      "https://vercel.live",
+    ].join(' ')
+
+const styleSrc = [
+  "style-src",
+  "'self'",
+  "'unsafe-inline'",
+  "https://fonts.googleapis.com",
+  "https://elfsight.com",
+  "https://*.elfsight.com",
+  "https://static.elfsight.com",
+  "https://apps.elfsight.com",
+  "https://c.elfsight.com",
+].join(' ')
+
 const cspDirectives = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -20,12 +92,12 @@ const cspDirectives = [
   "object-src 'none'",
   scriptSrc,
   connectSrc,
-  "style-src 'self' 'unsafe-inline' https://*.elfsight.com",
-  "img-src 'self' data: blob: https: https://*.elfsight.com",
-  "font-src 'self' data: https://*.elfsight.com https://fonts.gstatic.com https://vercel.live",
-  "frame-src 'self' https://*.elfsight.com https://vercel.live",
-  "worker-src 'self' blob: https://*.elfsight.com",
-  "child-src 'self' blob: https://*.elfsight.com",
+  styleSrc,
+  "img-src 'self' data: blob: https: https://elfsight.com https://*.elfsight.com https://elfsightcdn.com https://*.elfsightcdn.com",
+  "font-src 'self' data: https://fonts.gstatic.com https://elfsight.com https://*.elfsight.com https://elfsightcdn.com https://*.elfsightcdn.com https://vercel.live",
+  "frame-src 'self' https://elfsight.com https://*.elfsight.com https://vercel.live",
+  "worker-src 'self' blob: https://elfsight.com https://*.elfsight.com",
+  "child-src 'self' blob: https://elfsight.com https://*.elfsight.com",
   ...(isProd ? ['upgrade-insecure-requests'] : []),
 ].join('; ')
 
@@ -37,13 +109,9 @@ const nextConfig = {
     unoptimized: !isProd,
     formats: ['image/avif', 'image/webp'],
   },
-  /**
-   * Hostnames (no scheme/port) allowed to load dev internals (`/_next/*`, HMR) from this machine.
-   * Must match the LAN IP you open in the phone browser (DHCP can change it — update or set NEXT_DEV_ALLOWED_HOSTS).
-   */
   allowedDevOrigins: [
-    '192.168.3.138', // Wi-Fi (verified ipconfig on this machine)
-    '192.168.1.250', // Ethernet
+    '192.168.3.138',
+    '192.168.1.250',
     ...extraAllowedDevOrigins,
   ],
   async headers() {
