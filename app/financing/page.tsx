@@ -35,6 +35,18 @@ const faqs = [
     q: 'Are there prepayment penalties?',
     a: 'Terms differ by lender and product. Always confirm final loan terms, including APR, fees, and prepayment details, before signing.',
   },
+  {
+    q: 'Do you accept tribal vouchers?',
+    a: 'Yes. We accept tribal vouchers for qualifying projects. Contact us before scheduling so we can confirm eligibility requirements and gather the documentation your program needs.',
+  },
+  {
+    q: 'What do I need to use a tribal voucher?',
+    a: 'Most programs require a project estimate, contractor details, and voucher approval documentation. We can provide the project scope and pricing documents your tribal program typically asks for.',
+  },
+  {
+    q: 'Can tribal vouchers be combined with financing?',
+    a: 'In many cases, yes. Depending on your program and lender terms, customers may apply a tribal voucher and finance any remaining balance. We can help you prepare the paperwork for both.',
+  },
 ]
 
 export default function FinancingPage() {

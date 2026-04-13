@@ -658,7 +658,7 @@ export default function HomePage() {
                   </p>
                   <ul className="flex flex-col gap-3 mb-8">
                     {[
-                      'Underground and in-garage shelter options',
+                      'Underground and outdoor walk-in saferoom options',
                       'Professional installation from certified crew',
                       'Waterproofing and ventilation included',
                       'We handle permits and site prep',

@@ -19,8 +19,8 @@ const faqs = [
     a: 'In many Oklahoma municipalities and counties, a permit is required for storm shelter installation. We help coordinate the permitting process as part of our installation service, so you don\'t have to navigate that alone.',
   },
   {
-    q: 'What\'s the difference between an underground and a garage shelter?',
-    a: 'Underground shelters are buried in the yard, typically accessed via a hatch in the ground. Garage shelters (also called safe rooms) are installed in the garage floor and accessed via a steel door that opens downward. Both provide excellent protection — the right choice depends on your property layout and personal preference.',
+    q: 'Where are walk-in saferooms installed?',
+    a: 'Our walk-in saferooms are installed outdoors on flat ground. We do not install in-ground garage shelters. During your estimate, we\'ll review your layout and recommend the safest placement for your property.',
   },
   {
     q: 'Will the shelter flood?',
@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: 'Can you install a shelter in an existing yard?',
-    a: 'Yes. We install shelters in existing yards, under garage slabs, and on rural properties regularly. Our equipment can access most residential properties. We\'ll discuss any site constraints during the estimate.',
+    a: 'Yes. We install shelters in existing yards and on rural properties regularly. Our equipment can access most residential properties. We\'ll discuss any site constraints during the estimate.',
   },
 ]
 
@@ -197,7 +197,7 @@ export default function StormShelterPage() {
                 </p>
                 <ul className="flex flex-col gap-3 mb-7">
                   {[
-                    'Underground and in-garage safe room options',
+                    'Underground and outdoor walk-in saferoom options',
                     'Sizing for families of all sizes',
                     'Proper anchoring to prevent floating',
                     'Waterproofing membrane and drainage planning',
@@ -238,7 +238,7 @@ export default function StormShelterPage() {
                   <ul className="flex flex-col gap-2">
                     {[
                       'Below-ground yard shelters',
-                      'Garage floor safe rooms',
+                      'Outdoor walk-in saferooms',
                       'In-ground concrete shelters',
                       'Steel underground units',
                     ].map((type) => (

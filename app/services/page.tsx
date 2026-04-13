@@ -18,7 +18,7 @@ const services = [
     description:
       'We install underground storm shelters and safe rooms designed to withstand direct tornado impact. Every installation includes proper site prep, concrete work, waterproofing, and a final inspection. We handle the entire process — from permits to final grade.',
     benefits: [
-      'Tornado-rated underground and garage shelter options',
+      'Tornado-rated underground and outdoor walk-in saferoom options',
       'Professionally installed and anchored',
       'Waterproofed and ventilated',
       'We handle site prep and permits',

@@ -115,13 +115,13 @@ export const projectGallery: ProjectGalleryItem[] = [
   },
   {
     id: 6,
-    title: 'Garage Safe Room — Oklahoma City',
+    title: 'Walk-In Saferoom — Oklahoma City',
     category: 'Storm Shelter',
     description:
-      'In-garage safe room shelter installation for an Oklahoma City homeowner. Concrete cutting, shelter placement, and finish work completed in one day.',
+      'Outdoor walk-in saferoom installation for an Oklahoma City homeowner. Site prep, shelter placement, and finish work were completed in one day.',
     src: `${HJH}/Storm_Shelters/HJH_photo_003.webp`,
-    alt: 'In-garage safe room storm shelter installation in Oklahoma City',
-    tags: ['Garage install', 'Safe room'],
+    alt: 'Outdoor walk-in saferoom storm shelter installation in Oklahoma City',
+    tags: ['Walk-in saferoom', 'Same-day install'],
   },
   {
     id: 7,
