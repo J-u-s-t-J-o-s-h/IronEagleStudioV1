@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: 'What size shelter do I need?',
-    a: 'We recommend sizing based on your household, plus some room for neighbors or guests in an emergency. A 4-person family can typically fit in a 4x6 or 6x6 unit. We can walk you through the sizing options during your estimate.',
+    a: 'We recommend sizing based on your household, plus room for neighbors or guests in an emergency. Many families start with a 5x7 or 6x8 shelter, depending on how many people need to fit comfortably. We can walk you through the best option during your estimate.',
   },
   {
     q: 'How much does storm shelter installation cost?',

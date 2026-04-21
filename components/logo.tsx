@@ -146,7 +146,7 @@ export function Logo({
         sizes={
           isHero
             ? '(max-width: 640px) 300px, (max-width: 1024px) 360px, 400px'
-            : '(max-width: 640px) 280px, (max-width: 1024px) 400px, 520px'
+            : '(max-width: 640px) 96px, (max-width: 1024px) 120px, 150px'
         }
         onError={onRasterError}
       />

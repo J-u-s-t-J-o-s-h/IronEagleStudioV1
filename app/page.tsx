@@ -387,8 +387,7 @@ export default function HomePage() {
           src={siteMedia.hero}
           alt=""
           fill
-          priority
-          unoptimized
+          preload
           sizes="100vw"
           className={`object-cover object-center transition-opacity duration-700 ease-out ${heroLoaded ? 'opacity-100' : 'opacity-70'
             }`}
@@ -503,11 +502,13 @@ export default function HomePage() {
                             <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-equipment-gold/38 to-transparent" aria-hidden="true" />
                             <div className="relative flex h-full items-center justify-center rounded-full border border-bone-linen/10 bg-gradient-to-br from-bone-linen/[0.06] via-transparent to-bone-linen/[0.02] p-0.75">
                               <div className="relative w-full aspect-square rounded-full">
-                                <img
+                                <Image
                                   src="/brand/logo-transparent.webp"
                                   alt="HJH Outdoor Operations LLC — storm shelter installation, dirt work, land clearing, Oklahoma"
-                                  loading="eager"
-                                  fetchPriority="high"
+                                  fill
+                                  sizes="(max-width: 640px) 325px, 1px"
+                                  loading="lazy"
+                                  fetchPriority="low"
                                   decoding="async"
                                   className="absolute inset-0 h-full w-full object-contain object-center scale-[1.05]"
                                 />
@@ -546,10 +547,13 @@ export default function HomePage() {
                             />
                             <div className="flex h-full items-center justify-center rounded-full border border-bone-linen/10 bg-gradient-to-br from-bone-linen/[0.06] via-transparent to-bone-linen/[0.02] p-0.25 sm:p-0.75 md:p-1.25">
                               <div className="relative w-full sm:max-w-[84vw] aspect-square overflow-hidden rounded-full">
-                                <img
+                                <Image
                                   src="/brand/logo-transparent.webp"
                                   alt="HJH Outdoor Operations LLC — storm shelter installation, dirt work, land clearing, Oklahoma"
-                                  loading="eager"
+                                  fill
+                                  sizes="(min-width: 641px) 420px, 1px"
+                                  loading="lazy"
+                                  fetchPriority="low"
                                   decoding="async"
                                   className="absolute inset-0 h-full w-full object-contain object-center sm:scale-[.86]"
                                 />

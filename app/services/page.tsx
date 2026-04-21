@@ -53,7 +53,7 @@ const services = [
     title: 'Dirt Work',
     tagline: 'Ground prep done right — for driveways, pads, and properties.',
     image: siteMedia.services.dirtWork,
-    imageAlt: 'Skid steer performing precision dirt work and grading',
+    imageAlt: 'Freshly graded dirt work area prepared for site and driveway development',
     forWho: 'Property owners needing site prep, driveway work, lot leveling, or general earth shaping.',
     description:
       'Dirt work covers the wide range of ground shaping and site prep tasks that make everything else possible. Whether it\'s a driveway pad, a level building site, or moving material from one part of the property to another — we have the equipment and experience to handle it right.',
@@ -73,7 +73,7 @@ const services = [
     title: 'Land Clearing',
     tagline: 'Clear brush, trees, and overgrowth to reclaim your property.',
     image: siteMedia.services.landClearing,
-    imageAlt: 'Heavy equipment clearing brush and trees from Oklahoma land',
+    imageAlt: 'Land clearing in progress with brush removed for improved property access',
     forWho: 'Landowners, developers, and homeowners with overgrown or timbered land that needs to be cleared for building, farming, or personal use.',
     description:
       'We clear land of all sizes using the right equipment for the job — from brush hogs and skid steers to full-size bulldozers. Whether you have a few acres of scrubby growth or a timbered property that needs a clean start, we get it cleared efficiently.',

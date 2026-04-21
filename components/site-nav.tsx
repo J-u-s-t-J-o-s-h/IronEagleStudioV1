@@ -135,7 +135,7 @@ export function SiteNav() {
             aria-hidden={!showHeaderLogo}
             tabIndex={showHeaderLogo ? undefined : -1}
           >
-            <Logo size="md" showText priority className="min-w-0 max-md:scale-[0.68] max-md:origin-left" />
+            <Logo size="md" showText className="min-w-0 max-md:scale-[0.68] max-md:origin-left" />
           </Link>
 
           {/* Desktop / tablet nav */}
