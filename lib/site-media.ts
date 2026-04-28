@@ -39,8 +39,8 @@ export const homeProjectCards = [
     tag: 'Land Clearing',
   },
   {
-    src: `${HJH}/Fence_and_Grading/HJH_photo_030.webp`,
-    alt: 'Fence line and grading work on Oklahoma property',
+    src: `${HJH}/Fence_and_Grading/HJH_photo_021.webp`,
+    alt: 'Heavy equipment performing site grading for a new residential build pad in Oklahoma',
     label: 'Site Grading — New Build Pad',
     tag: 'Grading',
   },
