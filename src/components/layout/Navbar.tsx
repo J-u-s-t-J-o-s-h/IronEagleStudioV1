@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
-import { useCalendly } from '@/hooks/useCalendly';
 
 const navLinks = [
     { href: '#services', label: 'Services' },
@@ -23,7 +22,6 @@ export default function Navbar() {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
-    const { openPopup } = useCalendly();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -144,8 +142,8 @@ export default function Navbar() {
                     {/* CTA & Mobile Menu (Right) */}
                     <div className="flex items-center gap-4">
                         <div className="hidden md:block">
-                            <Button variant="primary" size="sm" onClick={openPopup}>
-                                Book a Discovery Call
+                            <Button variant="primary" size="sm" href="/start-your-project">
+                                Start Your Project
                             </Button>
                         </div>
 
@@ -216,8 +214,13 @@ export default function Navbar() {
                                     })}
                                 </div>
                                 <div className="mt-8">
-                                    <Button variant="primary" className="w-full" onClick={() => { setIsOpen(false); openPopup(); }}>
-                                        Book a Discovery Call
+                                    <Button
+                                        variant="primary"
+                                        className="w-full"
+                                        href="/start-your-project"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        Start Your Project
                                     </Button>
                                 </div>
                             </div>

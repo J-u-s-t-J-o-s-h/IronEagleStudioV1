@@ -1,6 +1,6 @@
 'use client';
 
-import { Globe, Layers, Rocket, Zap, Shield } from 'lucide-react';
+import { Globe, Layers, Check } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -11,9 +11,6 @@ import servicesData from '@/data/services.json';
 const iconMap: Record<string, typeof Globe> = {
     Globe,
     Layers,
-    Rocket,
-    Zap,
-    Shield,
 };
 
 export default function Services() {
@@ -32,38 +29,59 @@ export default function Services() {
                 </Reveal>
                 <Reveal delay={0.2}>
                     <p className="text-slate text-lg max-w-2xl mx-auto">
-                        End-to-end digital solutions with premium execution.
-                        Every project engineered for performance and scale.
+                        Clear service categories for local businesses and selected custom web work—
+                        scoped honestly around your goals, timeline, and budget.
                     </p>
                 </Reveal>
             </div>
 
             <StaggerContainer
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8"
                 staggerDelay={0.1}
             >
-                {servicesData.services.map((service) => {
-                    const Icon = iconMap[service.icon] || Globe;
+                {servicesData.categories.map((category) => {
+                    const Icon = iconMap[category.icon] || Globe;
 
                     return (
-                        <StaggerItem key={service.id}>
+                        <StaggerItem key={category.id}>
                             <Card className="h-full">
                                 <div className="flex flex-col h-full">
                                     <div className="w-12 h-12 rounded bg-brass/10 flex items-center justify-center mb-6">
                                         <Icon size={24} className="text-brass" />
                                     </div>
                                     <h3 className="text-xl font-semibold text-off-white mb-3">
-                                        {service.title}
+                                        {category.title}
                                     </h3>
-                                    <p className="text-slate text-sm leading-relaxed">
-                                        {service.description}
+                                    <p className="text-slate text-sm leading-relaxed mb-6">
+                                        {category.description}
                                     </p>
+                                    <ul className="space-y-3 flex-grow">
+                                        {category.items.map((item) => (
+                                            <li key={item} className="flex items-start gap-3">
+                                                <div className="mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-brass/20 flex items-center justify-center">
+                                                    <Check size={10} className="text-brass" />
+                                                </div>
+                                                <span className="text-slate text-sm leading-tight">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </Card>
                         </StaggerItem>
                     );
                 })}
             </StaggerContainer>
+
+            <Reveal delay={0.3}>
+                <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Button variant="primary" href="/start-your-project">
+                        Start Your Project
+                    </Button>
+                    <Button variant="secondary" href="#work">
+                        View Our Work
+                    </Button>
+                </div>
+            </Reveal>
 
             <Reveal delay={0.4}>
                 <div className="mt-12">
@@ -76,8 +94,8 @@ export default function Services() {
                                 <p className="text-slate leading-relaxed mb-4">
                                     A professional evaluation of how your website and digital presence are interpreted by evaluators, partners, and external reviewers. Designed for regulated service providers and contractors.
                                 </p>
-                                <a 
-                                    href="/contract-readiness-inspection" 
+                                <a
+                                    href="/contract-readiness-inspection"
                                     className="inline-flex items-center text-brass hover:text-brass-light transition-colors font-medium group/link"
                                 >
                                     Learn more
@@ -85,7 +103,7 @@ export default function Services() {
                                 </a>
                             </div>
                             <div className="md:col-span-4 text-right">
-                                <a 
+                                <a
                                     href="/contract-readiness-inspection"
                                     className="inline-block"
                                 >

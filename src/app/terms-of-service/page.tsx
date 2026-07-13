@@ -53,7 +53,8 @@ export default function TermsOfService() {
 
             <h3 className="text-xl font-medium text-off-white mt-6 mb-3">3.2 Payment Processing</h3>
             <p>
-              Payments are securely processed through third-party providers (e.g., Stripe).
+              Payments for Iron Eagle Studio project invoices and deposits are processed through
+              third-party payment providers selected by Iron Eagle Studio.
             </p>
           </section>
 
@@ -119,9 +120,10 @@ export default function TermsOfService() {
               Websites may include integrations with third-party services such as:
             </p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>Payment processors (e.g., Stripe)</li>
               <li>Hosting providers</li>
               <li>Analytics tools</li>
+              <li>Scheduling or appointment platforms selected by the client</li>
+              <li>Other third-party tools explicitly included in the project scope</li>
             </ul>
             <p className="mt-4">
               We are not responsible for the availability, performance, or policies of these third-party services.

@@ -1,18 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { BUSINESS_EMAIL } from '@/lib/business';
 
 const footerLinks = {
     company: [
-        { href: '#services', label: 'Services' },
-        { href: '#work', label: 'Work' },
-        { href: '#about', label: 'About' },
-        { href: '#contact', label: 'Contact' },
+        { href: '/#services', label: 'Services' },
+        { href: '/#work', label: 'Work' },
+        { href: '/#pricing', label: 'Pricing' },
+        { href: '/#about', label: 'About' },
+        { href: '/#contact', label: 'Contact' },
     ],
     services: [
-        { href: '#services', label: 'Web Systems' },
-        { href: '#services', label: 'Product UI' },
-        { href: '#services', label: 'Brand-to-Build' },
-        { href: '#services', label: 'Performance' },
+        { href: '/#services', label: 'Business Websites' },
+        { href: '/#services', label: 'Custom Web Solutions' },
+        { href: '/#pricing', label: 'Website Pricing' },
+        { href: '/start-your-project', label: 'Start Your Project' },
     ],
 };
 
@@ -34,9 +36,28 @@ export default function Footer() {
                                 className="h-20 w-auto"
                             />
                         </div>
-                        <p className="text-slate text-sm max-w-sm leading-relaxed">
+                        <p className="text-slate text-sm max-w-sm leading-relaxed mb-6">
                             Precision-built digital systems. American-crafted websites and software
                             delivered with modern strength and disciplined execution.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            <Link
+                                href="/start-your-project"
+                                className="inline-flex items-center justify-center font-semibold px-6 py-3 bg-brass text-matte-black hover:bg-brass-light transition-colors text-sm min-h-[48px]"
+                            >
+                                Start Your Project
+                            </Link>
+                            <Link
+                                href="/#work"
+                                className="inline-flex items-center justify-center font-semibold px-6 py-3 border-2 border-brass text-brass hover:bg-brass/10 transition-colors text-sm min-h-[48px]"
+                            >
+                                View Our Work
+                            </Link>
+                        </div>
+                        <p className="text-muted text-sm mt-4">
+                            <a href={`mailto:${BUSINESS_EMAIL}`} className="hover:text-brass transition-colors">
+                                {BUSINESS_EMAIL}
+                            </a>
                         </p>
                     </div>
 

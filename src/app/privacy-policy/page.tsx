@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
               We may share your information with trusted third-party service providers who help us operate our business, including:
             </p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>Payment processors (e.g., Stripe)</li>
+              <li>Payment processors used by Iron Eagle Studio to collect project invoices or deposits</li>
               <li>Hosting providers</li>
               <li>Analytics tools (e.g., Google Analytics)</li>
               <li>Communication platforms (email service providers)</li>

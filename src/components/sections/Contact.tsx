@@ -2,9 +2,11 @@
 
 import { useState, FormEvent } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import Link from 'next/link';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
+import { BUSINESS_EMAIL } from '@/lib/business';
 
 interface FormData {
     name: string;
@@ -12,7 +14,6 @@ interface FormData {
     phone: string;
     businessName: string;
     projectType: string;
-    ownershipPreference: string;
     timeline: string;
     message: string;
     website_url: string; // Honeypot field
@@ -26,22 +27,18 @@ interface FormErrors {
 }
 
 const projectTypes = [
-    'Launch Site',
-    'Launch + Content',
-    'Ecommerce Starter',
+    'Conversion landing page',
+    'Business website',
+    'Growth website',
+    'Custom web solution',
+    'Website redesign',
     'Not sure',
 ];
 
-const ownershipOptions = [
-    'Subscription (Lease)',
-    'One-time Purchase (Own)',
-    'Not Sure',
-];
-
 const timelineOptions = [
-    'ASAP',
-    '2-4 weeks',
-    '1-2 months',
+    'As soon as reasonably possible',
+    'Within 2–4 weeks',
+    'Within 1–2 months',
     'Flexible',
 ];
 
@@ -52,7 +49,6 @@ export default function Contact() {
         phone: '',
         businessName: '',
         projectType: '',
-        ownershipPreference: '',
         timeline: '',
         message: '',
         website_url: '',
@@ -106,23 +102,21 @@ export default function Contact() {
             }
 
             setIsSubmitted(true);
-            // Reset form
             setFormData({
                 name: '',
                 email: '',
                 phone: '',
                 businessName: '',
                 projectType: '',
-                ownershipPreference: '',
                 timeline: '',
                 message: '',
                 website_url: '',
             });
         } catch (error) {
             console.error('Submission error:', error);
-            setErrors(prev => ({
+            setErrors((prev) => ({
                 ...prev,
-                submit: 'Something went wrong. Please try again or email us directly.'
+                submit: `Something went wrong. Please try again or email ${BUSINESS_EMAIL}.`,
             }));
         } finally {
             setIsSubmitting(false);
@@ -134,7 +128,6 @@ export default function Contact() {
     ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-        // Clear error on change
         if (errors[name as keyof FormErrors] || errors.submit) {
             setErrors((prev) => ({ ...prev, [name]: undefined, submit: undefined }));
         }
@@ -156,7 +149,7 @@ export default function Contact() {
                     </Reveal>
                     <Reveal delay={0.2}>
                         <p className="text-slate text-lg mb-8">
-                            Thank you for reaching out. We&apos;ll review your project details
+                            Thank you for reaching out. We&apos;ll review your message
                             and get back to you within one business day.
                         </p>
                     </Reveal>
@@ -176,25 +169,30 @@ export default function Contact() {
     return (
         <SectionWrapper id="contact" divider={false}>
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-                {/* Content */}
                 <div>
                     <Reveal>
                         <span className="text-brass text-sm font-semibold uppercase tracking-widest mb-4 block">
-                            Get Started
+                            Contact
                         </span>
                     </Reveal>
                     <Reveal delay={0.1}>
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-off-white mb-6">
-                            Let&apos;s Build<br />
-                            <span className="text-brass">Something Great</span>
+                            Prefer a Direct<br />
+                            <span className="text-brass">Message?</span>
                         </h2>
                     </Reveal>
                     <Reveal delay={0.2}>
-                        <p className="text-slate text-lg mb-8 leading-relaxed">
-                            Ready to discuss your project? Fill out the form and we&apos;ll
-                            schedule a discovery call to understand your goals and explore
-                            how we can help.
+                        <p className="text-slate text-lg mb-6 leading-relaxed">
+                            For the most accurate recommendation, start with the project
+                            questionnaire. You can also send a short message here or email us directly.
                         </p>
+                    </Reveal>
+                    <Reveal delay={0.25}>
+                        <div className="mb-8">
+                            <Button variant="primary" href="/start-your-project">
+                                Start Your Project
+                            </Button>
+                        </div>
                     </Reveal>
                     <Reveal delay={0.3}>
                         <div className="space-y-4">
@@ -204,17 +202,23 @@ export default function Contact() {
                             </div>
                             <div className="flex items-center gap-3 text-slate">
                                 <div className="w-2 h-2 rounded-full bg-brass" />
-                                <span className="text-sm">No-obligation discovery call</span>
+                                <a
+                                    href={`mailto:${BUSINESS_EMAIL}`}
+                                    className="text-sm hover:text-brass transition-colors"
+                                >
+                                    {BUSINESS_EMAIL}
+                                </a>
                             </div>
                             <div className="flex items-center gap-3 text-slate">
                                 <div className="w-2 h-2 rounded-full bg-brass" />
-                                <span className="text-sm">Custom solutions, not templates</span>
+                                <Link href="/start-your-project" className="text-sm hover:text-brass transition-colors">
+                                    Full project questionnaire
+                                </Link>
                             </div>
                         </div>
                     </Reveal>
                 </div>
 
-                {/* Form */}
                 <Reveal direction="right" delay={0.2}>
                     <form
                         onSubmit={handleSubmit}
@@ -228,7 +232,6 @@ export default function Contact() {
                         )}
 
                         <div className="space-y-6">
-                            {/* Honeypot - Hidden */}
                             <input
                                 type="text"
                                 name="website_url"
@@ -237,10 +240,10 @@ export default function Contact() {
                                 className="hidden"
                                 tabIndex={-1}
                                 autoComplete="off"
+                                aria-hidden="true"
                             />
 
                             <div className="grid md:grid-cols-2 gap-6">
-                                {/* Name */}
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-off-white mb-2">
                                         Name <span className="text-brass">*</span>
@@ -251,13 +254,12 @@ export default function Contact() {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 bg-matte-black border ${errors.name ? 'border-red-500' : 'border-gunmetal'} text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors`}
+                                        className={`w-full px-4 py-3 bg-matte-black border ${errors.name ? 'border-red-500' : 'border-gunmetal'} text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors min-h-[48px]`}
                                         placeholder="Your name"
                                     />
                                     {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
                                 </div>
 
-                                {/* Email */}
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-off-white mb-2">
                                         Email <span className="text-brass">*</span>
@@ -268,7 +270,7 @@ export default function Contact() {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 bg-matte-black border ${errors.email ? 'border-red-500' : 'border-gunmetal'} text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors`}
+                                        className={`w-full px-4 py-3 bg-matte-black border ${errors.email ? 'border-red-500' : 'border-gunmetal'} text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors min-h-[48px]`}
                                         placeholder="your@email.com"
                                     />
                                     {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
@@ -276,7 +278,6 @@ export default function Contact() {
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-6">
-                                {/* Phone */}
                                 <div>
                                     <label htmlFor="phone" className="block text-sm font-medium text-off-white mb-2">
                                         Phone <span className="text-muted text-xs">(Optional)</span>
@@ -287,12 +288,11 @@ export default function Contact() {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors"
+                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors min-h-[48px]"
                                         placeholder="(555) 123-4567"
                                     />
                                 </div>
 
-                                {/* Business Name */}
                                 <div>
                                     <label htmlFor="businessName" className="block text-sm font-medium text-off-white mb-2">
                                         Business Name <span className="text-muted text-xs">(Optional)</span>
@@ -303,14 +303,13 @@ export default function Contact() {
                                         name="businessName"
                                         value={formData.businessName}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors"
+                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white placeholder-muted focus:outline-none focus:border-brass transition-colors min-h-[48px]"
                                         placeholder="Company Ltd."
                                     />
                                 </div>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-6">
-                                {/* Project Type */}
                                 <div>
                                     <label htmlFor="projectType" className="block text-sm font-medium text-off-white mb-2">
                                         Project Type
@@ -320,7 +319,7 @@ export default function Contact() {
                                         name="projectType"
                                         value={formData.projectType}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white focus:outline-none focus:border-brass transition-colors appearance-none cursor-pointer"
+                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white focus:outline-none focus:border-brass transition-colors appearance-none cursor-pointer min-h-[48px]"
                                     >
                                         <option value="" className="text-muted">Select type...</option>
                                         {projectTypes.map((type) => (
@@ -329,7 +328,6 @@ export default function Contact() {
                                     </select>
                                 </div>
 
-                                {/* Timeline */}
                                 <div>
                                     <label htmlFor="timeline" className="block text-sm font-medium text-off-white mb-2">
                                         Timeline
@@ -339,7 +337,7 @@ export default function Contact() {
                                         name="timeline"
                                         value={formData.timeline}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white focus:outline-none focus:border-brass transition-colors appearance-none cursor-pointer"
+                                        className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white focus:outline-none focus:border-brass transition-colors appearance-none cursor-pointer min-h-[48px]"
                                     >
                                         <option value="" className="text-muted">Select timeline...</option>
                                         {timelineOptions.map((opt) => (
@@ -349,26 +347,6 @@ export default function Contact() {
                                 </div>
                             </div>
 
-                            {/* Ownership Preference */}
-                            <div>
-                                <label htmlFor="ownershipPreference" className="block text-sm font-medium text-off-white mb-2">
-                                    Ownership Preference
-                                </label>
-                                <select
-                                    id="ownershipPreference"
-                                    name="ownershipPreference"
-                                    value={formData.ownershipPreference}
-                                    onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-matte-black border border-gunmetal text-off-white focus:outline-none focus:border-brass transition-colors appearance-none cursor-pointer"
-                                >
-                                    <option value="" className="text-muted">How would you like to pay?</option>
-                                    {ownershipOptions.map((opt) => (
-                                        <option key={opt} value={opt}>{opt}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {/* Message */}
                             <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-off-white mb-2">
                                     Message <span className="text-brass">*</span>
@@ -385,7 +363,6 @@ export default function Contact() {
                                 {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
                             </div>
 
-                            {/* Submit */}
                             <Button
                                 type="submit"
                                 variant="primary"
@@ -408,4 +385,3 @@ export default function Contact() {
         </SectionWrapper>
     );
 }
-

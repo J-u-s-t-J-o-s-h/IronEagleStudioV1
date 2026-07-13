@@ -1,16 +1,17 @@
 'use client';
 
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { ButtonHTMLAttributes, MouseEventHandler, forwardRef } from 'react';
 import { motion } from 'framer-motion';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> {
     variant?: 'primary' | 'secondary' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
     href?: string;
+    onClick?: MouseEventHandler<HTMLElement>;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className = '', variant = 'primary', size = 'md', children, href, ...props }, ref) => {
+    ({ className = '', variant = 'primary', size = 'md', children, href, onClick, ...props }, ref) => {
         const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-matte-black disabled:opacity-50 disabled:pointer-events-none';
 
         const variants = {
@@ -39,14 +40,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         if (href) {
             return (
-                <a href={href} className={combinedStyles}>
+                <a href={href} className={combinedStyles} onClick={onClick}>
                     {content}
                 </a>
             );
         }
 
         return (
-            <button ref={ref} className={combinedStyles} {...props}>
+            <button ref={ref} className={combinedStyles} onClick={onClick} {...props}>
                 {content}
             </button>
         );

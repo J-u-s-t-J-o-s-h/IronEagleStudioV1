@@ -5,23 +5,21 @@ import SectionWrapper from '@/components/ui/SectionWrapper';
 import Card from '@/components/ui/Card';
 import Reveal, { StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import Button from '@/components/ui/Button';
-import { useCalendly } from '@/hooks/useCalendly';
 import pricingData from '@/data/pricing.json';
 
-// Define the interface for the pricing package
 interface PricingPackage {
     id: string;
     name: string;
     price: string;
+    pricePrefix?: string;
     tagline: string;
     features: string[];
     cta: string;
+    ctaHref: string;
     popular: boolean;
-    disclaimer?: string;
 }
 
 export default function Pricing() {
-    const { openPopup } = useCalendly();
     const packages: PricingPackage[] = pricingData.packages;
 
     return (
@@ -34,25 +32,26 @@ export default function Pricing() {
                 </Reveal>
                 <Reveal delay={0.1}>
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-off-white mb-4">
-                        Straightforward Pricing
+                        Straightforward Website Pricing
                     </h2>
                 </Reveal>
                 <Reveal delay={0.2}>
-                    <p className="text-slate text-lg max-w-2xl mx-auto">
-                        Premium digital systems with clear, upfront investment.
-                        Choose the tier that fits your growth stage.
+                    <p className="text-slate text-lg max-w-3xl mx-auto">
+                        Every project is custom-built around your business, customers, and goals.
+                        These packages provide a practical starting point. Final pricing depends on
+                        project scope, content requirements, functionality, and timeline.
                     </p>
                 </Reveal>
             </div>
 
             <StaggerContainer
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
                 staggerDelay={0.1}
             >
                 {packages.map((pkg) => (
                     <StaggerItem key={pkg.id} className="h-full">
                         <Card
-                            className={`h-full flex flex-col ${pkg.popular ? 'border-brass/50 brass-glow scale-105 z-10 !overflow-visible' : ''}`}
+                            className={`h-full flex flex-col ${pkg.popular ? 'border-brass/50 brass-glow scale-[1.02] z-10 !overflow-visible' : ''}`}
                             circuitAccent={!pkg.popular}
                         >
                             {pkg.popular && (
@@ -63,19 +62,19 @@ export default function Pricing() {
 
                             <div className="mb-8">
                                 <h3 className="text-xl font-bold text-off-white mb-2">{pkg.name}</h3>
-                                <div className="flex items-baseline gap-1 mt-4">
+                                <div className="flex flex-wrap items-baseline gap-2 mt-4">
+                                    {pkg.pricePrefix ? (
+                                        <span className="text-slate text-sm">{pkg.pricePrefix}</span>
+                                    ) : null}
                                     <span className="text-4xl font-bold text-brass">{pkg.price}</span>
-                                    {pkg.price !== 'Custom' && (
-                                        <span className="text-slate text-sm">starting at</span>
-                                    )}
                                 </div>
-                                <p className="text-slate text-sm mt-3">{pkg.tagline}</p>
+                                <p className="text-slate text-sm mt-3 leading-relaxed">{pkg.tagline}</p>
                             </div>
 
                             <div className="flex-grow">
                                 <ul className="space-y-4 mb-10">
-                                    {pkg.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-start gap-3">
+                                    {pkg.features.map((feature) => (
+                                        <li key={feature} className="flex items-start gap-3">
                                             <div className="mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-brass/20 flex items-center justify-center">
                                                 <Check size={10} className="text-brass" />
                                             </div>
@@ -88,21 +87,65 @@ export default function Pricing() {
                             <Button
                                 variant={pkg.popular ? 'primary' : 'secondary'}
                                 className="w-full"
-                                href={pkg.id === 'foundation' ? undefined : '#contact'}
-                                onClick={pkg.id === 'foundation' ? openPopup : undefined}
+                                href={pkg.ctaHref}
                             >
                                 {pkg.cta}
                             </Button>
-
-                            {pkg.disclaimer && (
-                                <p className="text-slate/60 text-xs mt-4 text-center">
-                                    {pkg.disclaimer}
-                                </p>
-                            )}
                         </Card>
                     </StaggerItem>
                 ))}
             </StaggerContainer>
+
+            <Reveal delay={0.2}>
+                <p className="text-slate text-sm max-w-3xl mx-auto text-center mt-10 leading-relaxed">
+                    Iron Eagle Studio currently focuses on informational business websites,
+                    lead-generation systems, and selected custom web solutions. Ecommerce and
+                    payment-processing projects are not currently accepted.
+                </p>
+            </Reveal>
+
+            <Reveal delay={0.25}>
+                <p className="text-muted text-xs max-w-3xl mx-auto text-center mt-4 leading-relaxed">
+                    Project timelines depend on timely delivery of content, approvals, and client
+                    feedback. Expedited delivery may be available as a separately scoped service.
+                </p>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+                <div className="mt-16 max-w-3xl mx-auto text-center border border-gunmetal bg-deep-navy/60 p-8 md:p-10">
+                    <h3 className="text-xl md:text-2xl font-semibold text-off-white mb-4">
+                        Additional Services
+                    </h3>
+                    <p className="text-slate text-sm md:text-base leading-relaxed mb-6">
+                        Brand identity, logo design, copywriting, Google Business Profile assistance,
+                        ongoing SEO, website maintenance, hosting, and expedited delivery are
+                        available as separately scoped services.
+                    </p>
+                    <p className="text-slate text-sm md:text-base leading-relaxed mb-8">
+                        Not sure which option fits your business? Complete the project questionnaire,
+                        and Iron Eagle Studio will recommend the most practical approach based on
+                        your goals, timeline, and budget.
+                    </p>
+                    <Button variant="primary" href="/start-your-project">
+                        Complete the Project Questionnaire
+                    </Button>
+                </div>
+            </Reveal>
+
+            <Reveal delay={0.35}>
+                <div className="mt-12 max-w-3xl mx-auto text-center">
+                    <h3 className="text-xl md:text-2xl font-semibold text-off-white mb-4">
+                        A Practical Investment, Not a One-Size-Fits-All Package
+                    </h3>
+                    <p className="text-slate text-sm md:text-base leading-relaxed">
+                        Every business has different goals, content, and technical requirements.
+                        Iron Eagle Studio defines the project scope before development begins so you
+                        understand what is included, what is optional, and what the final investment
+                        covers. When a full build is not the right starting point, the project can
+                        often be reduced or completed in phases without sacrificing quality.
+                    </p>
+                </div>
+            </Reveal>
         </SectionWrapper>
     );
 }

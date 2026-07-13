@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
-import { useCalendly } from '@/hooks/useCalendly';
 
 export default function Hero() {
-    const { openPopup } = useCalendly();
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -234,8 +232,8 @@ export default function Hero() {
                             damping: 12
                         }}
                     >
-                        <Button variant="primary" size="lg" onClick={openPopup}>
-                            Book a Discovery Consultation
+                        <Button variant="primary" size="lg" href="/start-your-project">
+                            Start Your Project
                         </Button>
                     </motion.div>
                     <motion.div
@@ -257,8 +255,8 @@ export default function Hero() {
                             damping: 12
                         }}
                     >
-                        <Button variant="secondary" size="lg" href="#services">
-                            View Capabilities
+                        <Button variant="secondary" size="lg" href="#work">
+                            View Our Work
                         </Button>
                     </motion.div>
                 </motion.div>

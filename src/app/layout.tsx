@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: '/brand/IronEagle_Mark.svg',
+    icon: '/logos/logo.svg',
   },
 };
 

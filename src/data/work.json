@@ -1,6 +1,23 @@
 {
   "projects": [
     {
+      "id": "hjh-outdoor-operations",
+      "title": "HJH Outdoor Operations",
+      "category": "Brand Identity, Business Website, and Local Visibility",
+      "url": "https://www.hjhoutdoorops.com/",
+      "image": "/work/hjh-outdoor-operations.jpg",
+      "description": "Iron Eagle Studio created a complete digital presence for HJH Outdoor Operations, including a redesigned logo, a conversion-focused multi-page website, organized service and pricing content, project galleries, financing information, and assistance with Google Business Profile verification.",
+      "features": [
+        "Custom logo redesign",
+        "Multi-page responsive website",
+        "Service and storm-shelter landing pages",
+        "Pricing and financing content",
+        "Project gallery",
+        "Lead-generation calls to action",
+        "Local search and Google Business Profile assistance"
+      ]
+    },
+    {
       "id": "tc-staining",
       "title": "TC Staining",
       "category": "Website",

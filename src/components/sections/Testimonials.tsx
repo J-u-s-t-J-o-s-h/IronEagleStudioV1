@@ -3,8 +3,37 @@
 import { Quote } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import Reveal from '@/components/ui/Reveal';
+import { StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
+import testimonialsData from '@/data/testimonials.json';
 
+interface Testimonial {
+    id: string | number;
+    quote: string;
+    name: string;
+    role: string;
+    company: string;
+}
+
+/**
+ * Verified client testimonials render from src/data/testimonials.json.
+ * Add a verified entry there when available, for example:
+ * {
+ *   "id": "hjh-outdoor-operations",
+ *   "quote": "...",
+ *   "name": "...",
+ *   "role": "...",
+ *   "company": "HJH Outdoor Operations"
+ * }
+ * Unused seed entries were cleared because the live UI previously showed
+ * "Coming Soon" and did not display that data. Only add verified quotes.
+ */
 export default function Testimonials() {
+    const testimonials = testimonialsData.testimonials as Testimonial[];
+
+    if (testimonials.length === 0) {
+        return null;
+    }
+
     return (
         <SectionWrapper id="testimonials">
             <div className="text-center mb-16">
@@ -20,35 +49,32 @@ export default function Testimonials() {
                 </Reveal>
             </div>
 
-            <Reveal delay={0.2}>
-                <div className="relative bg-deep-navy border border-gunmetal p-16 md:p-20 rounded-lg text-center">
-                    {/* Quote icon */}
-                    <Quote
-                        size={48}
-                        className="text-brass/30 mb-6 mx-auto"
-                        fill="currentColor"
-                    />
-
-                    <h3 className="text-2xl md:text-3xl font-bold text-off-white mb-4">
-                        Coming Soon
-                    </h3>
-                    <p className="text-slate text-lg max-w-2xl mx-auto">
-                        Client testimonials will be featured here soon. Check back to see what our clients have to say about working with IronEagle Studio.
-                    </p>
-
-                    {/* Decorative corner */}
-                    <div className="absolute bottom-0 right-0 w-16 h-16 pointer-events-none">
-                        <svg viewBox="0 0 64 64" className="w-full h-full">
-                            <path
-                                d="M64 64 L64 48 L48 48 L48 32"
-                                fill="none"
-                                stroke="rgba(201, 162, 39, 0.2)"
-                                strokeWidth="1"
+            <StaggerContainer
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                staggerDelay={0.1}
+            >
+                {testimonials.map((testimonial) => (
+                    <StaggerItem key={testimonial.id}>
+                        <div className="relative h-full bg-deep-navy border border-gunmetal p-8 rounded-lg">
+                            <Quote
+                                size={32}
+                                className="text-brass/30 mb-4"
+                                fill="currentColor"
                             />
-                        </svg>
-                    </div>
-                </div>
-            </Reveal>
+                            <blockquote className="text-slate text-sm leading-relaxed mb-6">
+                                &ldquo;{testimonial.quote}&rdquo;
+                            </blockquote>
+                            <div>
+                                <p className="text-off-white font-semibold">{testimonial.name}</p>
+                                <p className="text-muted text-sm">
+                                    {testimonial.role}
+                                    {testimonial.company ? `, ${testimonial.company}` : ''}
+                                </p>
+                            </div>
+                        </div>
+                    </StaggerItem>
+                ))}
+            </StaggerContainer>
         </SectionWrapper>
     );
 }

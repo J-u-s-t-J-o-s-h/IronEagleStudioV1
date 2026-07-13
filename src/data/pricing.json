@@ -1,49 +1,89 @@
 {
-    "packages": [
-        {
-            "id": "mvp",
-            "name": "MVP / Launch Pad",
-            "price": "$2,499",
-            "tagline": "Perfect for validation.",
-            "features": [
-                "Single-Page Landing Site",
-                "Mobile Responsive Design",
-                "Basic Technical SEO",
-                "Performance Optimization",
-                "1-Week Delivery"
-            ],
-            "cta": "Start Building",
-            "popular": false
-        },
-        {
-            "id": "professional",
-            "name": "Professional",
-            "price": "$4,999",
-            "tagline": "Full-scale digital presence.",
-            "features": [
-                "Multi-Page Web Application",
-                "Custom UX/UI Design",
-                "CMS Integration",
-                "Advanced SEO Strategy",
-                "3-4 Week Delivery"
-            ],
-            "cta": "Get Started",
-            "popular": true
-        },
-        {
-            "id": "enterprise",
-            "name": "Enterprise",
-            "price": "Custom",
-            "tagline": "Complex digital systems.",
-            "features": [
-                "Custom SaaS/E-commerce",
-                "Enterprise Security Protocols",
-                "Third-Party Integrations",
-                "Cloud Infrastructure Setup",
-                "Priority Dedicated Support"
-            ],
-            "cta": "Contact Sales",
-            "popular": false
-        }
-    ]
+  "packages": [
+    {
+      "id": "conversion-landing",
+      "name": "Conversion Landing Page",
+      "price": "$2,499",
+      "pricePrefix": "Starting at",
+      "tagline": "A focused, conversion-driven page for a specific service, campaign, product, or business launch.",
+      "features": [
+        "One custom landing page",
+        "Mobile-responsive design",
+        "Contact or lead-generation form",
+        "Technical SEO foundation",
+        "Performance optimization",
+        "Analytics setup",
+        "Two revision rounds",
+        "Typical delivery: 2–3 weeks"
+      ],
+      "cta": "Start Your Project",
+      "ctaHref": "/start-your-project",
+      "popular": false
+    },
+    {
+      "id": "business-website",
+      "name": "Business Website",
+      "price": "$3,999",
+      "pricePrefix": "Starting at",
+      "tagline": "A professional online presence for a small business that needs to clearly explain its services and generate customer inquiries.",
+      "features": [
+        "Up to five core pages",
+        "Custom responsive design",
+        "Contact or quote-request form",
+        "Service and business information",
+        "Basic gallery or testimonial section",
+        "Technical and on-page SEO foundation",
+        "Analytics and Search Console setup",
+        "Two revision rounds",
+        "Typical delivery: 3–4 weeks"
+      ],
+      "cta": "Start Your Project",
+      "ctaHref": "/start-your-project",
+      "popular": true
+    },
+    {
+      "id": "growth-website",
+      "name": "Growth Website",
+      "price": "$6,499",
+      "pricePrefix": "Starting at",
+      "tagline": "A comprehensive lead-generation website for an established business with multiple services, locations, or growth objectives.",
+      "features": [
+        "Up to ten core pages",
+        "Custom conversion-focused design",
+        "Dedicated service pages",
+        "Portfolio, gallery, reviews, or pricing sections",
+        "Content strategy and copy refinement",
+        "Local SEO foundation",
+        "Advanced forms or selected third-party integrations",
+        "Structured data and conversion tracking",
+        "Three revision rounds",
+        "Typical delivery: 4–6 weeks"
+      ],
+      "cta": "Discuss Your Project",
+      "ctaHref": "/start-your-project",
+      "popular": false
+    },
+    {
+      "id": "custom-web-solutions",
+      "name": "Custom Web Solutions",
+      "price": "Custom Quote",
+      "pricePrefix": "",
+      "tagline": "For projects requiring functionality beyond a traditional informational business website.",
+      "features": [
+        "Custom forms and workflows",
+        "Business dashboards",
+        "Internal administrative tools",
+        "Third-party API integrations",
+        "Selected data-driven functionality evaluated during discovery",
+        "Interactive calculators",
+        "Quote-estimation tools",
+        "Content-management functionality",
+        "Business automation",
+        "Custom web functionality evaluated for scope, risk, and support requirements"
+      ],
+      "cta": "Request a Consultation",
+      "ctaHref": "/start-your-project",
+      "popular": false
+    }
+  ]
 }
