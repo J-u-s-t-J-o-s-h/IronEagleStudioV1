@@ -1,0 +1,11 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept C: Brand angular eagle wings + I spine. No circular core. ~80% fill. -->
+  <rect width="512" height="512" fill="#0B1120"/>
+  <!-- Derived from IronEagle_Mark wing geometry, enlarged -->
+  <path d="M256 56 L480 200 L380 360 L292 300 L292 200 Z" fill="#D4AF37"/>
+  <path d="M256 56 L32 200 L132 360 L220 300 L220 200 Z" fill="#D4AF37"/>
+  <!-- I spine through center -->
+  <rect x="212" y="80" width="88" height="320" fill="#D4AF37"/>
+  <rect x="160" y="80" width="192" height="56" fill="#D4AF37"/>
+  <rect x="160" y="344" width="192" height="56" fill="#D4AF37"/>
+</svg>

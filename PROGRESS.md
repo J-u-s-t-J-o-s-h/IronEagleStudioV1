@@ -2,13 +2,13 @@
 
 > **Purpose:** Machine-digestible handoff for any AI or teammate continuing this work.
 > **Update rule:** Append or revise this file on every meaningful code, deploy, or verification change.
-> **Last updated:** 2026-07-13 (favicon concepts for review)
+> **Last updated:** 2026-07-13 (favicon redesign concepts — brand-faithful)
 
 ---
 
 ## Current status (one line)
 
-**Favicon concepts ready for owner review** — three alternatives + comparison sheet committed locally for selection; production favicon pack unchanged until owner picks a concept.
+**New brand-faithful favicon redesigns ready for owner review** — see `public/brand/favicon-redesign/`; production favicon pack still unchanged until explicit selection.
 
 ---
 
@@ -203,24 +203,33 @@ PROGRESS.md
 
 ---
 
-## Favicon concepts (awaiting owner selection)
+## Favicon redesign (brand-faithful, awaiting selection)
 
-Do **not** replace production icons until owner selects a concept.
+Prior round (`favicon-concepts/`) rejected for weak brand resemblance / yellow-dot tab appearance.
 
-| Concept | Files | Notes |
-|---------|-------|-------|
-| Current (live) | `IronEagle_Mark.svg` / `IronEagle_Mark_Favicon.svg` | Abstract; weak eagle read at 16px |
-| 1 Eagle head | `public/brand/favicon-concepts/eagle-head.svg` (+ `-small`) | Profile beak/brow; better avian cue at mid sizes |
-| 2 IE monogram | `.../ie-monogram.svg` (+ `-small`) | **Recommended** — strongest 16px legibility |
-| 3 Eagle + I | `.../eagle-i.svg` (+ `-small`) | Wings + I spine; no circular core |
-| Comparison | `public/brand/favicon-concepts/favicon-comparison.png` | Review only; not wired into site |
-| Generator | `scripts/make-favicon-concept-comparison.mjs` | Rebuild sheet |
+New round under `public/brand/favicon-redesign/`:
 
-**Recommendation:** Concept 2 (IE monogram) for primary favicon replacement after approval.
+| Concept | Files | 16px tab notes |
+|---------|-------|----------------|
+| A Eagle Head | `eagle-head.svg` + `-small` | Preferred brand direction; navy tile + large beak |
+| B IE Monogram | `ie-monogram.svg` + `-small` | Clearest letter mark in real tabs |
+| C Eagle + I | `eagle-i.svg` + `-small` | Brand wing geometry + I; no circular core |
+| Comparison | `favicon-browser-tab-comparison.png` | Real 16px Chrome-like dark/light tabs |
+
+**Recommendation:** Concept **A (Eagle Head)** for brand fidelity; Concept **B** if maximum 16px letter clarity is required.
+
+Do not replace production icons until owner selects A/B/C.
 
 ---
 
 ## Changelog (append-only)
+
+### 2026-07-13 — Favicon redesign concepts (brand-faithful, no deploy)
+- Diagnosed live tab failure: prior mark too small on canvas + abstract center detail → yellow dot / eye / shield.
+- Added `public/brand/favicon-redesign/` with A/B/C SVGs filling ~75–85% canvas on navy grounds.
+- Generated `favicon-browser-tab-comparison.png` with real 16px dark/light tab simulations.
+- Production favicon infrastructure untouched.
+- **Status:** New brand-faithful favicon concepts ready for owner review.
 
 ### 2026-07-13 — Favicon concept alternatives (no production replace)
 - Added three concept SVGs + small-size variants under `public/brand/favicon-concepts/`.

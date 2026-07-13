@@ -1,0 +1,30 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept A large: Angular eagle head (brand language). Fills ~82% canvas. -->
+  <rect width="512" height="512" fill="#0B1120"/>
+  <!-- Profile facing right: brow, beak, neck. Thick brass only + one eye cut. -->
+  <path
+    d="M48 220
+       L140 100
+       L260 72
+       L310 120
+       L310 168
+       L480 200
+       L500 248
+       L460 280
+       L330 236
+       L310 290
+       L310 360
+       L240 440
+       L140 420
+       L120 320
+       L48 280
+       Z"
+    fill="#D4AF37"
+  />
+  <!-- Brow shelf (navy) -->
+  <path d="M140 100 L260 72 L260 128 L190 156 L140 132 Z" fill="#0B1120"/>
+  <!-- Eye: large enough to survive downscale -->
+  <path d="M210 176 L265 216 L210 256 L155 216 Z" fill="#0B1120"/>
+  <!-- Hooked beak notch -->
+  <path d="M420 236 L500 248 L450 280 L400 256 Z" fill="#0B1120"/>
+</svg>

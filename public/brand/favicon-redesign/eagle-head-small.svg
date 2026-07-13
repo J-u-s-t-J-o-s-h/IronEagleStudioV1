@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept A small v3: extreme 16px silhouette — huge beak, one brow cut, max canvas fill -->
+  <rect width="512" height="512" fill="#0B1120"/>
+  <path
+    d="M28 210
+       L120 70
+       L250 48
+       L300 110
+       L300 165
+       L500 210
+       L512 270
+       L460 310
+       L320 245
+       L300 310
+       L300 390
+       L230 480
+       L110 455
+       L90 340
+       L28 285
+       Z"
+    fill="#D4AF37"
+  />
+  <!-- Single large brow notch (no separate tiny eye) -->
+  <path d="M130 95 L250 70 L250 155 L155 195 L120 150 Z" fill="#0B1120"/>
+  <!-- Deep beak hook -->
+  <path d="M390 250 L512 270 L450 310 L370 275 Z" fill="#0B1120"/>
+</svg>

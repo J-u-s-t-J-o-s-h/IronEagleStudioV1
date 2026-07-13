@@ -1,0 +1,12 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept C small: merged single path for 16px clarity, large fill -->
+  <rect width="512" height="512" fill="#0B1120"/>
+  <path
+    d="M160 48 H352 V112 H308
+       L480 184 L500 280 L380 320 L308 250
+       V360 H352 V448 H160 V360 H204
+       V250 L132 320 L12 280 L32 184 L204 112
+       V48 Z"
+    fill="#D4AF37"
+  />
+</svg>
