@@ -1,5 +1,10 @@
 /**
- * Generate Iron Eagle Studio favicon / app-icon pack from brand SVGs.
+ * Generate Iron Eagle Studio production favicon / app-icon pack.
+ *
+ * Source of truth (Concept A — Angular Eagle Head, approved 2026-07-13):
+ * - Small (16 / 32 / 48): public/brand/favicon-redesign/eagle-head-small.svg
+ * - Large (180 / 192 / 512): public/brand/favicon-redesign/eagle-head.svg
+ *
  * Run: node scripts/generate-icons.mjs
  */
 import fs from "node:fs";
@@ -10,31 +15,37 @@ import sharp from "sharp";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
-const BRASS = "#D4AF37";
+/** Brand colors from globals.css */
 const DEEP_NAVY = "#0B1120";
+const DEEP_NAVY_RGBA = { r: 11, g: 17, b: 32, alpha: 1 };
 
-const markPath = path.join(root, "public/brand/IronEagle_Mark.svg");
-const faviconMarkPath = path.join(root, "public/brand/IronEagle_Mark_Favicon.svg");
+const smallSrc = path.join(root, "public/brand/favicon-redesign/eagle-head-small.svg");
+const largeSrc = path.join(root, "public/brand/favicon-redesign/eagle-head.svg");
 const outIcons = path.join(root, "public/icons");
 const outApp = path.join(root, "src/app");
-const outPreview = path.join(root, "tmp-icon-preview");
 
 fs.mkdirSync(outIcons, { recursive: true });
-fs.mkdirSync(outPreview, { recursive: true });
 
-async function svgToPng(svgPath, size, outFile, { background = { r: 0, g: 0, b: 0, alpha: 0 } } = {}) {
+function densityFor(size) {
+  // High density helps tiny favicons; cap for large outputs to avoid sharp pixel limits.
+  if (size <= 48) return Math.max(128, size * 6);
+  if (size <= 192) return 180;
+  return 144;
+}
+
+async function svgToPng(svgPath, size, outFile) {
   const svg = fs.readFileSync(svgPath);
-  await sharp(svg, { density: Math.max(72, size * 2) })
-    .resize(size, size, { fit: "contain", background })
+  await sharp(svg, { density: densityFor(size) })
+    .resize(size, size, { fit: "contain", background: DEEP_NAVY_RGBA })
     .png()
     .toFile(outFile);
   return outFile;
 }
 
-async function svgToPngBuffer(svgPath, size, { background = { r: 0, g: 0, b: 0, alpha: 0 } } = {}) {
+async function svgToPngBuffer(svgPath, size) {
   const svg = fs.readFileSync(svgPath);
-  return sharp(svg, { density: Math.max(72, size * 2) })
-    .resize(size, size, { fit: "contain", background })
+  return sharp(svg, { density: densityFor(size) })
+    .resize(size, size, { fit: "contain", background: DEEP_NAVY_RGBA })
     .png()
     .toBuffer();
 }
@@ -42,8 +53,7 @@ async function svgToPngBuffer(svgPath, size, { background = { r: 0, g: 0, b: 0, 
 /** Build a multi-size ICO from PNG buffers (16/32/48). */
 function buildIco(pngBuffersWithSizes) {
   const count = pngBuffersWithSizes.length;
-  const headerSize = 6 + count * 16;
-  let offset = headerSize;
+  let offset = 6 + count * 16;
   const entries = [];
 
   for (const { size, buffer } of pngBuffersWithSizes) {
@@ -51,9 +61,7 @@ function buildIco(pngBuffersWithSizes) {
     offset += buffer.length;
   }
 
-  const total = offset;
-  const out = Buffer.alloc(total);
-  // ICONDIR
+  const out = Buffer.alloc(offset);
   out.writeUInt16LE(0, 0);
   out.writeUInt16LE(1, 2); // ICO
   out.writeUInt16LE(count, 4);
@@ -62,10 +70,10 @@ function buildIco(pngBuffersWithSizes) {
   for (const e of entries) {
     out.writeUInt8(e.size >= 256 ? 0 : e.size, entryOffset);
     out.writeUInt8(e.size >= 256 ? 0 : e.size, entryOffset + 1);
-    out.writeUInt8(0, entryOffset + 2); // colors
+    out.writeUInt8(0, entryOffset + 2);
     out.writeUInt8(0, entryOffset + 3);
-    out.writeUInt16LE(1, entryOffset + 4); // planes
-    out.writeUInt16LE(32, entryOffset + 6); // bitcount
+    out.writeUInt16LE(1, entryOffset + 4);
+    out.writeUInt16LE(32, entryOffset + 6);
     out.writeUInt32LE(e.buffer.length, entryOffset + 8);
     out.writeUInt32LE(e.offset, entryOffset + 12);
     e.buffer.copy(out, e.offset);
@@ -74,10 +82,12 @@ function buildIco(pngBuffersWithSizes) {
   return out;
 }
 
+/**
+ * Maskable: deep-navy canvas with eagle-head large art scaled into safe zone (~72%).
+ */
 async function makeMaskable(size, outFile) {
-  // Safe zone: keep mark within ~80% center (10% margin each side) for maskable cropping
   const markSize = Math.round(size * 0.72);
-  const markBuf = await svgToPngBuffer(markPath, markSize);
+  const markBuf = await svgToPngBuffer(largeSrc, markSize);
   const left = Math.round((size - markSize) / 2);
   const top = Math.round((size - markSize) / 2);
 
@@ -95,35 +105,36 @@ async function makeMaskable(size, outFile) {
 }
 
 async function main() {
-  console.log("Generating icon pack...");
+  console.log("Generating production icon pack from Concept A (eagle head)...");
+  console.log("  small:", path.relative(root, smallSrc));
+  console.log("  large:", path.relative(root, largeSrc));
 
-  // Browser PNG favicons (simplified mark)
-  await svgToPng(faviconMarkPath, 16, path.join(outIcons, "favicon-16x16.png"));
-  await svgToPng(faviconMarkPath, 32, path.join(outIcons, "favicon-32x32.png"));
-  await svgToPng(faviconMarkPath, 48, path.join(outIcons, "favicon-48x48.png"));
+  // Browser PNG favicons — small SVG only
+  await svgToPng(smallSrc, 16, path.join(outIcons, "favicon-16x16.png"));
+  await svgToPng(smallSrc, 32, path.join(outIcons, "favicon-32x32.png"));
+  await svgToPng(smallSrc, 48, path.join(outIcons, "favicon-48x48.png"));
 
-  // ICO multi-size
+  // ICO multi-size from small SVG
   const icoPngs = [];
   for (const size of [16, 32, 48]) {
-    icoPngs.push({ size, buffer: await svgToPngBuffer(faviconMarkPath, size) });
+    icoPngs.push({ size, buffer: await svgToPngBuffer(smallSrc, size) });
   }
   fs.writeFileSync(path.join(outApp, "favicon.ico"), buildIco(icoPngs));
 
-  // Next.js app icons
-  await svgToPng(markPath, 512, path.join(outApp, "icon.png")); // transparent
-  // Apple touch: opaque deep-navy so home-screen tiles look intentional
-  await sharp(fs.readFileSync(markPath), { density: 360 })
-    .resize(180, 180, { fit: "contain", background: DEEP_NAVY })
+  // App icon 512 — large SVG (already navy-backed)
+  await svgToPng(largeSrc, 512, path.join(outApp, "icon.png"));
+
+  // Apple touch 180 — large SVG, opaque navy
+  await sharp(fs.readFileSync(largeSrc), { density: 360 })
+    .resize(180, 180, { fit: "contain", background: DEEP_NAVY_RGBA })
     .flatten({ background: DEEP_NAVY })
     .png()
     .toFile(path.join(outApp, "apple-icon.png"));
 
-  // Android / PWA
-  await svgToPng(markPath, 192, path.join(outIcons, "android-chrome-192x192.png"));
-  await svgToPng(markPath, 512, path.join(outIcons, "android-chrome-512x512.png"));
+  // Android / PWA — large SVG
+  await svgToPng(largeSrc, 192, path.join(outIcons, "android-chrome-192x192.png"));
+  await svgToPng(largeSrc, 512, path.join(outIcons, "android-chrome-512x512.png"));
   await makeMaskable(512, path.join(outIcons, "maskable-icon-512x512.png"));
-
-  // Preview sheet: node scripts/make-preview-sheet.mjs
 
   const files = [
     "src/app/favicon.ico",
@@ -135,7 +146,6 @@ async function main() {
     "public/icons/android-chrome-192x192.png",
     "public/icons/android-chrome-512x512.png",
     "public/icons/maskable-icon-512x512.png",
-    "public/brand/IronEagle_Mark_Favicon.svg",
   ];
   for (const rel of files) {
     const p = path.join(root, rel);
