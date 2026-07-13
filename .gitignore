@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local favicon generation previews (not for deploy)
+/tmp-icon-preview/

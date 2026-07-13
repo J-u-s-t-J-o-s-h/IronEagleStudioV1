@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Favicon-optimized mark: thicker geometry, more padding, enlarged core -->
+  <!-- Brand colors: brass #D4AF37, deep-navy #0B1120 -->
+  <g transform="translate(256 256) scale(0.78) translate(-256 -256)">
+    <path d="M256 72 L430 208 L348 340 L256 296 L164 340 L82 208 L256 72 Z" fill="#D4AF37"/>
+    <path d="M256 72 L318 132 L194 132 L256 72 Z" fill="#0B1120"/>
+    <circle cx="256" cy="228" r="34" fill="#0B1120"/>
+    <circle cx="256" cy="228" r="16" fill="#D4AF37"/>
+  </g>
+</svg>
