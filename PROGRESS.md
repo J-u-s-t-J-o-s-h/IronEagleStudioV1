@@ -8,7 +8,7 @@
 
 ## Current status (one line)
 
-**Favicon pack ready for deploy** — full icon/manifest pack generated and verified locally; pending push of favicon commit (or already deployed — check changelog). Questionnaire production E2E previously verified.
+**Fully updated and verified** — favicon/app-icon pack live on production (`a502628`); questionnaire previously verified. Delete Airtable test Lead `Iron Eagle Test Submission` when reviewed.
 
 ---
 
@@ -211,7 +211,9 @@ PROGRESS.md
 - Generated pack from `IronEagle_Mark.svg` + new `IronEagle_Mark_Favicon.svg` for small sizes.
 - Added `src/app/manifest.ts`, fixed layout metadata (`metadataBase`, theme color, no duplicate logo.svg icon).
 - Local verification: lint/tsc/build PASS; icon URLs 200 with correct MIME; head links favicon/icon/apple-touch/manifest.
-- **Status at write time:** Generated and locally verified; deploy step follows in same session if pushed.
+- Committed/pushed `a502628` → Vercel production `dpl_7LbyBjgSVL4XxEyxhcdkPV2Ca3Uf` READY.
+- Production icon byte lengths match local; head uses `/favicon.ico`, `/icon.png`, `/apple-icon.png`, `/manifest.webmanifest`.
+- **Status:** Fully updated and verified.
 
 ### 2026-07-13 — Deploy questionnaire + verify production
 - Confirmed Production Airtable env already working; did not recreate credentials.
