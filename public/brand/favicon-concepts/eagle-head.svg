@@ -1,0 +1,30 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 1 large: clearer angular eagle head profile -->
+  <g transform="translate(256 256) scale(0.86) translate(-256 -256)">
+    <path
+      d="M80 188
+         L168 112
+         L252 96
+         L292 136
+         L292 172
+         L444 200
+         L472 240
+         L436 264
+         L312 228
+         L292 268
+         L292 328
+         L236 392
+         L152 376
+         L136 296
+         L80 252
+         Z"
+      fill="#D4AF37"
+    />
+    <!-- Brow shelf -->
+    <path d="M168 112 L252 96 L252 140 L200 160 L168 140 Z" fill="#0B1120"/>
+    <!-- Eye diamond -->
+    <path d="M208 172 L252 204 L208 236 L164 204 Z" fill="#0B1120"/>
+    <!-- Hooked beak cut -->
+    <path d="M400 228 L472 240 L420 264 L388 244 Z" fill="#0B1120"/>
+  </g>
+</svg>

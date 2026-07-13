@@ -42,3 +42,4 @@ next-env.d.ts
 
 # local favicon generation previews (not for deploy)
 /tmp-icon-preview/
+/public/brand/favicon-concepts/_inspect/

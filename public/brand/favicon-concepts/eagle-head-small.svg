@@ -1,0 +1,29 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 1 small v2: max-contrast eagle head for 16px. One solid brass mass + one navy eye cut. -->
+  <g transform="translate(256 256) scale(0.88) translate(-256 -256)">
+    <!-- Continuous silhouette: brow peak, long hooked beak, thick neck -->
+    <path
+      d="M72 200
+         L160 120
+         L248 104
+         L280 140
+         L280 176
+         L456 208
+         L480 248
+         L440 272
+         L300 236
+         L280 280
+         L280 340
+         L220 400
+         L140 384
+         L120 300
+         L72 260
+         Z"
+      fill="#D4AF37"
+    />
+    <!-- Single large eye notch (reads as eye even when 2-3px) -->
+    <path d="M200 168 L248 200 L200 232 L152 200 Z" fill="#0B1120"/>
+    <!-- Beak underside cut for hook -->
+    <path d="M400 236 L480 248 L420 272 L392 252 Z" fill="#0B1120"/>
+  </g>
+</svg>

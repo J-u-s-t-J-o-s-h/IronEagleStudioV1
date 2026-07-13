@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 3 small: merged wing+I mass so 16px keeps wing tips + I caps -->
+  <g transform="translate(256 256) scale(0.88) translate(-256 -256)">
+    <path
+      d="M176 96 H336 V160 H304 V200
+         L456 240 L472 320 L360 340 L304 280
+         V360 H336 V416 H176 V360 H208
+         V280 L152 340 L40 320 L56 240 L208 200
+         V160 H176 Z"
+      fill="#D4AF37"
+    />
+  </g>
+</svg>

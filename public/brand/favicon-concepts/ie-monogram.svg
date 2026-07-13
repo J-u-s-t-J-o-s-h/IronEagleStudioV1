@@ -1,0 +1,17 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 2: Custom IE monogram. Brass only; gaps are true transparency. -->
+  <g transform="translate(256 256) scale(0.78) translate(-256 -256)">
+    <!-- I pillar -->
+    <rect x="128" y="96" width="80" height="320" fill="#D4AF37"/>
+    <!-- I top serif -->
+    <rect x="96" y="96" width="144" height="56" fill="#D4AF37"/>
+    <!-- I bottom serif -->
+    <rect x="96" y="360" width="144" height="56" fill="#D4AF37"/>
+    <!-- E top bar (extends from I stem) -->
+    <rect x="208" y="96" width="184" height="56" fill="#D4AF37"/>
+    <!-- E middle bar (shorter) -->
+    <rect x="208" y="228" width="148" height="56" fill="#D4AF37"/>
+    <!-- E bottom bar -->
+    <rect x="208" y="360" width="184" height="56" fill="#D4AF37"/>
+  </g>
+</svg>

@@ -2,13 +2,13 @@
 
 > **Purpose:** Machine-digestible handoff for any AI or teammate continuing this work.
 > **Update rule:** Append or revise this file on every meaningful code, deploy, or verification change.
-> **Last updated:** 2026-07-13 (favicon pack)
+> **Last updated:** 2026-07-13 (favicon concepts for review)
 
 ---
 
 ## Current status (one line)
 
-**Fully updated and verified** — favicon/app-icon pack live on production (`a502628`); questionnaire previously verified. Delete Airtable test Lead `Iron Eagle Test Submission` when reviewed.
+**Favicon concepts ready for owner review** — three alternatives + comparison sheet committed locally for selection; production favicon pack unchanged until owner picks a concept.
 
 ---
 
@@ -203,9 +203,31 @@ PROGRESS.md
 
 ---
 
+## Favicon concepts (awaiting owner selection)
+
+Do **not** replace production icons until owner selects a concept.
+
+| Concept | Files | Notes |
+|---------|-------|-------|
+| Current (live) | `IronEagle_Mark.svg` / `IronEagle_Mark_Favicon.svg` | Abstract; weak eagle read at 16px |
+| 1 Eagle head | `public/brand/favicon-concepts/eagle-head.svg` (+ `-small`) | Profile beak/brow; better avian cue at mid sizes |
+| 2 IE monogram | `.../ie-monogram.svg` (+ `-small`) | **Recommended** — strongest 16px legibility |
+| 3 Eagle + I | `.../eagle-i.svg` (+ `-small`) | Wings + I spine; no circular core |
+| Comparison | `public/brand/favicon-concepts/favicon-comparison.png` | Review only; not wired into site |
+| Generator | `scripts/make-favicon-concept-comparison.mjs` | Rebuild sheet |
+
+**Recommendation:** Concept 2 (IE monogram) for primary favicon replacement after approval.
+
+---
+
 ## Changelog (append-only)
 
-### 2026-07-13 — Favicon and application icon pack
+### 2026-07-13 — Favicon concept alternatives (no production replace)
+- Added three concept SVGs + small-size variants under `public/brand/favicon-concepts/`.
+- Generated `favicon-comparison.png` (current vs 3 concepts; light/dark; masks).
+- Production favicon pack / manifest left unchanged.
+- Lint / tsc / build PASS; production `/favicon.ico` still 200.
+- **Status:** Concepts generated and ready for owner review.
 - Audited icons: only incorrect `layout.tsx` → `/logos/logo.svg`; no `public/icons`, no app `favicon.ico` (deleted earlier), no manifest.
 - `favicon.ico.bak` = stock Next.js multi-size ICO (16/32/48/256), not brand → deleted.
 - Generated pack from `IronEagle_Mark.svg` + new `IronEagle_Mark_Favicon.svg` for small sizes.

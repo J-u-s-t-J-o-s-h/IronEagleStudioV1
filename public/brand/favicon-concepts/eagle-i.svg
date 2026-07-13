@@ -1,0 +1,14 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept 3: Wide wings + bold I spine. Avoids eye/house silhouette. -->
+  <g transform="translate(256 256) scale(0.86) translate(-256 -256)">
+    <!-- Left wing: broad chevron -->
+    <path d="M232 160 L64 220 L48 300 L140 320 L220 250 Z" fill="#D4AF37"/>
+    <!-- Right wing -->
+    <path d="M280 160 L448 220 L464 300 L372 320 L292 250 Z" fill="#D4AF37"/>
+    <!-- I pillar -->
+    <rect x="220" y="120" width="72" height="280" fill="#D4AF37"/>
+    <!-- I caps -->
+    <rect x="176" y="120" width="160" height="52" fill="#D4AF37"/>
+    <rect x="176" y="348" width="160" height="52" fill="#D4AF37"/>
+  </g>
+</svg>
