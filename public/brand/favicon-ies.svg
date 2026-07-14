@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Option B: IES initials, brass #D4AF37 on deep navy #0B1120 -->
+  <rect width="512" height="512" fill="#0B1120"/>
+
+  <!-- I -->
+  <rect x="48" y="64" width="108" height="64" fill="#D4AF37"/>
+  <rect x="84" y="128" width="36" height="256" fill="#D4AF37"/>
+  <rect x="48" y="384" width="108" height="64" fill="#D4AF37"/>
+
+  <!-- E -->
+  <rect x="180" y="64" width="44" height="384" fill="#D4AF37"/>
+  <rect x="224" y="64" width="120" height="64" fill="#D4AF37"/>
+  <rect x="224" y="224" width="104" height="64" fill="#D4AF37"/>
+  <rect x="224" y="384" width="120" height="64" fill="#D4AF37"/>
+
+  <!-- S -->
+  <rect x="368" y="64" width="112" height="64" fill="#D4AF37"/>
+  <rect x="368" y="128" width="40" height="72" fill="#D4AF37"/>
+  <rect x="368" y="200" width="112" height="64" fill="#D4AF37"/>
+  <rect x="440" y="264" width="40" height="120" fill="#D4AF37"/>
+  <rect x="368" y="384" width="112" height="64" fill="#D4AF37"/>
+</svg>
