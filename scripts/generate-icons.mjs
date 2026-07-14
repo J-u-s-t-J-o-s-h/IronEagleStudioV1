@@ -1,15 +1,14 @@
 /**
  * Generate Iron Eagle Studio production favicon / app-icon pack.
  *
- * Source of truth (2026-07-13):
- * Option B — IES initials in brass on deep navy
- *   public/brand/favicon-ies.svg
+ * Source of truth (2026-07-14):
+ * Eagle mark cropped from public/logos/logo.svg (wordmark excluded),
+ * composited on deep navy #0B1120.
  *
- * Option A (full logo at public/logos/logo.svg) was evaluated and rejected for
- * production tabs: the landscape wordmark+eagle is illegible at 16x16.
- * The angular eagle-head concept is also rejected — do not regenerate from it.
- *
- * Colors: brass #D4AF37 on deep navy #0B1120. Flat, no gradients/shadows.
+ * Do not use:
+ * - full landscape logo.svg as the tab icon (wordmark illegible at 16px)
+ * - rejected angular eagle-head concept SVGs
+ * - IES initials (superseded by owner request for logo eagle)
  *
  * Run: node scripts/generate-icons.mjs
  */
@@ -24,36 +23,22 @@ const root = path.resolve(__dirname, "..");
 const DEEP_NAVY = "#0B1120";
 const DEEP_NAVY_RGBA = { r: 11, g: 17, b: 32, alpha: 1 };
 
-const src = path.join(root, "public/brand/favicon-ies.svg");
+const logoSrc = path.join(root, "public/logos/logo.svg");
+const masterOut = path.join(root, "public/brand/favicon-eagle-from-logo.png");
 const outIcons = path.join(root, "public/icons");
 const outApp = path.join(root, "src/app");
 
 fs.mkdirSync(outIcons, { recursive: true });
+fs.mkdirSync(path.dirname(masterOut), { recursive: true });
 
-function densityFor(size) {
-  if (size <= 48) return Math.max(128, size * 8);
-  if (size <= 192) return 180;
-  return 144;
-}
+/**
+ * Crop region on a 2304x1536 render of logo.svg (2x the 1152x768 viewBox).
+ * Tuned to include the mechanical eagle only (exclude IRON EAGLE STUDIO wordmark).
+ */
+const LOGO_RENDER = { width: 2304, height: 1536 };
+const EAGLE_CROP = { left: 360, top: 60, width: 1580, height: 1100 };
 
-async function svgToPng(svgPath, size, outFile) {
-  const svg = fs.readFileSync(svgPath);
-  await sharp(svg, { density: densityFor(size) })
-    .resize(size, size, { fit: "contain", background: DEEP_NAVY_RGBA })
-    .png()
-    .toFile(outFile);
-  return outFile;
-}
-
-async function svgToPngBuffer(svgPath, size) {
-  const svg = fs.readFileSync(svgPath);
-  return sharp(svg, { density: densityFor(size) })
-    .resize(size, size, { fit: "contain", background: DEEP_NAVY_RGBA })
-    .png()
-    .toBuffer();
-}
-
-/** Build a multi-size ICO from PNG buffers (16/32/48). */
+/** Build multi-size ICO from PNG buffers (16/32/48). */
 function buildIco(pngBuffersWithSizes) {
   const count = pngBuffersWithSizes.length;
   let offset = 6 + count * 16;
@@ -85,10 +70,55 @@ function buildIco(pngBuffersWithSizes) {
   return out;
 }
 
-/** Maskable: navy canvas with mark scaled into safe zone (~72%). */
+/**
+ * Extract eagle from logo.svg and place on an opaque navy square.
+ * Small sizes use slightly less padding so the mark fills ~80% of the tile.
+ */
+async function eagleOnNavy(size) {
+  const padRatio = size <= 48 ? 0.08 : 0.1;
+  const logoSvg = fs.readFileSync(logoSrc);
+
+  const full = await sharp(logoSvg, { density: 200 })
+    .resize(LOGO_RENDER.width, LOGO_RENDER.height, {
+      fit: "fill",
+      background: DEEP_NAVY_RGBA,
+    })
+    .png()
+    .toBuffer();
+
+  const eagle = await sharp(full).extract(EAGLE_CROP).png().toBuffer();
+  const inner = Math.round(size * (1 - padRatio * 2));
+  const resized = await sharp(eagle)
+    .resize(inner, inner, { fit: "contain", background: DEEP_NAVY_RGBA })
+    .png()
+    .toBuffer();
+
+  const left = Math.round((size - inner) / 2);
+  const top = Math.round((size - inner) / 2);
+
+  return sharp({
+    create: {
+      width: size,
+      height: size,
+      channels: 4,
+      background: DEEP_NAVY_RGBA,
+    },
+  })
+    .composite([{ input: resized, left, top }])
+    .flatten({ background: DEEP_NAVY })
+    .png()
+    .toBuffer();
+}
+
+async function writePng(size, outFile) {
+  const buf = await eagleOnNavy(size);
+  fs.writeFileSync(outFile, buf);
+  return buf;
+}
+
 async function makeMaskable(size, outFile) {
   const markSize = Math.round(size * 0.72);
-  const markBuf = await svgToPngBuffer(src, markSize);
+  const markBuf = await eagleOnNavy(markSize);
   const left = Math.round((size - markSize) / 2);
   const top = Math.round((size - markSize) / 2);
 
@@ -106,36 +136,40 @@ async function makeMaskable(size, outFile) {
 }
 
 async function main() {
-  if (!fs.existsSync(src)) {
-    throw new Error(`Missing favicon source: ${src}`);
+  if (!fs.existsSync(logoSrc)) {
+    throw new Error(`Missing logo source: ${logoSrc}`);
   }
 
-  console.log("Generating production icon pack from Option B (IES initials)...");
-  console.log("  source:", path.relative(root, src));
+  console.log("Generating production icon pack from logo.svg eagle crop...");
+  console.log("  source:", path.relative(root, logoSrc));
+  console.log("  crop:", EAGLE_CROP);
 
-  await svgToPng(src, 16, path.join(outIcons, "favicon-16x16.png"));
-  await svgToPng(src, 32, path.join(outIcons, "favicon-32x32.png"));
-  await svgToPng(src, 48, path.join(outIcons, "favicon-48x48.png"));
+  // Master 512 reference (also written under public/brand for future regen)
+  const master = await eagleOnNavy(512);
+  fs.writeFileSync(masterOut, master);
+  console.log("  master:", path.relative(root, masterOut));
+
+  await writePng(16, path.join(outIcons, "favicon-16x16.png"));
+  await writePng(32, path.join(outIcons, "favicon-32x32.png"));
+  await writePng(48, path.join(outIcons, "favicon-48x48.png"));
 
   const icoPngs = [];
   for (const size of [16, 32, 48]) {
-    icoPngs.push({ size, buffer: await svgToPngBuffer(src, size) });
+    icoPngs.push({ size, buffer: await eagleOnNavy(size) });
   }
   fs.writeFileSync(path.join(outApp, "favicon.ico"), buildIco(icoPngs));
 
-  await svgToPng(src, 512, path.join(outApp, "icon.png"));
+  fs.writeFileSync(path.join(outApp, "icon.png"), master);
 
-  await sharp(fs.readFileSync(src), { density: 360 })
-    .resize(180, 180, { fit: "contain", background: DEEP_NAVY_RGBA })
-    .flatten({ background: DEEP_NAVY })
-    .png()
-    .toFile(path.join(outApp, "apple-icon.png"));
+  const apple = await eagleOnNavy(180);
+  fs.writeFileSync(path.join(outApp, "apple-icon.png"), apple);
 
-  await svgToPng(src, 192, path.join(outIcons, "android-chrome-192x192.png"));
-  await svgToPng(src, 512, path.join(outIcons, "android-chrome-512x512.png"));
+  await writePng(192, path.join(outIcons, "android-chrome-192x192.png"));
+  await writePng(512, path.join(outIcons, "android-chrome-512x512.png"));
   await makeMaskable(512, path.join(outIcons, "maskable-icon-512x512.png"));
 
   const files = [
+    "public/brand/favicon-eagle-from-logo.png",
     "src/app/favicon.ico",
     "src/app/icon.png",
     "src/app/apple-icon.png",
@@ -152,7 +186,7 @@ async function main() {
     let dims = "";
     if (rel.endsWith(".png")) {
       const meta = await sharp(p).metadata();
-      dims = `${meta.width}x${meta.height} alpha=${meta.hasAlpha}`;
+      dims = `${meta.width}x${meta.height}`;
     }
     console.log(`${rel}  ${st.size}B  ${dims}`);
   }
